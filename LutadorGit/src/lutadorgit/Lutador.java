@@ -20,7 +20,7 @@ public class Lutador {
         System.out.println(this.getVitoria() + " Vitórias");
         System.out.println(this.getEmpate()+ " Empates e");
         System.out.println(this.getDerrota()+ " Derotas");
-        System.out.println("-------------------------------------------------------");
+        System.out.println("--------------------------------------------------------");
     }
     public void status(){
         System.out.println("**********************STATUS**************************");
