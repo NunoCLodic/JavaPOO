@@ -1,5 +1,4 @@
-
-package lutadorgit;
+package LutadorGit;
 
 public class Lutador {
     private String nome;
@@ -21,9 +20,11 @@ public class Lutador {
         System.out.println(this.getVitoria() + " Vitórias");
         System.out.println(this.getEmpate()+ " Empates e");
         System.out.println(this.getDerrota()+ " Derotas");
+        System.out.println("-------------------------------------------------------");
     }
     public void status(){
-        System.out.println(this.getNome()+ "é um peso" + this.getCategoria());
+        System.out.println("**********************STATUS**************************");
+        System.out.println(this.getNome()+ " é um peso " + this.getCategoria());
         System.out.println("Ganhou "+this.getVitoria()+ " Vezes");
         System.out.println("Perdeu "+this.getDerrota()+ " Vezes");
         System.out.println("Empatou "+this.getEmpate()+ " Vezes");
@@ -88,6 +89,7 @@ public class Lutador {
 
     public void setPeso(float peso) {
         this.peso = peso;
+        this.setCategoria();
     }
 
     public String getCategoria() {
