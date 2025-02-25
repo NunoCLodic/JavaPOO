@@ -4,3 +4,7 @@
 /CalculadoraIdade/nbproject/private/
 /CalculadoraIdade/build/
 *.properties
+Exercicio09b/manifest.mf
+Exercicio09b/src/projetoLivro/Exercicio09b.java
+Exercicio09b/src/projetoLivro/pessoa.java
+ProjetoLivro/build.xml
