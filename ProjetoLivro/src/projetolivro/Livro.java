@@ -1,14 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package projetolivro;
 
-/**
- *
- * @author Administrador
- */
 public class Livro implements Publicacao {
     
     // atributos do Livro
@@ -99,7 +91,11 @@ public class Livro implements Publicacao {
 
     @Override
     public void folhear(int p) {
-        this.paginaAtual = p;
+        if(p > this.totalPagina){
+            this.paginaAtual = 0;
+        }else{
+            this.paginaAtual = p;
+        }
     }
 
     @Override
@@ -111,7 +107,5 @@ public class Livro implements Publicacao {
     public void voltarPagina() {
         this.paginaAtual--;
     }
-  
-  
   
 }
