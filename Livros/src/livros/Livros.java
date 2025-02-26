@@ -16,11 +16,11 @@ public class Livros {
         l[2] = new Livro("Java Avançado", "Maria Candido", 800, p[2]);
         
        
-        l[0].abrir();
-        l[0].folhear(200);
-        l[0].avancarPagina();
+        l[1].abrir();
+        l[1].folhear(200);
+        l[1].avancarPagina();
         
-        System.out.println(l[0].detalhes());
+        System.out.println(l[1].detalhes());
         
     }
     
