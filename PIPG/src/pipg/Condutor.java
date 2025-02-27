@@ -5,32 +5,36 @@
  */
 package pipg;
 
+import java.util.UUID;
+
 public class Condutor {
     
     //Atributs da classe condutor
-    private int IDcondutor;
+    private String IDcondutor;
     private String nome;
     private char sexo;
     private int contribuinte;
     private int contato;
-    private int IDviatura;
+    private Viatura viatura;
+    
 
     //construtor
 
-    public Condutor(int IDcondutor, String nome, char sexo, int contribuinte, int contato) {
-        this.IDcondutor = IDcondutor;
+    public Condutor(String nome, char sexo, int contribuinte, int contato, Viatura viatura) {
+        this.IDcondutor = UUID.randomUUID().toString().replace("-", "").substring(0, 8);
         this.nome = nome;
         this.sexo = sexo;
         this.contribuinte = contribuinte;
         this.contato = contato;
+        this.viatura = viatura;
     }
     //get e sett
 
-    public int getIDcondutor() {
+    public String getIDcondutor() {
         return IDcondutor;
     }
 
-    public void setIDcondutor(int IDcondutor) {
+    public void setIDcondutor(String IDcondutor) {
         this.IDcondutor = IDcondutor;
     }
 
@@ -65,21 +69,23 @@ public class Condutor {
     public void setContato(int contato) {
         this.contato = contato;
     }
-
-    public int getIDviatura() {
-        return IDviatura;
+    
+    //get do ID da viatura
+    
+    public String getIdDaViatura(){
+        return viatura.getIDviatura();
     }
-
-    public void setIDviatura(int IDviatura) {
-        this.IDviatura = IDviatura;
-    }
+    
     //Detalhes do motorista
 
     public String DetalhesCondutor() {
-        return "Condutor{" + "IDcondutor=" + IDcondutor + ";\n nome=" 
-                + nome + ";\n sexo=" + sexo + ";\n contribuinte=" 
-                + contribuinte + ";\n contato=" + contato + ";\n IDviatura=" 
-                + IDviatura + '}';
+        return "*********** DETALHES DO CONDUTOR COM ID: "+IDcondutor +" **************"  
+                + ";\n nome: "  + nome 
+                + ";\n sexo: " + sexo 
+                + ";\n contribuinte: " + contribuinte 
+                + ";\n contato: " + contato 
+                + ";\n ID da viatura: " /*+ getIdDaViatura()*/
+                +"\n******************************************************";
     }
     
 }
