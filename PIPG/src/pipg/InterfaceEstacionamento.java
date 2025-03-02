@@ -3,7 +3,7 @@ package pipg;
 
 public interface InterfaceEstacionamento {
     
-    public void reservarEstacionamento(Viatura V);
-    public void  ativarEstacionamento(Estacionamento E);
-    public void desativarEstacionamento(Estacionamento E);
+    public void enviarMensagemSuporte();
+    public void enviarMensagemMotorista();
+
 }

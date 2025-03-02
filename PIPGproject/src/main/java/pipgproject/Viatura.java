@@ -1,9 +1,7 @@
-package pipg;
-
+package pipgproject;
 import java.util.UUID;//Gera um ID unico
 
-public class Viatura implements InterfaceViatura {
-
+public class Viatura implements InterfaceViatura{
     //atributos da viatura
     private String IDviatura;
     private String matricula;
@@ -17,10 +15,11 @@ public class Viatura implements InterfaceViatura {
     public Boolean estacionado;
     public Boolean ativo;
     private Condutor condutor;
-
+    
     //construtor
-    public Viatura(String matricula, String marca, String modelo, int ano, String cor, double comprimento,
-            double largura, double altura, Condutor condutor) {
+
+    public Viatura(String matricula, String marca, String modelo, int ano, String cor,double comprimento,
+            double largura, double altura,Condutor condutor) {
         this.IDviatura = UUID.randomUUID().toString().replace("-", "").substring(0, 8);//Gera um ID unico com 8 carateres maximo
         this.matricula = matricula;
         this.marca = marca;
@@ -31,11 +30,12 @@ public class Viatura implements InterfaceViatura {
         this.largura = largura;
         this.altura = altura;
         this.condutor = condutor;
-        this.estacionado = true;
-        this.ativo = false;
+        this.estacionado = false;
+        this.ativo = false; 
     }
-
+    
     //get e set, 
+
     public String getIDviatura() {
         return IDviatura;
     }
@@ -131,51 +131,36 @@ public class Viatura implements InterfaceViatura {
     public void setCondutor(Condutor condutor) {
         this.condutor = condutor;
     }
-
+    
     //metodo detalhes Viatura
+
     public String detalhesViatura() {
-        if (estacionado == true) {
-            return "***********DETALHES DA VIATURA COM ID: " + IDviatura + "**************"
-                    + "\n matricula: " + matricula
-                    + ";\n marca: " + marca
-                    + ";\n modelo: " + modelo
-                    + ";\n ano: " + ano
-                    + ";\n cor: " + cor
-                    + ";\n comprimento: " + comprimento + " metros"
-                    + ";\n largura: " + largura + " metros"
-                    + ";\n altura: " + altura + " metros"
-                    + ";\n estacionado: " + estacionado
-                    + ";\n ID do estacionamento: " + " (em contrucao)"
-                    + ";\n ativo: " + ativo
-                    + ";\n condutor: " + condutor.getNome()
-                    + ";\n******************************************************\n";
-
-        } else {
-            return "***********DETALHES DA VIATURA COM ID: " + IDviatura + "**************"
-                    + "\n matricula: " + matricula
-                    + ";\n marca: " + marca
-                    + ";\n modelo: " + modelo
-                    + ";\n ano: " + ano
-                    + ";\n cor: " + cor
-                    + ";\n comprimento: " + comprimento + " metros"
-                    + ";\n largura: " + largura + " metros"
-                    + ";\n altura: " + altura + " metros"
-                    + ";\n estacionado: " + estacionado
-                    + ";\n ativo: " + ativo
-                    + ";\n condutor: " + condutor.getNome()
-                    + ";\n******************************************************\n";
-        }
+        return "***********DETALHES DA VIATURA COM ID: "+IDviatura +"**************"  
+                + "\n matricula: " + matricula 
+                + "\n marca: " + marca 
+                + "\n modelo: " + modelo 
+                + "\n ano: " + ano 
+                + "\n cor: " + cor 
+                + "\n comprimento: " + comprimento +" metros"
+                + "\n largura: " + largura +" metros"
+                + "\n altura: " + altura +" metros"
+                + "\n estacionado: " + estacionado 
+                + "\n ativo: " + ativo 
+                + "\n condutor: " + condutor.getNome()
+                +"\n******************************************************";
     }
-
+    
+    
+    
     //Metodos da viatura
+   
     @Override
     public void ativarViatura(Viatura v) {
         this.ativo = true;
     }
-
     @Override
     public void desativarViatura(Viatura v) {
-        this.ativo = false;
+        this.ativo = false;  
         this.estacionado = false;
     }
 
@@ -191,7 +176,11 @@ public class Viatura implements InterfaceViatura {
 
     @Override
     public void editarViatura(Viatura v) {
-        //em construcão
+    //em construcão
     }
 
+
+    
 }
+
+    

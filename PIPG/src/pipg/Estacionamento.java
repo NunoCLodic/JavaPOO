@@ -1,43 +1,43 @@
-
 package pipg;
 
-public class Estacionamento implements InterfaceEstacionamento{
+import java.util.UUID;
+
+public class Estacionamento implements InterfaceEstacionamento {
 
     //atributos da classe estacionamento
-    private int IDestacionamento;
+    private String IDestacionamento;
     private String zona;
     private String categoria;
-    private int localizacao;
-    private int comprimentoMaximo;
-    private int larguraMaxima;
-    private int alturaMaxima;
+    private Localizacao localizacao;
+    private double comprimentoMaximo;
+    private double larguraMaxima;
+    private double alturaMaxima;
     private Boolean ativo;
     private Boolean livre;
+    private String estado1;
+    private String estado2;
     private Viatura viatura;
+    private MensagemChat mensagem;
 
     //Construtor
+    public Estacionamento(String zona, String categoria, double latitude, double longitude,
+            double comprimentoMaximo, double larguraMaxima, double alturaMaxima) {
 
-    public Estacionamento(int IDestacionamento, String zona, String categoria, int localizacao, int comprimentoMaximo, int larguraMaxima, int alturaMaxima) {
-        this.IDestacionamento = IDestacionamento;
+        this.IDestacionamento = UUID.randomUUID().toString().replace("-", "").substring(0, 4);
         this.zona = zona;
         this.categoria = categoria;
-        this.localizacao = localizacao;
+        this.localizacao = new Localizacao(latitude, longitude);
         this.comprimentoMaximo = comprimentoMaximo;
         this.larguraMaxima = larguraMaxima;
         this.alturaMaxima = alturaMaxima;
-        
-        this.ativo = true;
-        this.livre = true;
-    }
-    
-  //get e sett
 
-    public int getIDestacionamento() {
+        this.ativo = false;
+        this.livre = false;
+    }
+
+    //get e sett, nao tem set estacionamento
+    public String getIDestacionamento() {
         return IDestacionamento;
-    }
-
-    public void setIDestacionamento(int IDestacionamento) {
-        this.IDestacionamento = IDestacionamento;
     }
 
     public String getZona() {
@@ -56,35 +56,31 @@ public class Estacionamento implements InterfaceEstacionamento{
         this.categoria = categoria;
     }
 
-    public int getLocalizacao() {
+    public Localizacao getLocalizacao() {
         return localizacao;
     }
 
-    public void setLocalizacao(int localizacao) {
-        this.localizacao = localizacao;
-    }
-
-    public int getComprimentoMaximo() {
+    public double getComprimentoMaximo() {
         return comprimentoMaximo;
     }
 
-    public void setComprimentoMaximo(int comprimentoMaximo) {
+    public void setComprimentoMaximo(double comprimentoMaximo) {
         this.comprimentoMaximo = comprimentoMaximo;
     }
 
-    public int getLarguraMaxima() {
+    public double getLarguraMaxima() {
         return larguraMaxima;
     }
 
-    public void setLarguraMaxima(int larguraMaxima) {
+    public void setLarguraMaxima(double larguraMaxima) {
         this.larguraMaxima = larguraMaxima;
     }
 
-    public int getAlturaMaxima() {
+    public double getAlturaMaxima() {
         return alturaMaxima;
     }
 
-    public void setAlturaMaxima(int alturaMaxima) {
+    public void setAlturaMaxima(double alturaMaxima) {
         this.alturaMaxima = alturaMaxima;
     }
 
@@ -111,42 +107,68 @@ public class Estacionamento implements InterfaceEstacionamento{
     public void setViatura(Viatura viatura) {
         this.viatura = viatura;
     }
- 
-  // Detalhes do estacionamento
 
-    public String detalheEstacionamento() {
-        return "DETALHES DO ESTACIONEMANETO:" 
-                + "\n IDestacionamento:" + IDestacionamento 
-                + "\n zona:" + zona 
-                + "\n categoria:" + categoria 
-                + "\n localizacao:" + localizacao 
-                + "\n comprimentoMaximo:" + comprimentoMaximo 
-                + "\n larguraMaxima:" + larguraMaxima 
-                + "\n alturaMaxima:" + alturaMaxima 
-                + "\n ativo:" + ativo 
-                + "\n livre:" + livre 
-                + "\n viatura:" + viatura 
-                ;
+    //Ativar e desativar estacionamento
+    public Boolean ativar() {
+        return ativo = true;
     }
 
-    //metodo reservar estacionamento
-    @Override
-    public void reservarEstacionamento(Viatura x) {
-        if ((getAtivo()== true)&&(getLivre() == true)){
-            System.out.println("10 Minutos até a Viatura "+x.getMatricula()+" estacionar");
-        }else{
-            System.out.println("impossivel reservar estacionamento");
-        }     
-    }
-
-    @Override
-    public void ativarEstacionamento(Estacionamento E){
-        this.ativo = true;
-    }
-
-    @Override
-    public void desativarEstacionamento(Estacionamento E) {
-        this.ativo = false;
+    public Boolean Desativar() {
+        return ativo = false;
     }
     
+    //Metodo que verifica o estado do estacionamento
+    public String livreOcupado(){
+        if(getLivre()==true){
+            return estado1 = "Livre";
+        }else{
+            return estado1 = "Ocupado";
+        }
+    }
+    
+    public String ativoDesativo(){
+        if(getAtivo()==true){
+            return estado2 = "Ativo";
+        }else{
+            return estado2 = "Desativo";
+        }
+    }
+
+    // Detalhes do estacionamento
+    public String detalhesEstacionamento() {
+
+        if (livre == false) {
+            return "*********** DETALHES DO ESTACIONAMENTO COM ID " + IDestacionamento + " **************"
+                    + ";\n zona:" + zona
+                    + ";\n categoria:" + categoria
+                    + ";\n localizacao(lat,long):" + getLocalizacao().getLatitude() + " , " + getLocalizacao().getLongitude()
+                    + ";\n comprimento Maximo:" + comprimentoMaximo + " metros"
+                    + ";\n largura Maxima:" + larguraMaxima + " metros"
+                    + ";\n altura Maxima:" + alturaMaxima + " metros"
+                    + ";\n estado:" + ativoDesativo()+ " e " + livreOcupado()
+                    + ";\n viatura:" + viatura + " (em construcao)"
+                    + ";\n******************************************************\n";
+        } else {
+            return "*********** DETALHES DO ESTACIONAMENTO COM ID " + IDestacionamento + " **************"
+                    + ";\n zona:" + zona
+                    + ";\n categoria:" + categoria
+                    + ";\n localizacao(lat,long):" + getLocalizacao().getLatitude() + " , " + getLocalizacao().getLongitude()
+                    + ";\n comprimento Maximo:" + comprimentoMaximo + " metros"
+                    + ";\n largura Maxima:" + larguraMaxima + " metros"
+                    + ";\n altura Maxima:" + alturaMaxima + " metros"
+                    + ";\n estado:" + ativoDesativo()+ " e " + livreOcupado()
+                    + ";\n******************************************************\n";
+        }
+    }
+
+    @Override
+    public void enviarMensagemSuporte() {
+        //em construcao
+    }
+
+    @Override
+    public void enviarMensagemMotorista() {
+        //em construcao
+    }
+
 }
