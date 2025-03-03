@@ -1,9 +1,10 @@
 package pipg;
 
 //import java.util.ArrayList;
+import java.util.ArrayList;
 import java.util.UUID;
 
-public class Suporte implements InterfaceSuporte{
+public class Suporte implements InterfaceSuporte {
 
     //atributos do suporte
     private String id;
@@ -91,11 +92,11 @@ public class Suporte implements InterfaceSuporte{
     public void desativarEstacionamento(Estacionamento e) {
         e.Desativar();
     }
-    
-//    public static void exibirListaCondutores(ArrayList<Condutor> listaCondutors){
-//        System.out.println("Lista de condutores:");
-//        for(Condutor condutor : listaCondutors){
-//            System.out.println(condutor);
+
+//    public static void exibirlistaEstudantes(ArrayList<Estudante> estudantes) {
+//        System.out.println("Estudantes: ");
+//        for (Estudante estudante : estudantes) {
+//            System.out.println(estudante.detalhesCondutor());
 //        }
 //    }
 

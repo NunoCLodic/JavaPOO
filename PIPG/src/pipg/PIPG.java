@@ -20,7 +20,7 @@ public class PIPG {
         Professor professor1 = new Professor("Professor", "Pedro", "1980-06-02", 'M', 284560888, 925780123, null, 4567, "Java");
         Professor professor2 = new Professor("Professor", "Fernanda", "1980-06-02", 'F', 284560888, 925780123, null, 3454, "C#");
 
-        Funcionario funcionario1 = new Funcionario("Funcionario", "Fabio", "1980-06-02", 'M', 284560888, 925780123, null, 2456, "secretaria");
+        Funcionario funcionario1 = new Funcionario("Funcionario", "Fabio", "1980-06-02", 'M', 284560888, 925780123, null, 2456, "Secretaria");
         Funcionario funcionario2 = new Funcionario("Funcionario", "Tiana", "1980-06-02", 'F', 284560888, 925780123, null, 8765, "Biblioteca");
 
         estudantes.add(estudante1);
@@ -46,6 +46,14 @@ public class PIPG {
         viaturas.add(viatura5);
         viaturas.add(viatura6);
 
+        //Atualizando as viaturas a seus respectivos condutores
+        viatura1.setCondutor(estudante1);
+        viatura2.setCondutor(estudante2);
+        viatura3.setCondutor(professor1);
+        viatura4.setCondutor(professor2);
+        viatura5.setCondutor(funcionario1);
+        viatura6.setCondutor(funcionario2);
+
         Estacionamento estacionamento1 = new Estacionamento("Norte", "Estudante", 40.234567, -8.345689, 2.0, 1.5, 3.0);
         Estacionamento estacionamento2 = new Estacionamento("Sul", "Professor", 41.234567, -7.345689, 2.0, 1.5, 3.0);
         Estacionamento estacionamento3 = new Estacionamento("Este", "Funcionario", 40.234567, -8.345689, 2.0, 1.5, 3.0);
@@ -60,26 +68,36 @@ public class PIPG {
         estacionamentos.add(estacionamento5);
         estacionamentos.add(estacionamento6);
 
+        estacionamento1.setViatura(viatura1);
+        estacionamento2.setViatura(viatura2);
+        estacionamento3.setViatura(viatura3);
+        estacionamento4.setViatura(viatura4);
+        estacionamento5.setViatura(viatura5);
+        estacionamento6.setViatura(viatura6);
+        
+
         //Exibindo os dados das listas
+
         System.out.println("Estudantes: ");
-        for (Estudante estudante : estudantes) {
+        estudantes.forEach((estudante) -> {
             System.out.println(estudante.detalhesCondutor());
-        }
+        });
         System.out.println("Professores: ");
-        for (Professor professor : professores) {
+        professores.forEach((professor) -> {
             System.out.println(professor.detalhesCondutor());
-        }
+        });
         System.out.println("Funcionarios: ");
-        for (Funcionario funcionario : funcionarios) {
+        funcionarios.forEach((funcionario) -> {
             System.out.println(funcionario.detalhesCondutor());
-        }
+        });
         System.out.println("Viaturas: ");
-        for (Viatura viatura : viaturas) {
+        viaturas.forEach((viatura) -> {
             System.out.println(viatura.detalhesViatura());
-        }
+        });
         System.out.println("Estacionamentos: ");
-        for (Estacionamento estacionamento : estacionamentos) {
+        estacionamentos.forEach((estacionamento) -> {
             System.out.println(estacionamento.detalhesEstacionamento());
-        }
+        });
     }
+
 }

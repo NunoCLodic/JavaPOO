@@ -149,6 +149,10 @@ public class Viatura implements InterfaceViatura {
         return estacionamento;
     }
 
+    public void setEstacionamento(Estacionamento estacionamento) {
+        this.estacionamento = estacionamento;
+    }
+    
     public Condutor getCondutor() {
         return condutor;
     }
