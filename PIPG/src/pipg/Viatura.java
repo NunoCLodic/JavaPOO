@@ -7,15 +7,17 @@ public class Viatura implements InterfaceViatura {
     //atributos da viatura
     private String IDviatura;
     private String matricula;
-    public String marca;
-    public String modelo;
-    public int ano;
-    public String cor;
-    public double comprimento;
-    public double largura;
-    public double altura;
-    public Boolean estacionado;
-    public Boolean ativo;
+    private String marca;
+    private String modelo;
+    private int ano;
+    private String cor;
+    private double comprimento;
+    private double largura;
+    private double altura;
+    private Boolean estacionado;
+    private Boolean ativo;
+    private String estado1;
+    private String estado2;
     private Condutor condutor;
 
     //construtor
@@ -31,8 +33,12 @@ public class Viatura implements InterfaceViatura {
         this.largura = largura;
         this.altura = altura;
         this.condutor = condutor;
-        this.estacionado = true;
-        this.ativo = false;
+        this.ativo = true;
+        this.estado1 = "Ativo";
+        this.estacionado = false;
+        this.estado2 = "Não estacionado";
+
+
     }
 
     //get e set, 
@@ -116,6 +122,22 @@ public class Viatura implements InterfaceViatura {
         this.estacionado = estacionado;
     }
 
+    public String getEstado() {
+        return estado1;
+    }
+
+    public void setEstado(String estado) {
+        this.estado1 = estado;
+    }
+
+    public String getEstado2() {
+        return estado2;
+    }
+
+    public void setEstado2(String estado2) {
+        this.estado2 = estado2;
+    }
+
     public Boolean getAtivo() {
         return ativo;
     }
@@ -132,39 +154,38 @@ public class Viatura implements InterfaceViatura {
         this.condutor = condutor;
     }
 
+    public String estadoViatura1() {
+        if (ativo == false) {
+            estado2 ="Não estacionado";
+            return estado1 = "Não ativo";
+        } else {
+            return estado1 = "Ativo";
+        }
+    }
+
+    public String estadoViatura2() {
+        if (estacionado == true) {
+            return estado2 = "Estacionado";
+        } else {
+            return estado2 = "Não estacionado";
+        }
+    }
+
     //metodo detalhes Viatura
     public String detalhesViatura() {
-        if (estacionado == true) {
-            return "***********DETALHES DA VIATURA COM ID: " + IDviatura + "**************"
-                    + "\n matricula: " + matricula
-                    + ";\n marca: " + marca
-                    + ";\n modelo: " + modelo
-                    + ";\n ano: " + ano
-                    + ";\n cor: " + cor
-                    + ";\n comprimento: " + comprimento + " metros"
-                    + ";\n largura: " + largura + " metros"
-                    + ";\n altura: " + altura + " metros"
-                    + ";\n estacionado: " + estacionado
-                    + ";\n ID do estacionamento: " + " (em contrucao)"
-                    + ";\n ativo: " + ativo
-                    + ";\n condutor: " + condutor.getNome()
-                    + ";\n******************************************************\n";
-
-        } else {
-            return "***********DETALHES DA VIATURA COM ID: " + IDviatura + "**************"
-                    + "\n matricula: " + matricula
-                    + ";\n marca: " + marca
-                    + ";\n modelo: " + modelo
-                    + ";\n ano: " + ano
-                    + ";\n cor: " + cor
-                    + ";\n comprimento: " + comprimento + " metros"
-                    + ";\n largura: " + largura + " metros"
-                    + ";\n altura: " + altura + " metros"
-                    + ";\n estacionado: " + estacionado
-                    + ";\n ativo: " + ativo
-                    + ";\n condutor: " + condutor.getNome()
-                    + ";\n******************************************************\n";
-        }
+        return "***********DETALHES DA VIATURA COM ID: " + IDviatura + "**************"
+                + "\n matricula: " + matricula
+                + ";\n marca: " + marca
+                + ";\n modelo: " + modelo
+                + ";\n ano: " + ano
+                + ";\n cor: " + cor
+                + ";\n comprimento: " + comprimento + " metros"
+                + ";\n largura: " + largura + " metros"
+                + ";\n altura: " + altura + " metros"
+                + ";\n estado: " + estadoViatura1() + " e " + estadoViatura2()
+                + ";\n ID do estacionamento: " + " (em contrucao)"
+                + ";\n nome do condutor: " + (condutor != null? condutor.getNome():"Nenhum")//evita referencia circular durante a construção
+                + ";\n******************************************************\n";
     }
 
     //Metodos da viatura

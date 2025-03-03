@@ -4,21 +4,22 @@ import java.time.LocalDate;
 //import org.apache.commons.validator.routines.EmailValidator;
 import java.util.UUID;
 
-public class Condutor implements InterfaceCondutor {
+public abstract class Condutor {
 
     //Atributs da classe condutor
-    private String IDcondutor;
-    private String nome;
-    private LocalDate dataNascimento;
-    private char sexo;
-    private int contribuinte;
-    private int contato;
-    private String email;
-
-    private Viatura viatura;
+    protected String IDcondutor;
+    protected String categoria;
+    protected String nome;
+    protected LocalDate dataNascimento;
+    protected char sexo;
+    protected int contribuinte;
+    protected int contato;
+    protected String email;
+    protected Viatura viatura;
 
     //construtor
-    public Condutor(String nome, String dataNascimento, char sexo, int contribuinte, int contato, Viatura viatura) {
+    public Condutor(String categoria,String nome, String dataNascimento, char sexo, int contribuinte, int contato, Viatura viatura) {
+        this.categoria = categoria;
         this.IDcondutor = UUID.randomUUID().toString().replace("-", "").substring(0, 8);
         this.nome = nome;
         this.dataNascimento = LocalDate.parse(dataNascimento);//converte a string no localDate
@@ -35,12 +36,16 @@ public class Condutor implements InterfaceCondutor {
     }
     //get e sett
 
-    public String getIDcondutor() {
+    public String getIDcondutor() {//nao tem set do IDcondutor
         return IDcondutor;
     }
 
-    public void setIDcondutor(String IDcondutor) {
-        this.IDcondutor = IDcondutor;
+    public String getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
     }
 
     public String getNome() {
@@ -89,57 +94,19 @@ public class Condutor implements InterfaceCondutor {
                 || (dataAtual.getMonthValue() == dataNascimento.getMonthValue()
                 && dataAtual.getDayOfMonth() < dataNascimento.getDayOfMonth())) ? 1 : 0);
     }
-
-    //Detalhes do motorista
+    
+    
+    //Detalhes Comum Condutor
     public String detalhesCondutor() {
         return "*********** DETALHES DO CONDUTOR COM ID: " + IDcondutor + " **************"
+                + ";\n Catedoria: " + categoria
                 + ";\n nome: " + nome
                 + ";\n idade: " + calcularIdade() + " anos"
                 + ";\n sexo: " + sexo
                 + ";\n contribuinte: " + contribuinte
                 + ";\n contato: " + contato
-                + ";\n ID da viatura: "/*+ viatura.getIDviatura()*/ + " (em construção);"
-                + "\n******************************************************\n";
-    }
-
-//metodos do condutor
-    @Override
-    public void adicionarViatura() {
-        //em construcao
-    }
-
-    @Override
-    public void EditarViatura(Viatura v) {
-        //em construcao
-    }
-
-    @Override
-    public void eliminarViatura(Viatura v) {
-        //em construcao
-    }
-
-    @Override
-    public void reservarEstacionamento(Viatura v, Estacionamento e) {
-        if ((e.getAtivo() == true) && (e.getLivre() == true)) {
-            System.out.println("10 Minutos até a Viatura " + v.getMatricula() + " estacionar");
-        } else {
-            System.out.println("impossivel reservar estacionamento");
-        }
-    }
-
-    @Override
-    public void estacionarViatura(Viatura v, Estacionamento e) {
-        if((e.getAtivo() == true)&&(e.getLivre() == true)){
-            
-        }
-    }
-
-    @Override
-    public void desocuparEstacionamento(Viatura v, Estacionamento e) {
-    }
-
-    @Override
-    public void enviarMensagemSuporte(Suporte s) {
+                + ";\n id da viatura: "/*+ viatura.getIDviatura()*/ + " (em construção);"
+                ;
     }
 
 }
