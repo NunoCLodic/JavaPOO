@@ -5,7 +5,7 @@ import java.util.UUID;
 public class Estacionamento implements InterfaceEstacionamento {
 
     //atributos da classe estacionamento
-    private String IDestacionamento;
+    private String id;
     private String zona;
     private String categoria;
     private Localizacao localizacao;
@@ -21,7 +21,7 @@ public class Estacionamento implements InterfaceEstacionamento {
     public Estacionamento(String zona, String categoria, double latitude, double longitude,
             double comprimentoMaximo, double larguraMaxima, double alturaMaxima) {
 
-        this.IDestacionamento = UUID.randomUUID().toString().replace("-", "").substring(0, 4);
+        this.id = UUID.randomUUID().toString().replace("-", "").substring(0, 4);
         this.zona = zona;
         this.categoria = categoria;
         this.localizacao = new Localizacao(latitude, longitude);
@@ -35,7 +35,7 @@ public class Estacionamento implements InterfaceEstacionamento {
 
     //get e sett, nao tem set estacionamento
     public String getIDestacionamento() {
-        return IDestacionamento;
+        return id;
     }
 
     public String getZona() {
@@ -137,7 +137,7 @@ public class Estacionamento implements InterfaceEstacionamento {
     // Detalhes do estacionamento
     public String detalhesEstacionamento() {
 
-        return "*********** DETALHES DO ESTACIONAMENTO COM ID " + IDestacionamento + " **************"
+        return "*********** DETALHES DO ESTACIONAMENTO COM ID " + id + " **************"
                 + "\n zona:" + zona
                 + ";\n categoria:" + categoria
                 + ";\n localizacao:" + getLocalizacao().getLatitude() + " , " + getLocalizacao().getLongitude()

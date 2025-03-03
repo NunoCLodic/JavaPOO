@@ -6,7 +6,7 @@ import java.util.UUID;
 public class Suporte implements InterfaceSuporte{
 
     //atributos do suporte
-    private String IDsuporte;
+    private String id;
     private String zona;//o suporte so poderá gerir estacionamento da sua zona
     private String Senha;
     private MensagemChat mensagem;
@@ -28,18 +28,18 @@ public class Suporte implements InterfaceSuporte{
 
     //construtor do suporte
     public Suporte(String zona) {
-        this.IDsuporte = UUID.randomUUID().toString().replace("-", "").substring(0, 4);
+        this.id = UUID.randomUUID().toString().replace("-", "").substring(0, 4);
         this.zona = zona;
         this.Senha = UUID.randomUUID().toString().replace("-", "").substring(0, 8);
     }
     //get e set do suporte
 
     public String getIDsuporte() {
-        return IDsuporte;
+        return id;
     }
 
-    public void setIDsuporte(String IDsuporte) {
-        this.IDsuporte = IDsuporte;
+    public void setIDsuporte(String id) {
+        this.id = id;
     }
 
     public String getZona() {
@@ -60,7 +60,7 @@ public class Suporte implements InterfaceSuporte{
 
     //metodo detalhes suporte
     public String detalhesSuporte() {
-        return "***********DETALHES DO SUPORTE COM ID: " + IDsuporte + "**************"
+        return "***********DETALHES DO SUPORTE COM ID: " + id + "**************"
                 + "zona: " + zona
                 + ", Senha: " + Senha //depois retirado
                 + ", Estacionamentos Livres: " + estacionamentoLivre

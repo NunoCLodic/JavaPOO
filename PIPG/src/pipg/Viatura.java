@@ -5,7 +5,7 @@ import java.util.UUID;//Gera um ID unico
 public class Viatura implements InterfaceViatura {
 
     //atributos da viatura
-    private String IDviatura;
+    private String id;
     private String matricula;
     private String marca;
     private String modelo;
@@ -24,7 +24,7 @@ public class Viatura implements InterfaceViatura {
     //construtor
     public Viatura(String matricula, String marca, String modelo, int ano, String cor, double comprimento,
             double largura, double altura, Condutor condutor) {
-        this.IDviatura = UUID.randomUUID().toString().replace("-", "").substring(0, 8);//Gera um ID unico com 8 carateres maximo
+        this.id = UUID.randomUUID().toString().replace("-", "").substring(0, 8);//Gera um ID unico com 8 carateres maximo
         this.matricula = matricula;
         this.marca = marca;
         this.modelo = modelo;
@@ -42,11 +42,11 @@ public class Viatura implements InterfaceViatura {
 
     //get e set, 
     public String getIDviatura() {
-        return IDviatura;
+        return id;
     }
 
-    public void setIDviatura(String IDviatura) {
-        this.IDviatura = IDviatura;
+    public void setIDviatura(String id) {
+        this.id = id;
     }
 
     public String getMatricula() {
@@ -177,7 +177,7 @@ public class Viatura implements InterfaceViatura {
 
     //metodo detalhes Viatura
     public String detalhesViatura() {
-        return "***********DETALHES DA VIATURA COM ID: " + IDviatura + " **************"
+        return "***********DETALHES DA VIATURA COM ID: " + id + " **************"
                 + "\n matricula: " + matricula
                 + ";\n marca: " + marca
                 + ";\n modelo: " + modelo

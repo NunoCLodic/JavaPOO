@@ -4,26 +4,25 @@ package pipg;
 
 public class Estudante extends Condutor implements InterfaceCondutor{
     
-    private int numeroEstudante;
+    private int id;
     private String curso;
     private int ano;
 
     public Estudante(String categoria,String nome, String dataNascimento, char sexo, int contribuinte,
-            int contato, Viatura viatura, int numeroEstudante, String curso, int ano) {
-        super(categoria,nome, dataNascimento, sexo, contribuinte, contato, viatura);
+            int contato, Viatura viatura, int id, String curso, int ano) {
         
-        
-        this.numeroEstudante = numeroEstudante;
+        super(categoria,nome, dataNascimento, sexo, contribuinte, contato, viatura); 
+        this.id = id;
         this.curso = curso;
         this.ano = ano;
     }
     //get set de condutores Estudantes
     public int getNumeroEstudante() {
-        return numeroEstudante;
+        return id;
     }
 
     public void setNumeroEstudante(int numeroEstudante) {
-        this.numeroEstudante = numeroEstudante;
+        this.id = numeroEstudante;
     }
 
     public String getCurso() {
@@ -41,14 +40,12 @@ public class Estudante extends Condutor implements InterfaceCondutor{
     public void setAno(int ano) {
         this.ano = ano;
     }
-    
-    
-    
+
      //Detalhes do Condutor Estudante
     @Override
     public String detalhesCondutor() {
         return super.detalhesCondutor() 
-                + "\n numero estudante: " + numeroEstudante
+                + "\n numero estudante: " + id
                 + ";\n curso: " + curso
                 + ";\n ano: " + ano
                 + "\n******************************************************\n";

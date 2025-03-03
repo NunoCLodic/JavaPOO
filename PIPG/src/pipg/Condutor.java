@@ -7,7 +7,7 @@ import java.util.UUID;
 public abstract class Condutor {
 
     //Atributs da classe condutor
-    protected String IDcondutor;
+    protected String id;
     protected String categoria;
     protected String nome;
     protected LocalDate dataNascimento;
@@ -18,9 +18,10 @@ public abstract class Condutor {
     protected Viatura viatura;
 
     //construtor
-    public Condutor(String categoria,String nome, String dataNascimento, char sexo, int contribuinte, int contato, Viatura viatura) {
+    public Condutor(String categoria,String nome, String dataNascimento, char sexo, 
+            int contribuinte, int contato, Viatura viatura) {
         this.categoria = categoria;
-        this.IDcondutor = UUID.randomUUID().toString().replace("-", "").substring(0, 8);
+        this.id = UUID.randomUUID().toString().replace("-", "").substring(0, 8);
         this.nome = nome;
         this.dataNascimento = LocalDate.parse(dataNascimento);//converte a string no localDate
         this.sexo = sexo;
@@ -37,7 +38,7 @@ public abstract class Condutor {
     //get e sett
 
     public String getIDcondutor() {//nao tem set do IDcondutor
-        return IDcondutor;
+        return id;
     }
 
     public String getCategoria() {
@@ -110,7 +111,7 @@ public abstract class Condutor {
     
     //Detalhes Comum Condutor
     public String detalhesCondutor() {
-        return "*********** DETALHES DO CONDUTOR COM ID: " + IDcondutor + " **************"
+        return "*********** DETALHES DO CONDUTOR COM ID: " + id + " **************"
                 + ";\n Catedoria: " + categoria
                 + ";\n nome: " + nome
                 + ";\n idade: " + calcularIdade() + " anos"
