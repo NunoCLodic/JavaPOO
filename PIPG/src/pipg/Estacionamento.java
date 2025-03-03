@@ -14,8 +14,6 @@ public class Estacionamento implements InterfaceEstacionamento {
     private double alturaMaxima;
     private Boolean ativo;
     private Boolean livre;
-    private String estado1;
-    private String estado2;
     private Viatura viatura;
     private MensagemChat mensagem;
 
@@ -31,8 +29,8 @@ public class Estacionamento implements InterfaceEstacionamento {
         this.larguraMaxima = larguraMaxima;
         this.alturaMaxima = alturaMaxima;
 
-        this.ativo = false;
-        this.livre = false;
+        this.ativo = true;
+        this.livre = true;
     }
 
     //get e sett, nao tem set estacionamento
@@ -116,49 +114,41 @@ public class Estacionamento implements InterfaceEstacionamento {
     public Boolean Desativar() {
         return ativo = false;
     }
-    
+
     //Metodo que verifica o estado do estacionamento
-    public String livreOcupado(){
-        if(getLivre()==true){
-            return estado1 = "Livre";
-        }else{
-            return estado1 = "Ocupado";
+    public String estadoEstacionamento1() {
+        String estado1;
+        if (getAtivo() == true) {
+            return estado1 = "Ativo";
+        } else {
+            return estado1 = "Desativo";
         }
     }
-    
-    public String ativoDesativo(){
-        if(getAtivo()==true){
-            return estado2 = "Ativo";
-        }else{
-            return estado2 = "Desativo";
+
+    public String estadoEstacionamento2() {
+        String estado2;
+        if ((getLivre() == true)&&((getAtivo()==true))) {
+            return estado2 = "Livre";
+        } else {
+            return estado2 = "Ocupado";
         }
     }
 
     // Detalhes do estacionamento
     public String detalhesEstacionamento() {
 
-        if (livre == false) {
-            return "*********** DETALHES DO ESTACIONAMENTO COM ID " + IDestacionamento + " **************"
-                    + ";\n zona:" + zona
-                    + ";\n categoria:" + categoria
-                    + ";\n localizacao(lat,long):" + getLocalizacao().getLatitude() + " , " + getLocalizacao().getLongitude()
-                    + ";\n comprimento Maximo:" + comprimentoMaximo + " metros"
-                    + ";\n largura Maxima:" + larguraMaxima + " metros"
-                    + ";\n altura Maxima:" + alturaMaxima + " metros"
-                    + ";\n estado:" + ativoDesativo()+ " e " + livreOcupado()
-                    + ";\n viatura:" + viatura + " (em construcao)"
-                    + ";\n******************************************************\n";
-        } else {
-            return "*********** DETALHES DO ESTACIONAMENTO COM ID " + IDestacionamento + " **************"
-                    + ";\n zona:" + zona
-                    + ";\n categoria:" + categoria
-                    + ";\n localizacao(lat,long):" + getLocalizacao().getLatitude() + " , " + getLocalizacao().getLongitude()
-                    + ";\n comprimento Maximo:" + comprimentoMaximo + " metros"
-                    + ";\n largura Maxima:" + larguraMaxima + " metros"
-                    + ";\n altura Maxima:" + alturaMaxima + " metros"
-                    + ";\n estado:" + ativoDesativo()+ " e " + livreOcupado()
-                    + ";\n******************************************************\n";
-        }
+        return "*********** DETALHES DO ESTACIONAMENTO COM ID " + IDestacionamento + " **************"
+                + "\n zona:" + zona
+                + ";\n categoria:" + categoria
+                + ";\n localizacao:" + getLocalizacao().getLatitude() + " , " + getLocalizacao().getLongitude()
+                + ";\n comprimento Maximo:" + comprimentoMaximo + " metros"
+                + ";\n largura Maxima:" + larguraMaxima + " metros"
+                + ";\n altura Maxima:" + alturaMaxima + " metros"
+                + ";\n estado:" + estadoEstacionamento1() + " e " + estadoEstacionamento2()
+                + ";\n id da viatura:" + (viatura != null ? viatura.getIDviatura() : "Nenhum4")//nao funciona
+                + ";\n matricula:" + (viatura != null ? viatura.getMatricula() : "Nenhum5")//nao funciona
+                + ";\n******************************************************\n";
+
     }
 
     @Override

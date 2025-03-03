@@ -79,6 +79,18 @@ public abstract class Condutor {
     public void setContato(int contato) {
         this.contato = contato;
     }
+
+    public Viatura getViatura() {
+        return viatura;
+    }
+
+    public void setViatura(Viatura viatura) {
+        this.viatura = viatura;
+    }
+    
+    
+    
+    
     //Metodos
     //get do ID da viatura
 
@@ -105,7 +117,8 @@ public abstract class Condutor {
                 + ";\n sexo: " + sexo
                 + ";\n contribuinte: " + contribuinte
                 + ";\n contato: " + contato
-                + ";\n id da viatura: "/*+ viatura.getIDviatura()*/ + " (em construção);"
+                + ";\n matricula da viatura: " + (viatura != null? viatura.getMatricula():"Nenhum")//evita referencia circular durante a construção
+                + ";\n id da viatura: " + (viatura != null? viatura.getIDviatura():"Nenhum")
                 ;
     }
 

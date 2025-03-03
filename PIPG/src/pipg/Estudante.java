@@ -43,6 +43,7 @@ public class Estudante extends Condutor implements InterfaceCondutor{
     }
     
     
+    
      //Detalhes do Condutor Estudante
     @Override
     public String detalhesCondutor() {
@@ -56,13 +57,13 @@ public class Estudante extends Condutor implements InterfaceCondutor{
   
     //metodos do condutor
     @Override
-    public void adicionarViatura() {
-        //em construcao
+    public void adicionarViatura(Viatura v) {
+        setViatura(viatura);
     }
 
     @Override
-    public void EditarViatura(Viatura v) {
-        //em construcao
+    public void editarViatura(Viatura v) {
+        getViatura();
     }
 
     @Override

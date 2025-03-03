@@ -18,6 +18,7 @@ public class Viatura implements InterfaceViatura {
     private Boolean ativo;
     private String estado1;
     private String estado2;
+    private Estacionamento estacionamento;
     private Condutor condutor;
 
     //construtor
@@ -35,10 +36,8 @@ public class Viatura implements InterfaceViatura {
         this.condutor = condutor;
         this.ativo = true;
         this.estado1 = "Ativo";
-        this.estacionado = false;
-        this.estado2 = "Não estacionado";
-
-
+        this.estacionado = true;
+        this.estado2 = "Estacionado";
     }
 
     //get e set, 
@@ -146,6 +145,10 @@ public class Viatura implements InterfaceViatura {
         this.ativo = ativo;
     }
 
+    public Estacionamento getEstacionamento() {
+        return estacionamento;
+    }
+
     public Condutor getCondutor() {
         return condutor;
     }
@@ -154,9 +157,10 @@ public class Viatura implements InterfaceViatura {
         this.condutor = condutor;
     }
 
+    //Metodos estados da viatura
     public String estadoViatura1() {
         if (ativo == false) {
-            estado2 ="Não estacionado";
+            estado2 = "Não estacionado";
             return estado1 = "Não ativo";
         } else {
             return estado1 = "Ativo";
@@ -173,7 +177,7 @@ public class Viatura implements InterfaceViatura {
 
     //metodo detalhes Viatura
     public String detalhesViatura() {
-        return "***********DETALHES DA VIATURA COM ID: " + IDviatura + "**************"
+        return "***********DETALHES DA VIATURA COM ID: " + IDviatura + " **************"
                 + "\n matricula: " + matricula
                 + ";\n marca: " + marca
                 + ";\n modelo: " + modelo
@@ -183,8 +187,9 @@ public class Viatura implements InterfaceViatura {
                 + ";\n largura: " + largura + " metros"
                 + ";\n altura: " + altura + " metros"
                 + ";\n estado: " + estadoViatura1() + " e " + estadoViatura2()
-                + ";\n ID do estacionamento: " + " (em contrucao)"
-                + ";\n nome do condutor: " + (condutor != null? condutor.getNome():"Nenhum")//evita referencia circular durante a construção
+                + ";\n id do estacionamento: " + (estacionamento != null ? estacionamento.getIDestacionamento() : "Nenhum1")//nao funciona
+                + ";\n nome do condutor: " + (condutor != null ? condutor.getNome() : "Nenhum2")//nao funciona
+                + ";\n id do condutor: " + (condutor != null ? condutor.getIDcondutor() : "Nenhum3")//nao funciona
                 + ";\n******************************************************\n";
     }
 
@@ -201,7 +206,7 @@ public class Viatura implements InterfaceViatura {
     }
 
     @Override
-    public void estacionarViatura(Viatura v) {
+    public void estacionarViatura(Viatura v, Estacionamento e) {
         this.estacionado = true;
     }
 
