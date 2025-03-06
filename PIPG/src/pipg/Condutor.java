@@ -118,8 +118,8 @@ public abstract class Condutor {
                 + ";\n sexo: " + sexo
                 + ";\n contribuinte: " + contribuinte
                 + ";\n contato: " + contato
-                + ";\n matricula da viatura: " + (viatura != null? viatura.getMatricula():"Nenhum")//evita referencia circular durante a construção
-                + ";\n id da viatura: " + (viatura != null? viatura.getIDviatura():"Nenhum")
+                + ";\n matricula da viatura: " + (viatura != null? viatura.getMatricula():"null")//evita referencia circular durante a construção
+                + ";\n id da viatura: " + (viatura != null? viatura.getIDviatura():"null")
                 ;
     }
 

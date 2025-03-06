@@ -45,6 +45,8 @@ public class PIPG {
         viaturas.add(viatura4);
         viaturas.add(viatura5);
         viaturas.add(viatura6);
+        
+        viaturas.remove(viatura6);
 
         //Atualizando as viaturas a seus respectivos condutores
         viatura1.setCondutor(estudante1);
@@ -53,6 +55,13 @@ public class PIPG {
         viatura4.setCondutor(professor2);
         viatura5.setCondutor(funcionario1);
         viatura6.setCondutor(funcionario2);
+
+        estudante1.setViatura(viatura1);
+        estudante2.setViatura(viatura2);
+        professor1.setViatura(viatura3);
+        professor2.setViatura(viatura4);
+        funcionario1.setViatura(viatura5);
+        funcionario2.setViatura(viatura6);
 
         Estacionamento estacionamento1 = new Estacionamento("Norte", "Estudante", 40.234567, -8.345689, 2.0, 1.5, 3.0);
         Estacionamento estacionamento2 = new Estacionamento("Sul", "Professor", 41.234567, -7.345689, 2.0, 1.5, 3.0);
@@ -68,16 +77,27 @@ public class PIPG {
         estacionamentos.add(estacionamento5);
         estacionamentos.add(estacionamento6);
 
+        //atualizando os estacionamento com as suas viaturas
         estacionamento1.setViatura(viatura1);
         estacionamento2.setViatura(viatura2);
         estacionamento3.setViatura(viatura3);
         estacionamento4.setViatura(viatura4);
         estacionamento5.setViatura(viatura5);
         estacionamento6.setViatura(viatura6);
-        
+
+        viatura1.setEstacionamento(estacionamento1);
+        viatura2.setEstacionamento(estacionamento2);
+        viatura3.setEstacionamento(estacionamento3);
+        viatura4.setEstacionamento(estacionamento4);
+        viatura5.setEstacionamento(estacionamento5);
+        viatura6.setEstacionamento(estacionamento6);
+
+        estacionamento6.Desativar();
+        estacionamento5.Desativar();
+        estacionamento4.Desativar();
+        estacionamento3.Desativar();
 
         //Exibindo os dados das listas
-
         System.out.println("Estudantes: ");
         estudantes.forEach((estudante) -> {
             System.out.println(estudante.detalhesCondutor());

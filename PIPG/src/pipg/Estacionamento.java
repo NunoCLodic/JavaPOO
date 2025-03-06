@@ -5,7 +5,8 @@ import java.util.UUID;
 public class Estacionamento implements InterfaceEstacionamento {
 
     //atributos da classe estacionamento
-    private String id;
+    private int id;
+    private static int contadorId = 1;//se nao for estatico, cada instancia da classe terá sua propria copia do contador.
     private String zona;
     private String categoria;
     private Localizacao localizacao;
@@ -21,7 +22,6 @@ public class Estacionamento implements InterfaceEstacionamento {
     public Estacionamento(String zona, String categoria, double latitude, double longitude,
             double comprimentoMaximo, double larguraMaxima, double alturaMaxima) {
 
-        this.id = UUID.randomUUID().toString().replace("-", "").substring(0, 4);
         this.zona = zona;
         this.categoria = categoria;
         this.localizacao = new Localizacao(latitude, longitude);
@@ -31,10 +31,14 @@ public class Estacionamento implements InterfaceEstacionamento {
 
         this.ativo = true;
         this.livre = true;
+        
+        
+        this.id = contadorId;
+        contadorId++;    
     }
 
     //get e sett, nao tem set estacionamento
-    public String getIDestacionamento() {
+    public int getIDestacionamento() {
         return id;
     }
 
@@ -113,6 +117,7 @@ public class Estacionamento implements InterfaceEstacionamento {
 
     public Boolean Desativar() {
         return ativo = false;
+        
     }
 
     //Metodo que verifica o estado do estacionamento
@@ -127,17 +132,19 @@ public class Estacionamento implements InterfaceEstacionamento {
 
     public String estadoEstacionamento2() {
         String estado2;
-        if ((getLivre() == true)&&((getAtivo()==true))) {
+        if ((getAtivo() == true)&&((getLivre()==true))) {
             return estado2 = "Livre";
-        } else {
-            return estado2 = "Ocupado";
+        } else if((getAtivo() == false)&&((getLivre()==true))) {
+            return estado2 = "Null";
+        }else{
+           return estado2 = "Ocupado"; 
         }
     }
 
     // Detalhes do estacionamento
     public String detalhesEstacionamento() {
 
-        return "*********** DETALHES DO ESTACIONAMENTO COM ID " + id + " **************"
+        return "*********** DETALHES DO ESTACIONAMENTO COM ID: " + String.format("%03d", id) + " **************"//adiciona 3 casas deciamais
                 + "\n zona:" + zona
                 + ";\n categoria:" + categoria
                 + ";\n localizacao:" + getLocalizacao().getLatitude() + " , " + getLocalizacao().getLongitude()
@@ -145,8 +152,8 @@ public class Estacionamento implements InterfaceEstacionamento {
                 + ";\n largura Maxima:" + larguraMaxima + " metros"
                 + ";\n altura Maxima:" + alturaMaxima + " metros"
                 + ";\n estado:" + estadoEstacionamento1() + " e " + estadoEstacionamento2()
-                + ";\n id da viatura:" + (viatura != null ? viatura.getIDviatura() : "Nenhum4")//nao funciona
-                + ";\n matricula:" + (viatura != null ? viatura.getMatricula() : "Nenhum5")//nao funciona
+                + ";\n id da viatura:" + ((getAtivo() != false) || (viatura != null) ? viatura.getIDviatura() : "null")//se estacionamento estiver desativo, nao pode mostrar dados da viatura
+                + ";\n matricula:" + ((getAtivo() != false) || (viatura != null) ? viatura.getMatricula() : "null")//n funciona
                 + ";\n******************************************************\n";
 
     }

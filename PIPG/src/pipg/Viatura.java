@@ -191,9 +191,9 @@ public class Viatura implements InterfaceViatura {
                 + ";\n largura: " + largura + " metros"
                 + ";\n altura: " + altura + " metros"
                 + ";\n estado: " + estadoViatura1() + " e " + estadoViatura2()
-                + ";\n id do estacionamento: " + (estacionamento != null ? estacionamento.getIDestacionamento() : "Nenhum1")//nao funciona
-                + ";\n nome do condutor: " + (condutor != null ? condutor.getNome() : "Nenhum2")//nao funciona
-                + ";\n id do condutor: " + (condutor != null ? condutor.getIDcondutor() : "Nenhum3")//nao funciona
+                + ";\n id do estacionamento: " + (estacionamento != null ? String.format("%03d", estacionamento.getIDestacionamento()) : "null")//formata para 3 casas decimais
+                + ";\n nome do condutor: " + (condutor != null ? condutor.getNome() : "null")
+                + ";\n id do condutor: " + (condutor != null ? condutor.getIDcondutor() : "null")
                 + ";\n******************************************************\n";
     }
 
