@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pipg;
+package view;
 
 import java.awt.TextField;
 import javax.swing.JOptionPane;
@@ -37,58 +37,41 @@ public class LoginFrame extends javax.swing.JDialog {
         Label_senha = new javax.swing.JLabel();
         jButton_entrar = new javax.swing.JButton();
         jTextField_nome = new javax.swing.JTextField();
+        jLabel_ipg = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Sistema pipg login");
+        setBackground(new java.awt.Color(153, 204, 255));
         setLocation(new java.awt.Point(5, 5));
+        setPreferredSize(new java.awt.Dimension(600, 400));
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        Label_nome.setText("Nome");
+        Label_nome.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        Label_nome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/suporte.png"))); // NOI18N
+        Label_nome.setText("Nome:");
+        getContentPane().add(Label_nome, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 240, -1, -1));
+        getContentPane().add(jPasswordField_senha, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 280, 162, -1));
 
-        Label_senha.setText("Senha");
+        Label_senha.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        Label_senha.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/senha.png"))); // NOI18N
+        Label_senha.setText("Senha:");
+        getContentPane().add(Label_senha, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 270, -1, -1));
 
+        jButton_entrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/entrar.png"))); // NOI18N
         jButton_entrar.setText("Entrar");
         jButton_entrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_entrarActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton_entrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 310, 90, -1));
+        getContentPane().add(jTextField_nome, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 240, 162, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(91, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton_entrar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(159, 159, 159))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Label_senha)
-                            .addComponent(Label_nome))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jPasswordField_senha, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)
-                            .addComponent(jTextField_nome))
-                        .addGap(114, 114, 114))))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(163, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Label_nome)
-                    .addComponent(jTextField_nome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jPasswordField_senha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Label_senha))
-                .addGap(18, 18, 18)
-                .addComponent(jButton_entrar)
-                .addGap(38, 38, 38))
-        );
+        jLabel_ipg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/pipg.jpg"))); // NOI18N
+        getContentPane().add(jLabel_ipg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 590, 360));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton_entrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_entrarActionPerformed
@@ -153,6 +136,7 @@ public class LoginFrame extends javax.swing.JDialog {
     private javax.swing.JLabel Label_nome;
     private javax.swing.JLabel Label_senha;
     private javax.swing.JButton jButton_entrar;
+    private javax.swing.JLabel jLabel_ipg;
     private javax.swing.JPasswordField jPasswordField_senha;
     private javax.swing.JTextField jTextField_nome;
     // End of variables declaration//GEN-END:variables
