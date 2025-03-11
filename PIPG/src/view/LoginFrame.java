@@ -32,11 +32,12 @@ public class LoginFrame extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+        jComboBox_nome = new javax.swing.JComboBox<>();
         Label_nome = new javax.swing.JLabel();
         jPasswordField_senha = new javax.swing.JPasswordField();
         Label_senha = new javax.swing.JLabel();
         jButton_entrar = new javax.swing.JButton();
-        jTextField_nome = new javax.swing.JTextField();
         jLabel_ipg = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -46,9 +47,16 @@ public class LoginFrame extends javax.swing.JDialog {
         setPreferredSize(new java.awt.Dimension(600, 400));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel1.setText("PIPG");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 160, 100, 30));
+
+        jComboBox_nome.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Central" }));
+        getContentPane().add(jComboBox_nome, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 240, 160, -1));
+
         Label_nome.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         Label_nome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/suporte.png"))); // NOI18N
-        Label_nome.setText("Nome:");
+        Label_nome.setText("Zona:");
         getContentPane().add(Label_nome, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 240, -1, -1));
         getContentPane().add(jPasswordField_senha, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 280, 162, -1));
 
@@ -65,7 +73,6 @@ public class LoginFrame extends javax.swing.JDialog {
             }
         });
         getContentPane().add(jButton_entrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 310, 90, -1));
-        getContentPane().add(jTextField_nome, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 240, 162, -1));
 
         jLabel_ipg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/pipg.jpg"))); // NOI18N
         getContentPane().add(jLabel_ipg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 590, 360));
@@ -76,10 +83,10 @@ public class LoginFrame extends javax.swing.JDialog {
 
     private void jButton_entrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_entrarActionPerformed
         // TODO add your handling code here:
-        String usuario = jTextField_nome.getText();
+        String usuario = (String) jComboBox_nome.getSelectedItem();
         String senha = new String(jPasswordField_senha.getPassword());
 
-        if (usuario.equals("pipg") && senha.equals("1234")) {
+        if (usuario.equalsIgnoreCase("Central") && senha.equals("1234")) {
 //            JOptionPane.showMessageDialog(this, "Login bem-sucedido!");
             MainFrame novaJanela = new MainFrame();
             this.dispose();
@@ -136,8 +143,9 @@ public class LoginFrame extends javax.swing.JDialog {
     private javax.swing.JLabel Label_nome;
     private javax.swing.JLabel Label_senha;
     private javax.swing.JButton jButton_entrar;
+    private javax.swing.JComboBox<String> jComboBox_nome;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel_ipg;
     private javax.swing.JPasswordField jPasswordField_senha;
-    private javax.swing.JTextField jTextField_nome;
     // End of variables declaration//GEN-END:variables
 }

@@ -1,16 +1,8 @@
 package view;
 
-import javax.swing.JFrame;
+public class MainFrame extends javax.swing.JFrame {
 
-public class MainFrame extends javax.swing.JDialog {
-
-    public MainFrame(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
-        initComponents();
-
-    }
-
-    MainFrame() {
+    public MainFrame() {
         initComponents();
     }
 
@@ -18,8 +10,7 @@ public class MainFrame extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jTabbedPane_add_est = new javax.swing.JTabbedPane();
+        jDesktopPane_add_mot = new javax.swing.JDesktopPane();
         jMenuBar_menu = new javax.swing.JMenuBar();
         jMenu_suporte = new javax.swing.JMenu();
         jMenuItem_config = new javax.swing.JMenuItem();
@@ -40,21 +31,40 @@ public class MainFrame extends javax.swing.JDialog {
         jMenuItem_ex_via = new javax.swing.JMenuItem();
         jMenuItem_pes_via = new javax.swing.JMenuItem();
 
-        jMenuItem1.setText("jMenuItem1");
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Sistema pipg");
+        setPreferredSize(new java.awt.Dimension(1366, 768));
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Pipg Project");
-        setSize(new java.awt.Dimension(0, 0));
+        javax.swing.GroupLayout jDesktopPane_add_motLayout = new javax.swing.GroupLayout(jDesktopPane_add_mot);
+        jDesktopPane_add_mot.setLayout(jDesktopPane_add_motLayout);
+        jDesktopPane_add_motLayout.setHorizontalGroup(
+            jDesktopPane_add_motLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 601, Short.MAX_VALUE)
+        );
+        jDesktopPane_add_motLayout.setVerticalGroup(
+            jDesktopPane_add_motLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 387, Short.MAX_VALUE)
+        );
 
         jMenu_suporte.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/suporte.png"))); // NOI18N
         jMenu_suporte.setText("Suporte");
 
         jMenuItem_config.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/configuracoes.png"))); // NOI18N
         jMenuItem_config.setText("Configurações");
+        jMenuItem_config.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem_configActionPerformed(evt);
+            }
+        });
         jMenu_suporte.add(jMenuItem_config);
 
         jMenuItem_sair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/sair.png"))); // NOI18N
         jMenuItem_sair.setText("Sair");
+        jMenuItem_sair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem_sairActionPerformed(evt);
+            }
+        });
         jMenu_suporte.add(jMenuItem_sair);
 
         jMenuBar_menu.add(jMenu_suporte);
@@ -143,16 +153,28 @@ public class MainFrame extends javax.swing.JDialog {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 694, Short.MAX_VALUE)
+            .addComponent(jDesktopPane_add_mot)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addComponent(jDesktopPane_add_mot)
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jMenuItem_add_estActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_add_estActionPerformed
+        AdicionarEstacionamento telaAddEst = new AdicionarEstacionamento();
+        telaAddEst.setDefaultCloseOperation(AdicionarEstacionamento.EXIT_ON_CLOSE);
+
+        jDesktopPane_add_mot.add(telaAddEst);
+
+        telaAddEst.setSize(800, 600);
+
+//        telaAddEst.setContentPane(jDesktopPane_add_mot);
+        telaAddEst.setVisible(true);
+    }//GEN-LAST:event_jMenuItem_add_estActionPerformed
 
     private void jMenuItem_pes_motActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_pes_motActionPerformed
         // TODO add your handling code here:
@@ -162,30 +184,49 @@ public class MainFrame extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem_ex_viaActionPerformed
 
-    private void jMenuItem_add_estActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_add_estActionPerformed
-        AdicionarEstacionamento  telaAddEst = new AdicionarEstacionamento();
-       
-    }//GEN-LAST:event_jMenuItem_add_estActionPerformed
+    private void jMenuItem_configActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_configActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem_configActionPerformed
+
+    private void jMenuItem_sairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_sairActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_jMenuItem_sairActionPerformed
 
     public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
 
+        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                MainFrame dialog = new MainFrame(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
+                new MainFrame().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JDesktopPane jDesktopPane_add_mot;
     private javax.swing.JMenuBar jMenuBar_menu;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem_add_est;
     private javax.swing.JMenuItem jMenuItem_add_mot;
     private javax.swing.JMenuItem jMenuItem_add_via;
@@ -204,7 +245,5 @@ public class MainFrame extends javax.swing.JDialog {
     private javax.swing.JMenu jMenu_motoristas;
     private javax.swing.JMenu jMenu_suporte;
     private javax.swing.JMenu jMenu_viaturas;
-    private javax.swing.JTabbedPane jTabbedPane_add_est;
     // End of variables declaration//GEN-END:variables
-
 }
