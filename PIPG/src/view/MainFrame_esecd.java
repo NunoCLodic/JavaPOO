@@ -1,8 +1,8 @@
 package view;
 
-public class MainFrame extends javax.swing.JFrame {
+public class MainFrame_esecd extends javax.swing.JFrame {
 
-    public MainFrame() {
+    public MainFrame_esecd() {
         initComponents();
     }
 
@@ -33,7 +33,6 @@ public class MainFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Sistema pipg");
-        setPreferredSize(new java.awt.Dimension(1366, 768));
 
         javax.swing.GroupLayout jDesktopPane_add_motLayout = new javax.swing.GroupLayout(jDesktopPane_add_mot);
         jDesktopPane_add_mot.setLayout(jDesktopPane_add_motLayout);
@@ -96,7 +95,7 @@ public class MainFrame extends javax.swing.JFrame {
         jMenuBar_menu.add(jMenu_estacionamento);
 
         jMenu_motoristas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/motoristas.png"))); // NOI18N
-        jMenu_motoristas.setText("Motoristas");
+        jMenu_motoristas.setText("Condutor");
 
         jMenuItem_add_mot.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/adicionar.png"))); // NOI18N
         jMenuItem_add_mot.setText("Adicionar");
@@ -165,15 +164,14 @@ public class MainFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItem_add_estActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_add_estActionPerformed
-        AdicionarEstacionamento telaAddEst = new AdicionarEstacionamento();
-        telaAddEst.setDefaultCloseOperation(AdicionarEstacionamento.EXIT_ON_CLOSE);
+        Add_est_esecd telaAddEst_esecd = new Add_est_esecd();
+        telaAddEst_esecd.setDefaultCloseOperation(Add_est_biblioteca.EXIT_ON_CLOSE);
 
-        jDesktopPane_add_mot.add(telaAddEst);
+        jDesktopPane_add_mot.add(telaAddEst_esecd);
 
-        telaAddEst.setSize(800, 600);
-
+        telaAddEst_esecd.setSize(800, 600);
 //        telaAddEst.setContentPane(jDesktopPane_add_mot);
-        telaAddEst.setVisible(true);
+        telaAddEst_esecd.setVisible(true);
     }//GEN-LAST:event_jMenuItem_add_estActionPerformed
 
     private void jMenuItem_pes_motActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_pes_motActionPerformed
@@ -206,20 +204,27 @@ public class MainFrame extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MainFrame_esecd.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MainFrame_esecd.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MainFrame_esecd.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MainFrame_esecd.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MainFrame().setVisible(true);
+                new MainFrame_esecd().setVisible(true);
             }
         });
     }

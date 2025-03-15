@@ -32,13 +32,21 @@ public class LoginFrame extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        jLabel_pipg = new javax.swing.JLabel();
         jComboBox_nome = new javax.swing.JComboBox<>();
         Label_nome = new javax.swing.JLabel();
         jPasswordField_senha = new javax.swing.JPasswordField();
         Label_senha = new javax.swing.JLabel();
         jButton_entrar = new javax.swing.JButton();
         jLabel_ipg = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel_ipg1 = new javax.swing.JLabel();
+        jButton_entrar1 = new javax.swing.JButton();
+        Label_senha1 = new javax.swing.JLabel();
+        jPasswordField_senha1 = new javax.swing.JPasswordField();
+        Label_nome1 = new javax.swing.JLabel();
+        jComboBox_nome1 = new javax.swing.JComboBox<>();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Sistema pipg login");
@@ -47,11 +55,16 @@ public class LoginFrame extends javax.swing.JDialog {
         setPreferredSize(new java.awt.Dimension(600, 400));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel1.setText("PIPG");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 160, 100, 30));
+        jLabel_pipg.setFont(new java.awt.Font("Eras Demi ITC", 1, 24)); // NOI18N
+        jLabel_pipg.setText("PIPG");
+        getContentPane().add(jLabel_pipg, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 160, 100, 30));
 
-        jComboBox_nome.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Central" }));
+        jComboBox_nome.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SC", "ESECD", "BIBLIOTECA", "ESTG" }));
+        jComboBox_nome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox_nomeActionPerformed(evt);
+            }
+        });
         getContentPane().add(jComboBox_nome, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 240, 160, -1));
 
         Label_nome.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -65,17 +78,51 @@ public class LoginFrame extends javax.swing.JDialog {
         Label_senha.setText("Senha:");
         getContentPane().add(Label_senha, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 270, -1, -1));
 
+        jButton_entrar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButton_entrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/entrar.png"))); // NOI18N
         jButton_entrar.setText("Entrar");
+        jButton_entrar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jButton_entrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_entrarActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton_entrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 310, 90, -1));
+        getContentPane().add(jButton_entrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(256, 310, 100, -1));
 
         jLabel_ipg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/pipg.jpg"))); // NOI18N
         getContentPane().add(jLabel_ipg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 590, 360));
+
+        jLabel_ipg1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/pipg.jpg"))); // NOI18N
+        jPanel1.add(jLabel_ipg1);
+
+        jButton_entrar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/entrar.png"))); // NOI18N
+        jButton_entrar1.setText("Entrar");
+        jButton_entrar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_entrar1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton_entrar1);
+
+        Label_senha1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        Label_senha1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/senha.png"))); // NOI18N
+        Label_senha1.setText("Senha:");
+        jPanel1.add(Label_senha1);
+        jPanel1.add(jPasswordField_senha1);
+
+        Label_nome1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        Label_nome1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/suporte.png"))); // NOI18N
+        Label_nome1.setText("Zona:");
+        jPanel1.add(Label_nome1);
+
+        jComboBox_nome1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Central" }));
+        jPanel1.add(jComboBox_nome1);
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel2.setText("PIPG");
+        jPanel1.add(jLabel2);
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 10, 1040, 320));
 
         pack();
         setLocationRelativeTo(null);
@@ -86,16 +133,35 @@ public class LoginFrame extends javax.swing.JDialog {
         String usuario = (String) jComboBox_nome.getSelectedItem();
         String senha = new String(jPasswordField_senha.getPassword());
 
-        if (usuario.equalsIgnoreCase("Central") && senha.equals("1234")) {
+        if (usuario.equalsIgnoreCase("SC") && senha.equals("1111")) {
 //            JOptionPane.showMessageDialog(this, "Login bem-sucedido!");
-            MainFrame novaJanela = new MainFrame();
+            MainFrame_sc novaJanela_sc = new MainFrame_sc();
             this.dispose();
-            novaJanela.setVisible(true);
-
+            novaJanela_sc.setVisible(true);
+        } else if (usuario.equalsIgnoreCase("ESECD") && senha.equals("2222")) {
+            MainFrame_esecd novaJanela_esecd = new MainFrame_esecd();
+            this.dispose();
+            novaJanela_esecd.setVisible(true);
+        } else if (usuario.equalsIgnoreCase("BIBLIOTECA") && senha.equals("3333")) {
+            MainFrame_biblioteca novaJanela_biblioteca = new MainFrame_biblioteca();
+            this.dispose();
+            novaJanela_biblioteca.setVisible(true);
+        } else if (usuario.equalsIgnoreCase("ESTG") && senha.equals("4444")) {
+            MainFrame_estg novaJanela_estg = new MainFrame_estg();
+            this.dispose();
+            novaJanela_estg.setVisible(true);
         } else {
-            JOptionPane.showMessageDialog(this, "Usuário ou senha incorretos!", "Opss,Erro!", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Senha incorretos!\n tente novamente...", "Opss,Erro!", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButton_entrarActionPerformed
+
+    private void jButton_entrar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_entrar1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton_entrar1ActionPerformed
+
+    private void jComboBox_nomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox_nomeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox_nomeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -141,11 +207,20 @@ public class LoginFrame extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Label_nome;
+    private javax.swing.JLabel Label_nome1;
     private javax.swing.JLabel Label_senha;
+    private javax.swing.JLabel Label_senha1;
     private javax.swing.JButton jButton_entrar;
+    private javax.swing.JButton jButton_entrar1;
     private javax.swing.JComboBox<String> jComboBox_nome;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JComboBox<String> jComboBox_nome1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel_ipg;
+    private javax.swing.JLabel jLabel_ipg1;
+    private javax.swing.JLabel jLabel_pipg;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPasswordField jPasswordField_senha;
+    private javax.swing.JPasswordField jPasswordField_senha1;
     // End of variables declaration//GEN-END:variables
+
 }
