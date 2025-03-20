@@ -1,5 +1,8 @@
 package view;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
+
 public class MainFrame_biblioteca extends javax.swing.JFrame {
 
     public MainFrame_biblioteca() {
@@ -34,17 +37,17 @@ public class MainFrame_biblioteca extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Sistema pipg");
 
-        jDesktopPane_add_mot.setPreferredSize(new java.awt.Dimension(1200, 900));
+        jDesktopPane_add_mot.setPreferredSize(new java.awt.Dimension(1500, 950));
 
         javax.swing.GroupLayout jDesktopPane_add_motLayout = new javax.swing.GroupLayout(jDesktopPane_add_mot);
         jDesktopPane_add_mot.setLayout(jDesktopPane_add_motLayout);
         jDesktopPane_add_motLayout.setHorizontalGroup(
             jDesktopPane_add_motLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 601, Short.MAX_VALUE)
+            .addGap(0, 1336, Short.MAX_VALUE)
         );
         jDesktopPane_add_motLayout.setVerticalGroup(
             jDesktopPane_add_motLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 387, Short.MAX_VALUE)
+            .addGap(0, 763, Short.MAX_VALUE)
         );
 
         jMenu_suporte.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/suporte.png"))); // NOI18N
@@ -159,11 +162,11 @@ public class MainFrame_biblioteca extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane_add_mot, javax.swing.GroupLayout.DEFAULT_SIZE, 601, Short.MAX_VALUE)
+            .addComponent(jDesktopPane_add_mot, javax.swing.GroupLayout.DEFAULT_SIZE, 1336, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane_add_mot, javax.swing.GroupLayout.DEFAULT_SIZE, 387, Short.MAX_VALUE)
+            .addComponent(jDesktopPane_add_mot, javax.swing.GroupLayout.DEFAULT_SIZE, 763, Short.MAX_VALUE)
         );
 
         pack();
@@ -173,12 +176,8 @@ public class MainFrame_biblioteca extends javax.swing.JFrame {
     private void jMenuItem_add_estActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_add_estActionPerformed
         Add_est_biblioteca telaAddEst = new Add_est_biblioteca();
         telaAddEst.setDefaultCloseOperation(Add_est_biblioteca.EXIT_ON_CLOSE);
-
         jDesktopPane_add_mot.add(telaAddEst);
-
         telaAddEst.setSize(1200, 900);
-
-//        telaAddEst.setContentPane(jDesktopPane_add_mot);
         telaAddEst.setVisible(true);
     }//GEN-LAST:event_jMenuItem_add_estActionPerformed
 
@@ -199,25 +198,14 @@ public class MainFrame_biblioteca extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem_sairActionPerformed
 
     private void jMenuItem_add_motActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_add_motActionPerformed
-
         Add_condutor telaAddCondutor = new Add_condutor();
         telaAddCondutor.setDefaultCloseOperation(Add_condutor.EXIT_ON_CLOSE);
-
         jDesktopPane_add_mot.add(telaAddCondutor);
-
-        telaAddCondutor.setSize(800, 600);
-//        telaAddEst.setContentPane(jDesktopPane_add_mot);
         telaAddCondutor.setVisible(true);
-
-
     }//GEN-LAST:event_jMenuItem_add_motActionPerformed
 
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
+
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -226,20 +214,19 @@ public class MainFrame_biblioteca extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MainFrame_biblioteca.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MainFrame_estg.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MainFrame_biblioteca.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MainFrame_estg.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MainFrame_biblioteca.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MainFrame_estg.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MainFrame_biblioteca.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MainFrame_estg.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
 
-        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+                Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+                new MainFrame_biblioteca().setSize(screenSize.width, screenSize.height);
                 new MainFrame_biblioteca().setVisible(true);
             }
         });

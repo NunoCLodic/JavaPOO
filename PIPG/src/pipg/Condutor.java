@@ -15,6 +15,7 @@ public abstract class Condutor {
     protected int contribuinte;
     protected int contato;
     protected String email;
+    protected String cartaConducao;
     protected Viatura viatura;
 
     //construtor

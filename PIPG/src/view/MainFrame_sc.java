@@ -219,6 +219,7 @@ public class MainFrame_sc extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
+        new MainFrame_sc().setExtendedState(Add_est_sc.EXIT_ON_CLOSE);
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new MainFrame_sc().setVisible(true);
