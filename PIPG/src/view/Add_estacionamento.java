@@ -9,12 +9,12 @@ package view;
  *
  * @author Administrador
  */
-public class Add_est_estg extends javax.swing.JInternalFrame {
+public class Add_estacionamento extends javax.swing.JPanel {
 
     /**
-     * Creates new form AdicionarEstacionamento
+     * Creates new form Add_estacionamentoFF
      */
-    public Add_est_estg() {
+    public Add_estacionamento() {
         initComponents();
     }
 
@@ -47,7 +47,7 @@ public class Add_est_estg extends javax.swing.JInternalFrame {
         jButton_enviar_est = new javax.swing.JButton();
         jButton_voltar_est = new javax.swing.JButton();
 
-        setTitle("Adicionar Estacionamento");
+        jPanel_add_est.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jLabel_zona.setText("Zona:");
 
@@ -61,9 +61,11 @@ public class Add_est_estg extends javax.swing.JInternalFrame {
 
         jLabel_altura.setText("Altura:");
 
-        jSpinner_comprimento.setModel(new javax.swing.SpinnerNumberModel(Float.valueOf(0.0f), Float.valueOf(0.0f), Float.valueOf(15.0f), Float.valueOf(1.0f)));
+        jSpinner_comprimento.setModel(new javax.swing.SpinnerNumberModel(4, 4, 5, 1));
 
-        jSpinner_largura.setModel(new javax.swing.SpinnerNumberModel(Float.valueOf(0.0f), Float.valueOf(0.0f), Float.valueOf(21.0f), Float.valueOf(1.0f)));
+        jSpinner_largura.setModel(new javax.swing.SpinnerNumberModel(2.0d, 2.0d, 2.5d, 0.1d));
+
+        jSpinner_altura.setModel(new javax.swing.SpinnerNumberModel(2, 2, 4, 1));
 
         javax.swing.GroupLayout jPanel_localizacaoLayout = new javax.swing.GroupLayout(jPanel_localizacao);
         jPanel_localizacao.setLayout(jPanel_localizacaoLayout);
@@ -80,7 +82,7 @@ public class Add_est_estg extends javax.swing.JInternalFrame {
                     .addComponent(jSpinner_largura, javax.swing.GroupLayout.DEFAULT_SIZE, 57, Short.MAX_VALUE)
                     .addComponent(jSpinner_altura)
                     .addComponent(jSpinner_comprimento))
-                .addContainerGap(136, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel_localizacaoLayout.setVerticalGroup(
             jPanel_localizacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -119,7 +121,7 @@ public class Add_est_estg extends javax.swing.JInternalFrame {
                 .addGroup(jPanel_dimensaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jTextField_latitude, javax.swing.GroupLayout.DEFAULT_SIZE, 82, Short.MAX_VALUE)
                     .addComponent(jTextField_longetude))
-                .addContainerGap(112, Short.MAX_VALUE))
+                .addContainerGap(161, Short.MAX_VALUE))
         );
         jPanel_dimensaoLayout.setVerticalGroup(
             jPanel_dimensaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -135,9 +137,9 @@ public class Add_est_estg extends javax.swing.JInternalFrame {
                 .addContainerGap(24, Short.MAX_VALUE))
         );
 
-        jComboBox_zona.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ESTG" }));
+        jComboBox_zona.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "------------------------ Escolha a zona ------------------------", "SERVIÇOS CENTRAIS", "BIBLIOTECA", "ESECD", "ESS", "ESTG", "ESTH", " ", " " }));
 
-        jComboBox_categoria_estacionamento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Professor", "Estudante", "Funcionario", "Visitante", "Deficiente", "Motociclo" }));
+        jComboBox_categoria_estacionamento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "---------------------- Escolha a Categoria ----------------------", "Professor", "Estudante", "Funcionario", "Visitante", "Deficiente", "Motociclo" }));
 
         jButton_enviar_est.setText("Adicionar");
 
@@ -148,69 +150,62 @@ public class Add_est_estg extends javax.swing.JInternalFrame {
         jPanel_add_estLayout.setHorizontalGroup(
             jPanel_add_estLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel_add_estLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton_voltar_est)
-                .addGroup(jPanel_add_estLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(29, 29, 29)
+                .addGroup(jPanel_add_estLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(jPanel_add_estLayout.createSequentialGroup()
-                        .addGap(56, 56, 56)
-                        .addGroup(jPanel_add_estLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel_dimensao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel_add_estLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(jPanel_add_estLayout.createSequentialGroup()
-                                    .addComponent(jLabel_categoria_zona)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(jComboBox_categoria_estacionamento, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(jPanel_add_estLayout.createSequentialGroup()
-                                    .addComponent(jLabel_zona)
-                                    .addGap(33, 33, 33)
-                                    .addComponent(jComboBox_zona, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(jPanel_localizacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(123, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_add_estLayout.createSequentialGroup()
+                        .addComponent(jButton_voltar_est)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton_enviar_est)
-                        .addContainerGap())))
+                        .addComponent(jButton_enviar_est))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel_add_estLayout.createSequentialGroup()
+                        .addGroup(jPanel_add_estLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel_categoria_zona)
+                            .addComponent(jLabel_zona))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel_add_estLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jComboBox_zona, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jComboBox_categoria_estacionamento, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jPanel_localizacao, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel_dimensao, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
         jPanel_add_estLayout.setVerticalGroup(
             jPanel_add_estLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel_add_estLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_add_estLayout.createSequentialGroup()
+                .addContainerGap(27, Short.MAX_VALUE)
                 .addGroup(jPanel_add_estLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox_zona, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel_zona))
-                .addGap(18, 18, 18)
+                    .addComponent(jLabel_zona)
+                    .addComponent(jComboBox_zona, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(35, 35, 35)
                 .addGroup(jPanel_add_estLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox_categoria_estacionamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel_categoria_zona))
-                .addGap(29, 29, 29)
+                    .addComponent(jLabel_categoria_zona)
+                    .addComponent(jComboBox_categoria_estacionamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(32, 32, 32)
                 .addComponent(jPanel_localizacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(37, 37, 37)
                 .addComponent(jPanel_dimensao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(47, 47, 47)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel_add_estLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton_enviar_est)
-                    .addComponent(jButton_voltar_est))
-                .addContainerGap())
+                    .addComponent(jButton_voltar_est)
+                    .addComponent(jButton_enviar_est))
+                .addGap(56, 56, 56))
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(23, 23, 23)
+                .addGap(337, 337, 337)
                 .addComponent(jPanel_add_est, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(42, Short.MAX_VALUE))
+                .addContainerGap(339, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(20, 20, 20)
                 .addComponent(jPanel_add_est, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(113, Short.MAX_VALUE))
         );
-
-        pack();
     }// </editor-fold>//GEN-END:initComponents
 
 
