@@ -260,7 +260,7 @@ public class MainFrame extends javax.swing.JFrame {
         jDesktopPane.removeAll();
         JInternalFrame addCondutorFrame = new JInternalFrame("Adicionar Condutor", true, true, true, true);
         addCondutorFrame.setSize(1365, 710);
-        Add_condutorF telaAddCond = new Add_condutorF();
+        Add_condutor telaAddCond = new Add_condutor();
         addCondutorFrame.add(telaAddCond);
         addCondutorFrame.setDefaultCloseOperation(JInternalFrame.DISPOSE_ON_CLOSE);
         addCondutorFrame.setLayout(new BorderLayout());
