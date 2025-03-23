@@ -18,4 +18,10 @@ class Localizacao {
     public double getLongitude(){
         return coordenadas.getY();
     }
+
+    @Override
+    public String toString() {
+        return "Lat->" + getLatitude() + "; Long->" + getLongitude();
+    }
+
 }

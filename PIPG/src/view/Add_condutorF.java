@@ -47,6 +47,8 @@ public class Add_condutorF extends javax.swing.JPanel {
         jRadioButton_feminino = new javax.swing.JRadioButton();
         jLabel_Nconducao = new javax.swing.JLabel();
         jTextField_numeroCarta = new javax.swing.JTextField();
+        jLabel_email = new javax.swing.JLabel();
+        jTextField_email = new javax.swing.JTextField();
         jPanel_dadosViatura = new javax.swing.JPanel();
         jLabel_matricula = new javax.swing.JLabel();
         jLabel_marca = new javax.swing.JLabel();
@@ -138,6 +140,8 @@ public class Add_condutorF extends javax.swing.JPanel {
 
         jLabel_Nconducao.setText("Nº Carta Condução:");
 
+        jLabel_email.setText("Email:");
+
         javax.swing.GroupLayout jPanel_dadosCondutorLayout = new javax.swing.GroupLayout(jPanel_dadosCondutor);
         jPanel_dadosCondutor.setLayout(jPanel_dadosCondutorLayout);
         jPanel_dadosCondutorLayout.setHorizontalGroup(
@@ -145,19 +149,22 @@ public class Add_condutorF extends javax.swing.JPanel {
             .addGroup(jPanel_dadosCondutorLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel_dadosCondutorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel_nomeCondutor)
-                    .addComponent(jLabel_dataCondutor))
-                .addGap(68, 68, 68)
+                    .addComponent(jLabel_dataCondutor)
+                    .addComponent(jLabel_email, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel_nomeCondutor, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel_dadosCondutorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel_dadosCondutorLayout.createSequentialGroup()
                         .addComponent(jSpinner_dia, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel_sexo)
-                        .addGap(7, 7, 7)
-                        .addComponent(jRadioButton_masculino)
-                        .addGap(18, 18, 18)
-                        .addComponent(jRadioButton_feminino))
-                    .addComponent(jTextField_nomeCondutor, javax.swing.GroupLayout.PREFERRED_SIZE, 485, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(372, 372, 372))
+                    .addComponent(jTextField_nomeCondutor)
+                    .addComponent(jTextField_email, javax.swing.GroupLayout.PREFERRED_SIZE, 485, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel_sexo)
+                .addGap(7, 7, 7)
+                .addComponent(jRadioButton_masculino)
+                .addGap(18, 18, 18)
+                .addComponent(jRadioButton_feminino)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel_dadosCondutorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel_dadosCondutorLayout.createSequentialGroup()
@@ -194,7 +201,11 @@ public class Add_condutorF extends javax.swing.JPanel {
                     .addComponent(jRadioButton_feminino)
                     .addComponent(jLabel_Nconducao)
                     .addComponent(jTextField_numeroCarta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel_dadosCondutorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField_email, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel_email))
+                .addGap(0, 11, Short.MAX_VALUE))
         );
 
         jPanel_dadosViatura.setBorder(javax.swing.BorderFactory.createTitledBorder("Dados da Viatura"));
@@ -267,7 +278,7 @@ public class Add_condutorF extends javax.swing.JPanel {
                 .addGroup(jPanel_dadosViaturaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jTextField_altura, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jSpinner_anoveiculo, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(48, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel_dadosViaturaLayout.setVerticalGroup(
             jPanel_dadosViaturaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -307,17 +318,16 @@ public class Add_condutorF extends javax.swing.JPanel {
             jPanel_add_condutorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel_add_condutorLayout.createSequentialGroup()
                 .addGap(81, 81, 81)
-                .addGroup(jPanel_add_condutorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel_categoria, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel_dadosCondutor, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel_dadosViatura, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(52, Short.MAX_VALUE))
-            .addGroup(jPanel_add_condutorLayout.createSequentialGroup()
-                .addGap(51, 51, 51)
-                .addComponent(jButton_cancelar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton_adicionar)
-                .addGap(50, 50, 50))
+                .addGroup(jPanel_add_condutorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel_add_condutorLayout.createSequentialGroup()
+                        .addComponent(jButton_cancelar)
+                        .addGap(963, 963, 963)
+                        .addComponent(jButton_adicionar))
+                    .addGroup(jPanel_add_condutorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jPanel_categoria, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel_dadosCondutor, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel_dadosViatura, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap(55, Short.MAX_VALUE))
         );
         jPanel_add_condutorLayout.setVerticalGroup(
             jPanel_add_condutorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -328,11 +338,11 @@ public class Add_condutorF extends javax.swing.JPanel {
                 .addComponent(jPanel_dadosCondutor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel_dadosViatura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel_add_condutorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton_cancelar)
                     .addComponent(jButton_adicionar))
-                .addContainerGap(50, Short.MAX_VALUE))
+                .addContainerGap(46, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -362,6 +372,7 @@ public class Add_condutorF extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel_contribuinte;
     private javax.swing.JLabel jLabel_cor;
     private javax.swing.JLabel jLabel_dataCondutor;
+    private javax.swing.JLabel jLabel_email;
     private javax.swing.JLabel jLabel_largura;
     private javax.swing.JLabel jLabel_marca;
     private javax.swing.JLabel jLabel_matricula;
@@ -384,6 +395,7 @@ public class Add_condutorF extends javax.swing.JPanel {
     private javax.swing.JTextField jTextField_comprimento;
     private javax.swing.JTextField jTextField_contato;
     private javax.swing.JTextField jTextField_contribuinte;
+    private javax.swing.JTextField jTextField_email;
     private javax.swing.JTextField jTextField_largura;
     private javax.swing.JTextField jTextField_matricula;
     private javax.swing.JTextField jTextField_nomeCondutor;

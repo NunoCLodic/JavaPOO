@@ -1,66 +1,65 @@
-
 package pipg;
 
+import java.util.List;
 
-public class Estudante extends Condutor implements InterfaceCondutor{
+public class Estudante extends Condutor implements InterfaceCondutor {
+
+    private int nEstudante;
+
+    public Estudante(String categoria, String nome, String dataNascimento,
+            char sexo, int contribuinte, String contato, String email, String nCartaConducao, List<Viatura> viatura, int nEstudante) {
+
+        super(categoria, nome, dataNascimento, sexo, contribuinte, contato, email, nCartaConducao, viatura);
+        this.nEstudante = nEstudante;
+    }
     
-    private int id;
-    private String curso;
-    private int ano;
-
-    public Estudante(String categoria,String nome, String dataNascimento, char sexo, int contribuinte,
-            int contato, Viatura viatura, int id, String curso, int ano) {
-        
-        super(categoria,nome, dataNascimento, sexo, contribuinte, contato, viatura); 
-        this.id = id;
-        this.curso = curso;
-        this.ano = ano;
-    }
-    //get set de condutores Estudantes
-    public int getNumeroEstudante() {
-        return id;
+    //Getters e Setters
+    public int getnEstudante() {
+        return nEstudante;
     }
 
-    public void setNumeroEstudante(int numeroEstudante) {
-        this.id = numeroEstudante;
+    public void setnEstudante(int nEstudante) {
+        this.nEstudante = nEstudante;
     }
 
-    public String getCurso() {
-        return curso;
-    }
-
-    public void setCurso(String curso) {
-        this.curso = curso;
-    }
-
-    public int getAno() {
-        return ano;
-    }
-
-    public void setAno(int ano) {
-        this.ano = ano;
-    }
-
-     //Detalhes do Condutor Estudante
+    //Detalhes do Condutor Estudante
     @Override
     public String detalhesCondutor() {
-        return super.detalhesCondutor() 
-                + "\n numero estudante: " + id
-                + ";\n curso: " + curso
-                + ";\n ano: " + ano
-                + "\n******************************************************\n";
+        StringBuilder detalhes = new StringBuilder();
+
+        detalhes.append("********DETALHES DO CONDUTOR COM ID: ").append(idCondutor).append("********\n");
+        detalhes.append("Catedoria: ").append(categoria).append("\n");
+        detalhes.append("Numero do Estudante: ").append(nEstudante).append("\n");
+        detalhes.append("Nome: ").append(nome).append("\n");
+
+        detalhes.append("Idade: ").append(calcularIdade()).append(" anos\n");
+        detalhes.append("Sexo: ").append(sexo).append("\n");
+        detalhes.append("Contribuinte: ").append(contribuinte).append("\n");
+        detalhes.append("Contato: ").append(contato).append("\n");
+        detalhes.append("Nº carta Condução: ").append(nCartaConducao).append("\n");
+        for (Viatura viatura : viaturas) {
+            detalhes.append("Matricula da viatura: ").append(viatura.getMatricula()).append("\n");
+            detalhes.append("Id da viatura: ").append(viatura.getIDviatura()).append("\n");
+        }
+        detalhes.append("Valor da mensalidade: ").append(mensalidade).append("€\n");
+        detalhes.append("Email: ").append(email).append("\n");
+        detalhes.append("**********************************************");
+        return detalhes.toString();
+
+//        return super.detalhesCondutor() 
+//                + "\n numero estudante: " + nEstudante
+//                + "\n******************************************************\n";
     }
-    
-  
+
     //metodos do condutor
     @Override
     public void adicionarViatura(Viatura v) {
-        setViatura(viatura);
+//        setViatura(viatura);
     }
 
     @Override
     public void editarViatura(Viatura v) {
-        getViatura();
+//        getViatura();
     }
 
     @Override
@@ -79,8 +78,8 @@ public class Estudante extends Condutor implements InterfaceCondutor{
 
     @Override
     public void estacionarViatura(Viatura v, Estacionamento e) {
-        if((e.getAtivo() == true)&&(e.getLivre() == true)){
-            
+        if ((e.getAtivo() == true) && (e.getLivre() == true)) {
+
         }
     }
 

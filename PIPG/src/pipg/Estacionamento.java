@@ -1,5 +1,6 @@
 package pipg;
 
+import java.util.List;
 import java.util.UUID;
 
 public class Estacionamento implements InterfaceEstacionamento {
@@ -17,6 +18,7 @@ public class Estacionamento implements InterfaceEstacionamento {
     private Boolean livre;
     private Viatura viatura;
     private MensagemChat mensagem;
+    protected List<Viatura> viaturas;
 
     //Construtor
     public Estacionamento(String zona, String categoria, double latitude, double longitude,
@@ -31,10 +33,9 @@ public class Estacionamento implements InterfaceEstacionamento {
 
         this.ativo = true;
         this.livre = true;
-        
-        
+
         this.id = contadorId;
-        contadorId++;    
+        contadorId++;
     }
 
     //get e sett, nao tem set estacionamento
@@ -117,7 +118,7 @@ public class Estacionamento implements InterfaceEstacionamento {
 
     public Boolean Desativar() {
         return ativo = false;
-        
+
     }
 
     //Metodo que verifica o estado do estacionamento
@@ -132,30 +133,46 @@ public class Estacionamento implements InterfaceEstacionamento {
 
     public String estadoEstacionamento2() {
         String estado2;
-        if ((getAtivo() == true)&&((getLivre()==true))) {
+        if ((getAtivo() == true) && ((getLivre() == true))) {
             return estado2 = "Livre";
-        } else if((getAtivo() == false)&&((getLivre()==true))) {
+        } else if ((getAtivo() == false) && ((getLivre() == true))) {
             return estado2 = "Null";
-        }else{
-           return estado2 = "Ocupado"; 
+        } else {
+            return estado2 = "Ocupado";
         }
     }
 
     // Detalhes do estacionamento
     public String detalhesEstacionamento() {
 
-        return "*********** DETALHES DO ESTACIONAMENTO COM ID: " + String.format("%03d", id) + " **************"//adiciona 3 casas deciamais
-                + "\n zona:" + zona
-                + ";\n categoria:" + categoria
-                + ";\n localizacao:" + getLocalizacao().getLatitude() + " , " + getLocalizacao().getLongitude()
-                + ";\n comprimento Maximo:" + comprimentoMaximo + " metros"
-                + ";\n largura Maxima:" + larguraMaxima + " metros"
-                + ";\n altura Maxima:" + alturaMaxima + " metros"
-                + ";\n estado:" + estadoEstacionamento1() + " e " + estadoEstacionamento2()
-                + ";\n id da viatura:" + ((getAtivo() != false) || (viatura != null) ? viatura.getIDviatura() : "null")//se estacionamento estiver desativo, nao pode mostrar dados da viatura
-                + ";\n matricula:" + ((getAtivo() != false) || (viatura != null) ? viatura.getMatricula() : "null")//n funciona
-                + ";\n******************************************************\n";
+        StringBuilder detalhes = new StringBuilder();
 
+        detalhes.append("********DETALHES DO ESTACIONAMENTO COM ID: ").append(String.format("%03d", id)).append("********\n");
+        detalhes.append("Zona: ").append(categoria).append("\n");
+        detalhes.append("Categoria: ").append(categoria).append("\n");
+        detalhes.append("Localizacao: ").append(localizacao.toString()).append("\n");
+        detalhes.append("Comprimento Maximo: ").append(comprimentoMaximo).append(" metros\n");
+        detalhes.append("Largura Maxima: ").append(larguraMaxima).append(" metros\n");
+        detalhes.append("Altura Maxima: ").append(alturaMaxima).append(" metros\n");
+        detalhes.append("Estado: ").append(estadoEstacionamento1()).append(" e ").append(estadoEstacionamento2()).append("\n");
+        if(getLivre()== false){
+                detalhes.append("Matricula da viatura: ").append(viatura.getMatricula()).append("\n");
+                detalhes.append("Id da viatura: ").append(viatura.getIDviatura()).append("\n");
+        }
+        detalhes.append("**********************************************");
+        return detalhes.toString();
+
+//        return "*********** DETALHES DO ESTACIONAMENTO COM ID: " + String.format("%03d", id) + " **************"//adiciona 3 casas deciamais
+//                + "\n zona:" + zona
+//                + ";\n categoria:" + categoria
+//                + ";\n localizacao:" + localizacao.toString()
+//                + ";\n comprimento Maximo:" + comprimentoMaximo + " metros"
+//                + ";\n largura Maxima:" + larguraMaxima + " metros"
+//                + ";\n altura Maxima:" + alturaMaxima + " metros"
+//                + ";\n estado:" + estadoEstacionamento1() + " e " + estadoEstacionamento2()
+//                + ";\n id da viatura:" + ((getAtivo() != false) || (viatura != null) ? viatura.getIDviatura() : "null")//se estacionamento estiver desativo, nao pode mostrar dados da viatura
+//                + ";\n matricula:" + ((getAtivo() != false) || (viatura != null) ? viatura.getMatricula() : "null")//n funciona
+//                + ";\n******************************************************\n";
     }
 
     @Override

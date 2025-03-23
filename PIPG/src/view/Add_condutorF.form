@@ -40,19 +40,19 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="81" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="jPanel_categoria" alignment="1" pref="0" max="32767" attributes="0"/>
-                      <Component id="jPanel_dadosCondutor" alignment="1" max="32767" attributes="0"/>
-                      <Component id="jPanel_dadosViatura" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="1" attributes="0">
+                      <Group type="102" attributes="0">
+                          <Component id="jButton_cancelar" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="963" max="-2" attributes="0"/>
+                          <Component id="jButton_adicionar" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="jPanel_categoria" alignment="1" max="32767" attributes="0"/>
+                          <Component id="jPanel_dadosCondutor" alignment="1" max="32767" attributes="0"/>
+                          <Component id="jPanel_dadosViatura" max="32767" attributes="0"/>
+                      </Group>
                   </Group>
-                  <EmptySpace pref="52" max="32767" attributes="0"/>
-              </Group>
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
-                  <Component id="jButton_cancelar" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
-                  <Component id="jButton_adicionar" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
+                  <EmptySpace pref="55" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -65,12 +65,12 @@
                   <Component id="jPanel_dadosCondutor" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="jPanel_dadosViatura" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jButton_cancelar" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jButton_adicionar" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="50" max="32767" attributes="0"/>
+                  <EmptySpace pref="46" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -170,25 +170,28 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
+                  <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLabel_nomeCondutor" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel_dataCondutor" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel_email" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel_nomeCondutor" alignment="1" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="68" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jSpinner_dia" min="-2" pref="113" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Component id="jLabel_sexo" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
-                              <Component id="jRadioButton_masculino" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="jRadioButton_feminino" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="372" pref="372" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="jTextField_nomeCondutor" alignment="0" min="-2" pref="485" max="-2" attributes="0"/>
+                          <Component id="jTextField_nomeCondutor" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jTextField_email" min="-2" pref="485" max="-2" attributes="0"/>
                       </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jLabel_sexo" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
+                      <Component id="jRadioButton_masculino" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="jRadioButton_feminino" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
@@ -232,7 +235,12 @@
                           <Component id="jLabel_Nconducao" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jTextField_numeroCarta" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="19" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jTextField_email" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel_email" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="0" pref="11" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -292,6 +300,13 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="jTextField_numeroCarta">
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel_email">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Email:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="jTextField_email">
             </Component>
           </SubComponents>
         </Container>
@@ -359,7 +374,7 @@
                           <Component id="jTextField_altura" min="-2" pref="114" max="-2" attributes="0"/>
                           <Component id="jSpinner_anoveiculo" alignment="0" min="-2" pref="77" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="48" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>

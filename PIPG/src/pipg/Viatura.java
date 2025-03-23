@@ -1,5 +1,6 @@
 package pipg;
 
+import java.util.Objects;
 import java.util.UUID;//Gera um ID unico
 
 public class Viatura implements InterfaceViatura {
@@ -152,7 +153,7 @@ public class Viatura implements InterfaceViatura {
     public void setEstacionamento(Estacionamento estacionamento) {
         this.estacionamento = estacionamento;
     }
-    
+
     public Condutor getCondutor() {
         return condutor;
     }
@@ -181,23 +182,61 @@ public class Viatura implements InterfaceViatura {
 
     //metodo detalhes Viatura
     public String detalhesViatura() {
-        return "***********DETALHES DA VIATURA COM ID: " + id + " **************"
-                + "\n matricula: " + matricula
-                + ";\n marca: " + marca
-                + ";\n modelo: " + modelo
-                + ";\n ano: " + ano
-                + ";\n cor: " + cor
-                + ";\n comprimento: " + comprimento + " metros"
-                + ";\n largura: " + largura + " metros"
-                + ";\n altura: " + altura + " metros"
-                + ";\n estado: " + estadoViatura1() + " e " + estadoViatura2()
-                + ";\n id do estacionamento: " + (estacionamento != null ? String.format("%03d", estacionamento.getIDestacionamento()) : "null")//formata para 3 casas decimais
-                + ";\n nome do condutor: " + (condutor != null ? condutor.getNome() : "null")
-                + ";\n id do condutor: " + (condutor != null ? condutor.getIDcondutor() : "null")
-                + ";\n******************************************************\n";
+
+        StringBuilder detalhes = new StringBuilder();
+
+        detalhes.append("********DETALHES DA VIATURA COM ID: ").append(id).append("********\n");
+        detalhes.append("Matricula: ").append(matricula).append("\n");
+        detalhes.append("Marca: ").append(marca).append("\n");
+        detalhes.append("Modelo: ").append(modelo).append("\n");
+        detalhes.append("Ano: ").append(ano).append(" anos\n");
+        detalhes.append("Cor: ").append(cor).append("\n");
+        detalhes.append("Comprimento: ").append(comprimento).append(" metros\n");
+        detalhes.append("Largura: ").append(largura).append(" metros\n");
+        detalhes.append("Altura: ").append(altura).append(" metros\n");
+        detalhes.append("Estado: ").append(estadoViatura1()).append(" e ").append(estadoViatura2()).append("\n");
+        detalhes.append("Id do estacionamento: ").append(String.format("%03d", estacionamento.getIDestacionamento())).append("\n");
+        detalhes.append("Nome do condutor: ").append(condutor.getNome()).append("\n");
+        detalhes.append("Id do condutor: ").append(condutor.getIDcondutor()).append("\n");
+        detalhes.append("**********************************************");
+        return detalhes.toString();
+
+//        return "***********DETALHES DA VIATURA COM ID: " + id + " **************"
+//                + "\n matricula: " + matricula
+//                + ";\n marca: " + marca
+//                + ";\n modelo: " + modelo
+//                + ";\n ano: " + ano
+//                + ";\n cor: " + cor
+//                + ";\n comprimento: " + comprimento + " metros"
+//                + ";\n largura: " + largura + " metros"
+//                + ";\n altura: " + altura + " metros"
+//                + ";\n estado: " + estadoViatura1() + " e " + estadoViatura2()
+//                + ";\n id do estacionamento: " + (estacionamento != null ? String.format("%03d", estacionamento.getIDestacionamento()) : "null")//formata para 3 casas decimais
+//                + ";\n nome do condutor: " + (condutor != null ? condutor.getNome() : "null")
+//                + ";\n id do condutor: " + (condutor != null ? condutor.getIDcondutor() : "null")
+//                + ";\n******************************************************\n";
     }
 
     //Metodos da viatura
+    
+    //compara dois objetos pela matricula
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Viatura viatura = (Viatura) o;
+        return Objects.equals(matricula, viatura.matricula);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(matricula);
+    }
+
     @Override
     public void ativarViatura(Viatura v) {
         this.ativo = true;

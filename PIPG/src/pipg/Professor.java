@@ -1,19 +1,21 @@
 package pipg;
 
+import java.util.List;
+
 public class Professor extends Condutor implements InterfaceCondutor {
 
     private int id;
     private String disciplina;
 
     public Professor(String categoria, String nome, String dataNascimento,
-            char sexo, int contribuinte, int contato, Viatura viatura, int id, String disciplina) {
+            char sexo, int contribuinte, String contato, String email, String nCartaConducao, List<Viatura> viatura, int id, String disciplina) {
 
-        super(categoria, nome, dataNascimento, sexo, contribuinte, contato, viatura);
+        super(categoria, nome, dataNascimento, sexo, contribuinte, contato, email, nCartaConducao, viatura);
         this.id = id;
         this.disciplina = disciplina;
     }
-    //get e sett
 
+    //Getters e Setters
     public int getId() {
         return id;
     }
@@ -30,30 +32,34 @@ public class Professor extends Condutor implements InterfaceCondutor {
         this.disciplina = disciplina;
     }
 
-    //
-
+    //metodos
     @Override
     public String detalhesCondutor() {
-        return super.detalhesCondutor()
-                + "\n id: " + id
-                + ";\n disciplina: " + disciplina
-                + "\n******************************************************\n";
-    }
+        StringBuilder detalhes = new StringBuilder();
 
-    //metodos do condutor
-    @Override
-    public void adicionarViatura(Viatura v) {
-        setViatura(viatura);
-    }
+        detalhes.append("********DETALHES DO CONDUTOR COM ID: ").append(idCondutor).append("********\n");
+        detalhes.append("Catedoria: ").append(categoria).append("\n");
+        detalhes.append("Id do professor: ").append(id).append("\n");
+        detalhes.append("Nome: ").append(nome).append("\n");
+        detalhes.append("Idade: ").append(calcularIdade()).append(" anos\n");
+        detalhes.append("Discilplina: ").append(disciplina).append("\n");
+        detalhes.append("Sexo: ").append(sexo).append("\n");
+        detalhes.append("Contribuinte: ").append(contribuinte).append("\n");
+        detalhes.append("Contato: ").append(contato).append("\n");
+        detalhes.append("Nº carta Condução: ").append(nCartaConducao).append("\n");
+        for (Viatura viatura : viaturas) {
+            detalhes.append("Matricula da viatura: ").append(viatura.getMatricula()).append("\n");
+            detalhes.append("Id da viatura: ").append(viatura.getIDviatura()).append("\n");
+        }
+        detalhes.append("Valor da mensalidade: ").append(mensalidade).append("€\n");
+        detalhes.append("Email: ").append(email).append("\n");
+        detalhes.append("**********************************************");
+        return detalhes.toString();
 
-    @Override
-    public void editarViatura(Viatura v) {
-        getViatura();
-    }
-
-    @Override
-    public void eliminarViatura(Viatura v) {
-        //em construcao
+//        return super.detalhesCondutor()
+//                + "\n id: " + id
+//                + ";\n disciplina: " + disciplina
+//                + "\n******************************************************\n";
     }
 
     @Override
@@ -78,5 +84,15 @@ public class Professor extends Condutor implements InterfaceCondutor {
 
     @Override
     public void enviarMensagemSuporte(Suporte s) {
+    }
+
+    @Override
+    public void editarViatura(Viatura v) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void eliminarViatura(Viatura v) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
