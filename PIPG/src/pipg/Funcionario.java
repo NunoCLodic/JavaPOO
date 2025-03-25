@@ -1,6 +1,8 @@
 package pipg;
 
+import java.time.LocalDate;
 import java.util.List;
+import java.util.Objects;
 
 public class Funcionario extends Condutor implements InterfaceCondutor {
 
@@ -48,9 +50,8 @@ public class Funcionario extends Condutor implements InterfaceCondutor {
         detalhes.append("contribuinte: ").append(contribuinte).append("\n");
         detalhes.append("contato: ").append(contato).append("\n");
         detalhes.append("Nº carta Condução: ").append(nCartaConducao).append("\n");
-          for (Viatura viatura : viaturas) {
+        for (Viatura viatura : viaturas) {
             detalhes.append("Matricula da viatura: ").append(viatura.getMatricula()).append("\n");
-            detalhes.append("Id da viatura: ").append(viatura.getIDviatura()).append("\n");
         }
         detalhes.append("Valor da mensalidade: ").append(mensalidade).append("€\n");
         detalhes.append("Email: ").append(email).append("\n");
@@ -61,6 +62,24 @@ public class Funcionario extends Condutor implements InterfaceCondutor {
 //                + "\n id: " + id
 //                + ";\n seccao: " + seccao
 //                + "\n******************************************************\n";
+    }
+
+    //compara dois objetos pela numero de estudante
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Funcionario funcionario = (Funcionario) o;
+        return Objects.equals(id, funcionario.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 
     //metodos do condutor
@@ -101,5 +120,20 @@ public class Funcionario extends Condutor implements InterfaceCondutor {
 
     @Override
     public void enviarMensagemSuporte(Suporte s) {
+    }
+
+    @Override
+    public void registrarPagamento(LocalDate mes) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean verificarPagamento(LocalDate mes) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void mostrarHistoricoPagamento() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

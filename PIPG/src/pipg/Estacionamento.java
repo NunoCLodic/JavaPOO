@@ -1,6 +1,7 @@
 package pipg;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
 
 public class Estacionamento implements InterfaceEstacionamento {
@@ -155,9 +156,8 @@ public class Estacionamento implements InterfaceEstacionamento {
         detalhes.append("Largura Maxima: ").append(larguraMaxima).append(" metros\n");
         detalhes.append("Altura Maxima: ").append(alturaMaxima).append(" metros\n");
         detalhes.append("Estado: ").append(estadoEstacionamento1()).append(" e ").append(estadoEstacionamento2()).append("\n");
-        if(getLivre()== false){
-                detalhes.append("Matricula da viatura: ").append(viatura.getMatricula()).append("\n");
-                detalhes.append("Id da viatura: ").append(viatura.getIDviatura()).append("\n");
+        if (getLivre() == false) {
+            detalhes.append("Matricula da viatura: ").append(viatura.getMatricula()).append("\n");
         }
         detalhes.append("**********************************************");
         return detalhes.toString();
@@ -174,7 +174,26 @@ public class Estacionamento implements InterfaceEstacionamento {
 //                + ";\n matricula:" + ((getAtivo() != false) || (viatura != null) ? viatura.getMatricula() : "null")//n funciona
 //                + ";\n******************************************************\n";
     }
+//compara objetos 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Estacionamento estacionamento = (Estacionamento) o;
+        return Objects.equals(localizacao.toString(), estacionamento.localizacao.toString());
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(localizacao.toString());
+    }
+    
+//metodos da classe
+    
     @Override
     public void enviarMensagemSuporte() {
         //em construcao

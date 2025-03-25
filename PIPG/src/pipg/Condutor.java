@@ -20,8 +20,9 @@ public abstract class Condutor {
     protected String email;
     protected String nCartaConducao;
     protected List<Viatura> viaturas;
-    protected double mensalidade;///valor da mensalidade
-    protected Map<LocalDate, Boolean> statusMensalidade;//registar os pagamentos
+    protected double vMensalidade;//valor da mensalidade
+    protected boolean mensalidade;
+    protected Map<LocalDate, Boolean> pagamentos;//registar os pagamentos
 
     //construtor
     public Condutor(String categoria, String nome, String dataNascimento, char sexo,
@@ -46,7 +47,7 @@ public abstract class Condutor {
         this.nCartaConducao = nCartaConducao;
         this.viaturas = viatura;
         this.viaturas = new ArrayList<>();
-        this.statusMensalidade = new HashMap<>();//iniciar o registro de pagamento
+        this.pagamentos = new HashMap<>();//iniciar o registro de pagamento
 
     }
 
@@ -119,14 +120,14 @@ public abstract class Condutor {
         this.nCartaConducao = nCartaConducao;
     }
 
-    public double isMensalidade() {
-        return mensalidade;
+    public double getMensalidade() {
+        return vMensalidade;
     }
 
     public void setMensalidade(double Mensalidade) {
-        this.mensalidade = Mensalidade;
+        this.vMensalidade = Mensalidade;
     }
-    
+
     public List<Viatura> getViaturas() { //obter lista de viaturas
         return viaturas;
     }
@@ -145,8 +146,14 @@ public abstract class Condutor {
                 && dataAtual.getDayOfMonth() < dataNascimento.getDayOfMonth())) ? 1 : 0);
     }
 
-    //Detalhes do Condutor
+    //METODOS ABSTRATOS
     public abstract String detalhesCondutor();
+
+    public abstract void registrarPagamento(LocalDate mes);
+
+    public abstract boolean verificarPagamento(LocalDate mes);
+
+    public abstract void mostrarHistoricoPagamento();
 
     // Adicionar uma viatura à lista
     public void adicionarViatura(Viatura viatura) {
@@ -173,8 +180,8 @@ public abstract class Condutor {
             System.out.println(viatura);
         }
     }
-//  Metodos de Validações
 
+//  Metodos de Validações
     private boolean NcartaValidator(String nCartaConducao) {
         // Expressão regular para verificar se é um número com exatamente 8 dígitos
         String regex = "^[0-9]{8}$";

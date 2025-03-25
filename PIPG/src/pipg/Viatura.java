@@ -6,7 +6,7 @@ import java.util.UUID;//Gera um ID unico
 public class Viatura implements InterfaceViatura {
 
     //atributos da viatura
-    private String id;
+//    private String id;
     private String matricula;
     private String marca;
     private String modelo;
@@ -25,7 +25,7 @@ public class Viatura implements InterfaceViatura {
     //construtor
     public Viatura(String matricula, String marca, String modelo, int ano, String cor, double comprimento,
             double largura, double altura, Condutor condutor) {
-        this.id = UUID.randomUUID().toString().replace("-", "").substring(0, 8);//Gera um ID unico com 8 carateres maximo
+//        this.id = UUID.randomUUID().toString().replace("-", "").substring(0, 8);//Gera um ID unico com 8 carateres maximo
         this.matricula = matricula;
         this.marca = marca;
         this.modelo = modelo;
@@ -42,14 +42,13 @@ public class Viatura implements InterfaceViatura {
     }
 
     //get e set, 
-    public String getIDviatura() {
-        return id;
-    }
-
-    public void setIDviatura(String id) {
-        this.id = id;
-    }
-
+//    public String getIDviatura() {
+//        return id;
+//    }
+//
+//    public void setIDviatura(String id) {
+//        this.id = id;
+//    }
     public String getMatricula() {
         return matricula;
     }
@@ -185,8 +184,7 @@ public class Viatura implements InterfaceViatura {
 
         StringBuilder detalhes = new StringBuilder();
 
-        detalhes.append("********DETALHES DA VIATURA COM ID: ").append(id).append("********\n");
-        detalhes.append("Matricula: ").append(matricula).append("\n");
+        detalhes.append("********DETALHES DA VIATURA COM MATRICULA: ").append(matricula).append("********\n");
         detalhes.append("Marca: ").append(marca).append("\n");
         detalhes.append("Modelo: ").append(modelo).append("\n");
         detalhes.append("Ano: ").append(ano).append(" anos\n");
@@ -218,15 +216,14 @@ public class Viatura implements InterfaceViatura {
     }
 
     //Metodos da viatura
-    
     //compara dois objetos pela matricula
     @Override
     public boolean equals(Object o) {
         if (this == o) {
-            return true;
+            return true;// Verifica se os dois objetos são a mesma instância
         }
         if (o == null || getClass() != o.getClass()) {
-            return false;
+            return false;// Verifica se o objeto é nulo ou de classes diferentes
         }
         Viatura viatura = (Viatura) o;
         return Objects.equals(matricula, viatura.matricula);
@@ -236,7 +233,7 @@ public class Viatura implements InterfaceViatura {
     public int hashCode() {
         return Objects.hash(matricula);
     }
-
+//metodos da classe
     @Override
     public void ativarViatura(Viatura v) {
         this.ativo = true;

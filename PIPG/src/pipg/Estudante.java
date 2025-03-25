@@ -1,6 +1,9 @@
 package pipg;
 
+import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 
 public class Estudante extends Condutor implements InterfaceCondutor {
 
@@ -12,7 +15,7 @@ public class Estudante extends Condutor implements InterfaceCondutor {
         super(categoria, nome, dataNascimento, sexo, contribuinte, contato, email, nCartaConducao, viatura);
         this.nEstudante = nEstudante;
     }
-    
+
     //Getters e Setters
     public int getnEstudante() {
         return nEstudante;
@@ -39,9 +42,8 @@ public class Estudante extends Condutor implements InterfaceCondutor {
         detalhes.append("Nº carta Condução: ").append(nCartaConducao).append("\n");
         for (Viatura viatura : viaturas) {
             detalhes.append("Matricula da viatura: ").append(viatura.getMatricula()).append("\n");
-            detalhes.append("Id da viatura: ").append(viatura.getIDviatura()).append("\n");
         }
-        detalhes.append("Valor da mensalidade: ").append(mensalidade).append("€\n");
+        detalhes.append("Mensalidade: ").append(mensalidade).append("€\n");
         detalhes.append("Email: ").append(email).append("\n");
         detalhes.append("**********************************************");
         return detalhes.toString();
@@ -49,6 +51,24 @@ public class Estudante extends Condutor implements InterfaceCondutor {
 //        return super.detalhesCondutor() 
 //                + "\n numero estudante: " + nEstudante
 //                + "\n******************************************************\n";
+    }
+
+    //compara dois objetos pela numero de estudante
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Estudante estudante = (Estudante) o;
+        return Objects.equals(nEstudante, estudante.nEstudante);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(nEstudante);
     }
 
     //metodos do condutor
@@ -89,5 +109,32 @@ public class Estudante extends Condutor implements InterfaceCondutor {
 
     @Override
     public void enviarMensagemSuporte(Suporte s) {
+    }
+
+    @Override
+    public void registrarPagamento(LocalDate mes) {
+        pagamentos.put(mes.withDayOfMonth(1), true);// Marca o mês como pago
+        System.out.println("Pagamento de " + mes.getMonth() + " do motorista " + nome + " registrado com sucesso!");
+    }
+
+    @Override
+    public boolean verificarPagamento(LocalDate mes) {
+        return pagamentos.getOrDefault(mes.withDayOfMonth(1), false); // Retorna false se não houver registro
+    }
+
+     // Exibir histórico completo de pagamentos (meses pagos e pendentes)
+    @Override
+    public void mostrarHistoricoPagamento() {
+        System.out.println("Histórico de pagamentos para " + nome + ":");
+        LocalDate hoje = LocalDate.now();
+        for (int i = 0; i < 12; i++) {
+            LocalDate mes = hoje.minusMonths(i).withDayOfMonth(1); // Obter o início de cada mês
+            boolean pago = pagamentos.getOrDefault(mes, false); // Verificar se o mês foi pago
+
+            // Exibir o status do mês
+            System.out.println("Mês: " + mes.getMonth() + " " + mes.getYear() +
+                               " - Estado: " + (pago ? "Pago" : "Pendente"));
+        }
+        System.out.println("\n");
     }
 }

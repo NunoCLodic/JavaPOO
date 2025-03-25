@@ -1,8 +1,11 @@
 package pipg;
 
 import static java.lang.reflect.Array.set;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class PIPG {
@@ -36,7 +39,7 @@ public class PIPG {
         funcionarios.add(funcionario2);
 
         Viatura viatura1 = new Viatura("AA-BB-12", "Renaul", "Megane", 2009, "Azul", 2.0, 1.0, 1.5, null);
-        Viatura viatura2 = new Viatura("AA-BB-12", "Bmw", "z4", 2019, "Branco", 2.5, 1.0, 1.75, null);
+        Viatura viatura2 = new Viatura("AA-BB-12", "Bmw", "z4", 2019, "Branco", 2.5, 1.0, 1.75, null);//hashset ignorando, matricula duplicada
         Viatura viatura3 = new Viatura("CC-BB-14", "Ferrari", "Roma", 2009, "Vermelho", 2.0, 1.0, 1.5, null);
         Viatura viatura4 = new Viatura("DD-BB-15", "Porshe", "taycan", 2019, "Preto", 2.5, 1.0, 1.75, null);
         Viatura viatura5 = new Viatura("EE-BB-16", "Nissan", "leaf", 2009, "Azul", 2.0, 1.0, 1.5, null);
@@ -65,11 +68,11 @@ public class PIPG {
         funcionario2.adicionarViatura(viatura6);
 
         Estacionamento estacionamento1 = new Estacionamento("Norte", "Estudante", 40.234567, -8.345689, 2.0, 1.5, 3.0);
-        Estacionamento estacionamento2 = new Estacionamento("Sul", "Professor", 41.234567, -7.345689, 2.0, 1.5, 3.0);
-        Estacionamento estacionamento3 = new Estacionamento("Este", "Funcionario", 40.234567, -8.345689, 2.0, 1.5, 3.0);
-        Estacionamento estacionamento4 = new Estacionamento("Centro", "Funcionario", 41.234567, -7.345689, 2.0, 1.5, 3.0);
-        Estacionamento estacionamento5 = new Estacionamento("Norte", "Estudante", 40.234567, -8.345689, 2.0, 1.5, 3.0);
-        Estacionamento estacionamento6 = new Estacionamento("Sul", "Professor", 41.234567, -7.345689, 2.0, 1.5, 3.0);
+        Estacionamento estacionamento2 = new Estacionamento("Sul", "Professor", 40.234567, -8.345689, 2.0, 1.5, 3.0);//hashset ignorando
+        Estacionamento estacionamento3 = new Estacionamento("Este", "Funcionario", 41.234567, -8.345689, 2.0, 1.5, 3.0);
+        Estacionamento estacionamento4 = new Estacionamento("Centro", "Funcionario", 42.234567, -7.345689, 2.0, 1.5, 3.0);
+        Estacionamento estacionamento5 = new Estacionamento("Norte", "Estudante", 43.234567, -8.345689, 2.0, 1.5, 3.0);
+        Estacionamento estacionamento6 = new Estacionamento("Sul", "Professor", 44.234567, -8.345689, 2.0, 1.5, 3.0);
 
         estacionamentos.add(estacionamento1);
         estacionamentos.add(estacionamento2);
@@ -97,13 +100,70 @@ public class PIPG {
         estacionamento4.Desativar();
         estacionamento3.Desativar();
 
-        //Exibindo os dados das listas
-        for (Viatura viatura : viaturas) {
-            System.out.println("Matricula da viatura: " + viatura.getMatricula());
-        }
-        System.out.println("\n Total de viaturas na lista: " + viaturas.size());
+        //EXEMPLOS PAGAMENTOS MENSALIDADE
+        //registrar pagamento
+        System.out.println("\n");
+        estudante1.registrarPagamento(LocalDate.of(2025, 1, 1));
+        estudante1.registrarPagamento(LocalDate.of(2025, 2, 1));
+        estudante1.registrarPagamento(LocalDate.of(2025, 3, 1));
+        estudante1.registrarPagamento(LocalDate.of(2025, 4, 1));
+        System.out.println("\n");
+        estudante2.registrarPagamento(LocalDate.of(2025, 1, 1));
+        estudante2.registrarPagamento(LocalDate.of(2025, 2, 1));
+        estudante2.registrarPagamento(LocalDate.of(2025, 4, 1));
+        System.out.println("\n");
+        
+        // Verificar se o motorista pagou a mensalidade de março
+        boolean pagoMarco1 = estudante1.verificarPagamento(LocalDate.of(2025, 3, 1));
+        System.out.println("Mensalidade de março do motorista " + estudante1.nome + " foi paga? " + (pagoMarco1 ? "Sim" : "Não"));
 
-        System.out.println("\n**********TODOS OS DETALHES**********\n ");
+        boolean pagoMarco2 = estudante2.verificarPagamento(LocalDate.of(2025, 3, 1));
+        System.out.println("Mensalidade de março do motorista " + estudante2.nome + " foi paga? " + (pagoMarco2 ? "Sim" : "Não"));
+        
+        System.out.println("\n");
+        // Exibir histórico de pagamentos
+        estudante1.mostrarHistoricoPagamento();
+        estudante2.mostrarHistoricoPagamento();
+        System.out.println("\n");
+        
+        //Exibindo os dados das listas
+        //total de viaturas
+        System.out.println("\n**********INFORMAÇÕES GERAIS**********\n ");
+        for (Viatura viatura : viaturas) {
+            System.out.println("Viatura: " + viatura.getMatricula());
+        }
+        System.out.println("\n Total de viaturas na lista: " + viaturas.size() + "\n");
+
+        //total de estacionamento
+        for (Estacionamento estacionamento : estacionamentos) {
+            System.out.println("Estacionamento: " + String.format("%03d", estacionamento.getIDestacionamento()));
+        }
+
+        System.out.println("\n Total de estacionamento na lista: " + estacionamentos.size() + "\n");
+
+        //total de estudante
+        for (Estudante estudante : estudantes) {
+            System.out.println("Estudante " + estudante.getnEstudante());
+        }
+
+        System.out.println("\n Total de estudante na lista: " + estudantes.size() + "\n");
+
+        //total de funcionario
+        for (Funcionario funcionario : funcionarios) {
+            System.out.println("Funcionario: " + funcionario.getId());
+        }
+
+        System.out.println("\n Total de funcionarios na lista: " + funcionarios.size() + "\n");
+
+        //total de professor
+        for (Professor professor : professores) {
+            System.out.println("Professor: " + professor.getId());
+        }
+
+        System.out.println("\n Total de professor na lista: " + professores.size() + "\n");
+
+        //*******************************************************************************************************************************************
+        System.out.println("\n**********INFORMAÇÕES DETALHADAS**********\n ");
         estudantes.forEach((estudante) -> {
             System.out.println(estudante.detalhesCondutor());
         });
