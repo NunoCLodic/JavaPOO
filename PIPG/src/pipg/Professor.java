@@ -7,14 +7,14 @@ import java.util.Objects;
 public class Professor extends Condutor implements InterfaceCondutor {
 
     private int id;
-    private String disciplina;
+    private String cadeira;
 
     public Professor(String categoria, String nome, String dataNascimento,
-            char sexo, int contribuinte, String contato, String email, String nCartaConducao, List<Viatura> viatura, int id, String disciplina) {
+            char sexo, int contribuinte, String contato, String email, String nCartaConducao, List<Viatura> viatura, int id, String cadeira) {
 
         super(categoria, nome, dataNascimento, sexo, contribuinte, contato, email, nCartaConducao, viatura);
         this.id = id;
-        this.disciplina = disciplina;
+        this.cadeira = cadeira;
     }
 
     //Getters e Setters
@@ -27,11 +27,11 @@ public class Professor extends Condutor implements InterfaceCondutor {
     }
 
     public String getDisciplina() {
-        return disciplina;
+        return cadeira;
     }
 
     public void setDisciplina(String disciplina) {
-        this.disciplina = disciplina;
+        this.cadeira = disciplina;
     }
 
     //metodos
@@ -44,7 +44,7 @@ public class Professor extends Condutor implements InterfaceCondutor {
         detalhes.append("Id do professor: ").append(id).append("\n");
         detalhes.append("Nome: ").append(nome).append("\n");
         detalhes.append("Idade: ").append(calcularIdade()).append(" anos\n");
-        detalhes.append("Discilplina: ").append(disciplina).append("\n");
+        detalhes.append("Discilplina: ").append(cadeira).append("\n");
         detalhes.append("Sexo: ").append(sexo).append("\n");
         detalhes.append("Contribuinte: ").append(contribuinte).append("\n");
         detalhes.append("Contato: ").append(contato).append("\n");
