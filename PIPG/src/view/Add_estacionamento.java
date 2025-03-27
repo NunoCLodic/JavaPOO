@@ -5,6 +5,20 @@
  */
 package view;
 
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import javafx.scene.control.Spinner;
+import javax.swing.BoxLayout;
+import javax.swing.ButtonGroup;
+import javax.swing.JComboBox;
+import javax.swing.JInternalFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JSpinner;
+import javax.swing.JTextField;
+import javax.swing.SpinnerNumberModel;
+
 /**
  *
  * @author Administrador
@@ -16,6 +30,35 @@ public class Add_estacionamento extends javax.swing.JPanel {
      */
     public Add_estacionamento() {
         initComponents();
+
+        JInternalFrame addEstacionamentoFrame = new JInternalFrame("Adicionar Condutor", true, true, true, true);
+        addEstacionamentoFrame.setSize(1365, 710);
+        addEstacionamentoFrame.setDefaultCloseOperation(JInternalFrame.DISPOSE_ON_CLOSE);
+
+        ButtonGroup coberto = new ButtonGroup();
+        coberto.add(jRadioButton_coberto);
+        coberto.add(jRadioButton_descoberto);
+
+        jRadioButton_coberto.setSelected(true);
+
+        jPanel_dimensao.add(new JLabel("Comprimento:"));
+        jPanel_dimensao.add(new JSpinner(new SpinnerNumberModel(1, 1, 2, 0.1)));// Valor inicial: 15; Min: 1; Max: 1000; Incremento: 1
+        jPanel_dimensao.add(new JLabel("Largura:"));
+        jPanel_dimensao.add(new JSpinner(new SpinnerNumberModel(1, 1, 1.5, 0.1)));
+        jPanel_dimensao.add(new JLabel("Altura:"));
+        jPanel_dimensao.add(new JSpinner(new SpinnerNumberModel(2, 2, 3, 0.1)));
+
+        jRadioButton_coberto.addActionListener((ActionEvent e) -> {
+            atualizarFormulario(jPanel_dimensao, "Coberto");
+        });
+        jRadioButton_descoberto.addActionListener((ActionEvent e) -> {
+            atualizarFormulario(jPanel_dimensao, "Descoberto");
+        });
+
+        // Adicionar os painéis ao JFrame e mostrar
+        addEstacionamentoFrame.setLayout(new BorderLayout());
+        jPanel_dimensao.setLayout(new BoxLayout(jPanel_dimensao, BoxLayout.Y_AXIS));
+        addEstacionamentoFrame.setVisible(true);
     }
 
     /**
@@ -27,17 +70,12 @@ public class Add_estacionamento extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup_coberto = new javax.swing.ButtonGroup();
         jPanel_add_est = new javax.swing.JPanel();
         jLabel_zona = new javax.swing.JLabel();
         jLabel_categoria_zona = new javax.swing.JLabel();
-        jPanel_localizacao = new javax.swing.JPanel();
-        jLabel_Comprimento = new javax.swing.JLabel();
-        jLabel_largura = new javax.swing.JLabel();
-        jLabel_altura = new javax.swing.JLabel();
-        jSpinner_comprimento = new javax.swing.JSpinner();
-        jSpinner_largura = new javax.swing.JSpinner();
-        jSpinner_altura = new javax.swing.JSpinner();
         jPanel_dimensao = new javax.swing.JPanel();
+        jPanel_localizacao = new javax.swing.JPanel();
         jLabel_latitude = new javax.swing.JLabel();
         jLabel_longitude = new javax.swing.JLabel();
         jTextField_latitude = new javax.swing.JTextField();
@@ -45,7 +83,9 @@ public class Add_estacionamento extends javax.swing.JPanel {
         jComboBox_zona = new javax.swing.JComboBox<>();
         jComboBox_categoria_estacionamento = new javax.swing.JComboBox<>();
         jButton_enviar_est = new javax.swing.JButton();
-        jButton_voltar_est = new javax.swing.JButton();
+        jButton_limpar = new javax.swing.JButton();
+        jRadioButton_coberto = new javax.swing.JRadioButton();
+        jRadioButton_descoberto = new javax.swing.JRadioButton();
 
         jPanel_add_est.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
@@ -53,85 +93,49 @@ public class Add_estacionamento extends javax.swing.JPanel {
 
         jLabel_categoria_zona.setText("Categoria:");
 
-        jPanel_localizacao.setBorder(javax.swing.BorderFactory.createTitledBorder("Dimensão:"));
+        jPanel_dimensao.setBorder(javax.swing.BorderFactory.createTitledBorder("Dimensão:"));
 
-        jLabel_Comprimento.setText("Comprimento:");
+        javax.swing.GroupLayout jPanel_dimensaoLayout = new javax.swing.GroupLayout(jPanel_dimensao);
+        jPanel_dimensao.setLayout(jPanel_dimensaoLayout);
+        jPanel_dimensaoLayout.setHorizontalGroup(
+            jPanel_dimensaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jPanel_dimensaoLayout.setVerticalGroup(
+            jPanel_dimensaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 129, Short.MAX_VALUE)
+        );
 
-        jLabel_largura.setText("Largura:");
+        jPanel_localizacao.setBorder(javax.swing.BorderFactory.createTitledBorder("Localização:"));
 
-        jLabel_altura.setText("Altura:");
+        jLabel_latitude.setText("Latitude:");
 
-        jSpinner_comprimento.setModel(new javax.swing.SpinnerNumberModel(4, 4, 5, 1));
-
-        jSpinner_largura.setModel(new javax.swing.SpinnerNumberModel(2.0d, 2.0d, 2.5d, 0.1d));
-
-        jSpinner_altura.setModel(new javax.swing.SpinnerNumberModel(2, 2, 4, 1));
+        jLabel_longitude.setText("Longetude:");
 
         javax.swing.GroupLayout jPanel_localizacaoLayout = new javax.swing.GroupLayout(jPanel_localizacao);
         jPanel_localizacao.setLayout(jPanel_localizacaoLayout);
         jPanel_localizacaoLayout.setHorizontalGroup(
             jPanel_localizacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel_localizacaoLayout.createSequentialGroup()
-                .addGap(47, 47, 47)
+                .addGap(60, 60, 60)
                 .addGroup(jPanel_localizacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel_altura)
-                    .addComponent(jLabel_largura)
-                    .addComponent(jLabel_Comprimento))
-                .addGap(41, 41, 41)
+                    .addComponent(jLabel_latitude)
+                    .addComponent(jLabel_longitude))
+                .addGap(39, 39, 39)
                 .addGroup(jPanel_localizacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jSpinner_largura, javax.swing.GroupLayout.DEFAULT_SIZE, 57, Short.MAX_VALUE)
-                    .addComponent(jSpinner_altura)
-                    .addComponent(jSpinner_comprimento))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jTextField_latitude, javax.swing.GroupLayout.DEFAULT_SIZE, 82, Short.MAX_VALUE)
+                    .addComponent(jTextField_longetude))
+                .addContainerGap(161, Short.MAX_VALUE))
         );
         jPanel_localizacaoLayout.setVerticalGroup(
             jPanel_localizacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel_localizacaoLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel_localizacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jSpinner_comprimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel_Comprimento))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel_localizacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jSpinner_largura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel_largura))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel_localizacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jSpinner_altura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel_altura))
-                .addContainerGap(22, Short.MAX_VALUE))
-        );
-
-        jPanel_dimensao.setBorder(javax.swing.BorderFactory.createTitledBorder("Localização:"));
-
-        jLabel_latitude.setText("Latitude:");
-
-        jLabel_longitude.setText("Longetude:");
-
-        javax.swing.GroupLayout jPanel_dimensaoLayout = new javax.swing.GroupLayout(jPanel_dimensao);
-        jPanel_dimensao.setLayout(jPanel_dimensaoLayout);
-        jPanel_dimensaoLayout.setHorizontalGroup(
-            jPanel_dimensaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel_dimensaoLayout.createSequentialGroup()
-                .addGap(60, 60, 60)
-                .addGroup(jPanel_dimensaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel_latitude)
-                    .addComponent(jLabel_longitude))
-                .addGap(39, 39, 39)
-                .addGroup(jPanel_dimensaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextField_latitude, javax.swing.GroupLayout.DEFAULT_SIZE, 82, Short.MAX_VALUE)
-                    .addComponent(jTextField_longetude))
-                .addContainerGap(161, Short.MAX_VALUE))
-        );
-        jPanel_dimensaoLayout.setVerticalGroup(
-            jPanel_dimensaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel_dimensaoLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel_dimensaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel_latitude)
                     .addComponent(jTextField_latitude, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel_dimensaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel_localizacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField_longetude, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel_longitude))
                 .addContainerGap(24, Short.MAX_VALUE))
@@ -143,7 +147,11 @@ public class Add_estacionamento extends javax.swing.JPanel {
 
         jButton_enviar_est.setText("Adicionar");
 
-        jButton_voltar_est.setText("Voltar");
+        jButton_limpar.setText("Limpar");
+
+        jRadioButton_coberto.setText("Coberto");
+
+        jRadioButton_descoberto.setText("Descoberto");
 
         javax.swing.GroupLayout jPanel_add_estLayout = new javax.swing.GroupLayout(jPanel_add_est);
         jPanel_add_est.setLayout(jPanel_add_estLayout);
@@ -153,19 +161,25 @@ public class Add_estacionamento extends javax.swing.JPanel {
                 .addGap(29, 29, 29)
                 .addGroup(jPanel_add_estLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(jPanel_add_estLayout.createSequentialGroup()
-                        .addComponent(jButton_voltar_est)
+                        .addComponent(jButton_limpar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton_enviar_est))
+                    .addComponent(jPanel_dimensao, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel_localizacao, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel_add_estLayout.createSequentialGroup()
-                        .addGroup(jPanel_add_estLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel_add_estLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel_categoria_zona)
                             .addComponent(jLabel_zona))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel_add_estLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jComboBox_zona, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jComboBox_categoria_estacionamento, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jPanel_localizacao, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel_dimensao, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jComboBox_categoria_estacionamento, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_add_estLayout.createSequentialGroup()
+                                .addGap(19, 19, 19)
+                                .addComponent(jRadioButton_coberto)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jRadioButton_descoberto)
+                                .addGap(78, 78, 78)))))
                 .addContainerGap(23, Short.MAX_VALUE))
         );
         jPanel_add_estLayout.setVerticalGroup(
@@ -175,17 +189,21 @@ public class Add_estacionamento extends javax.swing.JPanel {
                 .addGroup(jPanel_add_estLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel_zona)
                     .addComponent(jComboBox_zona, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(35, 35, 35)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel_add_estLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel_categoria_zona)
                     .addComponent(jComboBox_categoria_estacionamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(32, 32, 32)
-                .addComponent(jPanel_localizacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(37, 37, 37)
-                .addComponent(jPanel_dimensao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel_add_estLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton_voltar_est)
+                    .addComponent(jRadioButton_coberto)
+                    .addComponent(jRadioButton_descoberto))
+                .addGap(15, 15, 15)
+                .addComponent(jPanel_dimensao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(37, 37, 37)
+                .addComponent(jPanel_localizacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel_add_estLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton_limpar)
                     .addComponent(jButton_enviar_est))
                 .addGap(56, 56, 56))
         );
@@ -210,24 +228,45 @@ public class Add_estacionamento extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup buttonGroup_coberto;
     private javax.swing.JButton jButton_enviar_est;
-    private javax.swing.JButton jButton_voltar_est;
+    private javax.swing.JButton jButton_limpar;
     private javax.swing.JComboBox<String> jComboBox_categoria_estacionamento;
     private javax.swing.JComboBox<String> jComboBox_zona;
-    private javax.swing.JLabel jLabel_Comprimento;
-    private javax.swing.JLabel jLabel_altura;
     private javax.swing.JLabel jLabel_categoria_zona;
-    private javax.swing.JLabel jLabel_largura;
     private javax.swing.JLabel jLabel_latitude;
     private javax.swing.JLabel jLabel_longitude;
     private javax.swing.JLabel jLabel_zona;
     private javax.swing.JPanel jPanel_add_est;
     private javax.swing.JPanel jPanel_dimensao;
     private javax.swing.JPanel jPanel_localizacao;
-    private javax.swing.JSpinner jSpinner_altura;
-    private javax.swing.JSpinner jSpinner_comprimento;
-    private javax.swing.JSpinner jSpinner_largura;
+    private javax.swing.JRadioButton jRadioButton_coberto;
+    private javax.swing.JRadioButton jRadioButton_descoberto;
     private javax.swing.JTextField jTextField_latitude;
     private javax.swing.JTextField jTextField_longetude;
     // End of variables declaration//GEN-END:variables
+
+    private void atualizarFormulario(JPanel jPanel_dimensao, String coberto) {
+
+        jPanel_dimensao.removeAll();
+
+        if ("Coberto".equals(coberto)) {
+            jPanel_dimensao.add(new JLabel("Comprimento:"));
+            jPanel_dimensao.add(new JSpinner(new SpinnerNumberModel(1, 1, 2, 0.1)));// Valor inicial: 15; Min: 1; Max: 1000; Incremento: 1
+            jPanel_dimensao.add(new JLabel("Largura:"));
+            jPanel_dimensao.add(new JSpinner(new SpinnerNumberModel(1, 1, 1.5, 0.1)));
+            jPanel_dimensao.add(new JLabel("Altura:"));
+            jPanel_dimensao.add(new JSpinner(new SpinnerNumberModel(2, 2, 3, 0.1)));
+        } else {
+            jPanel_dimensao.add(new JLabel("Comprimento:"));
+            jPanel_dimensao.add(new JSpinner(new SpinnerNumberModel(1, 1, 2, 0.1)));// Valor inicial: 15; Min: 1; Max: 1000; Incremento: 1
+            jPanel_dimensao.add(new JLabel("Largura:"));
+            jPanel_dimensao.add(new JSpinner(new SpinnerNumberModel(1, 1, 1.5, 0.1)));
+        }
+
+        // Atualizar o layout e repintar o painel
+        jPanel_dimensao.setVisible(true);
+        jPanel_dimensao.revalidate();
+        jPanel_dimensao.repaint();
+    }
 }

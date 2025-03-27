@@ -6,7 +6,6 @@ import java.util.UUID;//Gera um ID unico
 public class Viatura implements InterfaceViatura {
 
     //atributos da viatura
-//    private String id;
     private String matricula;
     private String marca;
     private String modelo;

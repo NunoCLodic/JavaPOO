@@ -69,7 +69,7 @@ public class LoginFrame extends javax.swing.JDialog {
                 jButton_entrarActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton_entrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 290, 100, -1));
+        getContentPane().add(jButton_entrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 290, 100, 30));
 
         jLabel_ipg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/pipg.jpg"))); // NOI18N
         getContentPane().add(jLabel_ipg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 360));

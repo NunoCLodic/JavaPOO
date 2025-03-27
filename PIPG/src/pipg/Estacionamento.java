@@ -12,6 +12,7 @@ public class Estacionamento implements InterfaceEstacionamento {
     private String zona;
     private String categoria;
     private Localizacao localizacao;
+    private boolean coberto;
     private double comprimentoMaximo;
     private double larguraMaxima;
     private double alturaMaxima;
@@ -22,7 +23,7 @@ public class Estacionamento implements InterfaceEstacionamento {
     protected List<Viatura> viaturas;
 
     //Construtor
-    public Estacionamento(String zona, String categoria, double latitude, double longitude,
+    public Estacionamento(String zona, String categoria, double latitude, double longitude, boolean coberto,
             double comprimentoMaximo, double larguraMaxima, double alturaMaxima) {
 
         this.zona = zona;
@@ -34,6 +35,7 @@ public class Estacionamento implements InterfaceEstacionamento {
 
         this.ativo = true;
         this.livre = true;
+        this.coberto = coberto;
 
         this.id = contadorId;
         contadorId++;
@@ -62,6 +64,14 @@ public class Estacionamento implements InterfaceEstacionamento {
 
     public Localizacao getLocalizacao() {
         return localizacao;
+    }
+
+    public boolean getcoberto() {
+        return coberto;
+    }
+
+    public void setcoberto(boolean area) {
+        this.coberto = area;
     }
 
     public double getComprimentoMaximo() {
@@ -152,9 +162,12 @@ public class Estacionamento implements InterfaceEstacionamento {
         detalhes.append("Zona: ").append(categoria).append("\n");
         detalhes.append("Categoria: ").append(categoria).append("\n");
         detalhes.append("Localizacao: ").append(localizacao.toString()).append("\n");
+        detalhes.append("Coberto?: ").append(coberto ? "sim" : "não").append("\n");
         detalhes.append("Comprimento Maximo: ").append(comprimentoMaximo).append(" metros\n");
         detalhes.append("Largura Maxima: ").append(larguraMaxima).append(" metros\n");
-        detalhes.append("Altura Maxima: ").append(alturaMaxima).append(" metros\n");
+        if (coberto == true) {
+            detalhes.append("Altura Maxima: ").append(alturaMaxima).append(" metros\n");
+        }
         detalhes.append("Estado: ").append(estadoEstacionamento1()).append(" e ").append(estadoEstacionamento2()).append("\n");
         if (getLivre() == false) {
             detalhes.append("Matricula da viatura: ").append(viatura.getMatricula()).append("\n");
@@ -174,6 +187,7 @@ public class Estacionamento implements InterfaceEstacionamento {
 //                + ";\n matricula:" + ((getAtivo() != false) || (viatura != null) ? viatura.getMatricula() : "null")//n funciona
 //                + ";\n******************************************************\n";
     }
+
 //compara objetos 
     @Override
     public boolean equals(Object o) {
@@ -191,16 +205,15 @@ public class Estacionamento implements InterfaceEstacionamento {
     public int hashCode() {
         return Objects.hash(localizacao.toString());
     }
-    
+
 //metodos da classe
-    
     @Override
-    public void enviarMensagemSuporte() {
+    public void enviarNotificacaoSuporte() {
         //em construcao
     }
 
     @Override
-    public void enviarMensagemMotorista() {
+    public void enviarNotificacaoMotorista() {
         //em construcao
     }
 

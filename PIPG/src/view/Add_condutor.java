@@ -19,7 +19,7 @@ public class Add_condutor extends javax.swing.JPanel {
         JInternalFrame addCondutorFrame = new JInternalFrame("Adicionar Condutor", true, true, true, true);
         addCondutorFrame.setSize(1365, 710);
         addCondutorFrame.setDefaultCloseOperation(JInternalFrame.DISPOSE_ON_CLOSE);
-        
+
         ButtonGroup sexoCondutor = new ButtonGroup();
         sexoCondutor.add(jRadioButton_feminino);
         sexoCondutor.add(jRadioButton_masculino);
@@ -36,9 +36,7 @@ public class Add_condutor extends javax.swing.JPanel {
         jPanel_detalheCategoria.add(new JLabel("Nome do Professor:"));
         jPanel_detalheCategoria.add(new JTextField(30));
         jPanel_detalheCategoria.add(new JLabel("Disciplina:"));
-            jPanel_detalheCategoria.add(new JComboBox());//adicionar as opcoes
-
-        JLabel label_nomeProfessor = new JLabel("Nome do professor:");
+        jPanel_detalheCategoria.add(new JComboBox());//adicionar as opcoes
 
         // Adicionar ActionListeners para alternar formulários
         jRadioButton_professor.addActionListener((ActionEvent e) -> {
@@ -137,7 +135,7 @@ public class Add_condutor extends javax.swing.JPanel {
         jComboBox_modelo = new javax.swing.JComboBox<>();
         jComboBox_cor = new javax.swing.JComboBox<>();
         jButton_adicionar = new javax.swing.JButton();
-        jButton_cancelar = new javax.swing.JButton();
+        jButton_limpar = new javax.swing.JButton();
 
         jPanel_add_condutor.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -161,6 +159,11 @@ public class Add_condutor extends javax.swing.JPanel {
         );
 
         jRadioButton_professor.setText("Professor");
+        jRadioButton_professor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton_professorActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel_categoriaLayout = new javax.swing.GroupLayout(jPanel_categoria);
         jPanel_categoria.setLayout(jPanel_categoriaLayout);
@@ -381,7 +384,7 @@ public class Add_condutor extends javax.swing.JPanel {
 
         jButton_adicionar.setText("Adicionar");
 
-        jButton_cancelar.setText("Cancelar");
+        jButton_limpar.setText("Limpar");
 
         javax.swing.GroupLayout jPanel_add_condutorLayout = new javax.swing.GroupLayout(jPanel_add_condutor);
         jPanel_add_condutor.setLayout(jPanel_add_condutorLayout);
@@ -389,7 +392,7 @@ public class Add_condutor extends javax.swing.JPanel {
             jPanel_add_condutorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel_add_condutorLayout.createSequentialGroup()
                 .addGap(122, 122, 122)
-                .addComponent(jButton_cancelar)
+                .addComponent(jButton_limpar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton_adicionar)
                 .addGap(111, 111, 111))
@@ -411,7 +414,7 @@ public class Add_condutor extends javax.swing.JPanel {
                 .addComponent(jPanel_dadosViatura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(15, 15, 15)
                 .addGroup(jPanel_add_condutorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton_cancelar)
+                    .addComponent(jButton_limpar)
                     .addComponent(jButton_adicionar))
                 .addContainerGap(74, Short.MAX_VALUE))
         );
@@ -434,12 +437,16 @@ public class Add_condutor extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jRadioButton_professorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton_professorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRadioButton_professorActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup_categoriaCondutor;
     private javax.swing.ButtonGroup buttonGroup_sexoCondutor;
     private javax.swing.JButton jButton_adicionar;
-    private javax.swing.JButton jButton_cancelar;
+    private javax.swing.JButton jButton_limpar;
     private javax.swing.JComboBox<String> jComboBox_cor;
     private javax.swing.JComboBox<String> jComboBox_marca;
     private javax.swing.JComboBox<String> jComboBox_modelo;

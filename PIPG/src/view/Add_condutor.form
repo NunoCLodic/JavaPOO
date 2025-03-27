@@ -54,7 +54,7 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
                   <EmptySpace min="-2" pref="122" max="-2" attributes="0"/>
-                  <Component id="jButton_cancelar" min="-2" max="-2" attributes="0"/>
+                  <Component id="jButton_limpar" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
                   <Component id="jButton_adicionar" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="111" max="-2" attributes="0"/>
@@ -80,7 +80,7 @@
                   <Component id="jPanel_dadosViatura" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jButton_cancelar" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jButton_limpar" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jButton_adicionar" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="74" max="32767" attributes="0"/>
@@ -173,6 +173,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Professor"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jRadioButton_professorActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
@@ -615,9 +618,9 @@
             <Property name="text" type="java.lang.String" value="Adicionar"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton_cancelar">
+        <Component class="javax.swing.JButton" name="jButton_limpar">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Cancelar"/>
+            <Property name="text" type="java.lang.String" value="Limpar"/>
           </Properties>
         </Component>
       </SubComponents>

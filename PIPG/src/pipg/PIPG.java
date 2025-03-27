@@ -67,12 +67,12 @@ public class PIPG {
         funcionario1.adicionarViatura(viatura5);
         funcionario2.adicionarViatura(viatura6);
 
-        Estacionamento estacionamento1 = new Estacionamento("Norte", "Estudante", 40.234567, -8.345689, 2.0, 1.5, 3.0);
-        Estacionamento estacionamento2 = new Estacionamento("Sul", "Professor", 40.234567, -8.345689, 2.0, 1.5, 3.0);//hashset ignorando
-        Estacionamento estacionamento3 = new Estacionamento("Este", "Funcionario", 41.234567, -8.345689, 2.0, 1.5, 3.0);
-        Estacionamento estacionamento4 = new Estacionamento("Centro", "Funcionario", 42.234567, -7.345689, 2.0, 1.5, 3.0);
-        Estacionamento estacionamento5 = new Estacionamento("Norte", "Estudante", 43.234567, -8.345689, 2.0, 1.5, 3.0);
-        Estacionamento estacionamento6 = new Estacionamento("Sul", "Professor", 44.234567, -8.345689, 2.0, 1.5, 3.0);
+        Estacionamento estacionamento1 = new Estacionamento("Norte", "Estudante", 40.234567, -8.345689,true, 2.0, 1.5, 3.0);
+        Estacionamento estacionamento2 = new Estacionamento("Sul", "Professor", 40.234567, -8.345689,true, 2.0, 1.5, 3.0);//hashset ignorando
+        Estacionamento estacionamento3 = new Estacionamento("Este", "Funcionario", 41.234567, -8.345689,false, 2.0, 1.5, 3.0);
+        Estacionamento estacionamento4 = new Estacionamento("Centro", "Funcionario", 42.234567, -7.345689,false, 2.0, 1.5, 3.0);
+        Estacionamento estacionamento5 = new Estacionamento("Norte", "Estudante", 43.234567, -8.345689,true, 2.0, 1.5, 3.0);
+        Estacionamento estacionamento6 = new Estacionamento("Sul", "Professor", 44.234567, -8.345689,false, 2.0, 1.5, 3.0);
 
         estacionamentos.add(estacionamento1);
         estacionamentos.add(estacionamento2);
