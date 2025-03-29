@@ -35,7 +35,7 @@ public class MainFrame extends javax.swing.JFrame {
         jMenuItem_ed_mot = new javax.swing.JMenuItem();
         jMenuItem_ex_mot = new javax.swing.JMenuItem();
         jMenuItem_pes_mot = new javax.swing.JMenuItem();
-        jMenu_viaturas = new javax.swing.JMenu();
+        jMenu_transporte = new javax.swing.JMenu();
         jMenuItem_add_via = new javax.swing.JMenuItem();
         jMenuItem_ed_via = new javax.swing.JMenuItem();
         jMenuItem_ex_via = new javax.swing.JMenuItem();
@@ -167,18 +167,23 @@ public class MainFrame extends javax.swing.JFrame {
 
         jMenuBar_menu.add(jMenu_condutor);
 
-        jMenu_viaturas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/viatura.png"))); // NOI18N
-        jMenu_viaturas.setText("Viaturas");
+        jMenu_transporte.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/viatura.png"))); // NOI18N
+        jMenu_transporte.setText("Transporte");
 
         jMenuItem_add_via.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem_add_via.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/adicionar.png"))); // NOI18N
         jMenuItem_add_via.setText("Adicionar");
-        jMenu_viaturas.add(jMenuItem_add_via);
+        jMenuItem_add_via.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem_add_viaActionPerformed(evt);
+            }
+        });
+        jMenu_transporte.add(jMenuItem_add_via);
 
         jMenuItem_ed_via.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem_ed_via.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/editar.png"))); // NOI18N
         jMenuItem_ed_via.setText("Editar");
-        jMenu_viaturas.add(jMenuItem_ed_via);
+        jMenu_transporte.add(jMenuItem_ed_via);
 
         jMenuItem_ex_via.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem_ex_via.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/excluir.png"))); // NOI18N
@@ -188,14 +193,14 @@ public class MainFrame extends javax.swing.JFrame {
                 jMenuItem_ex_viaActionPerformed(evt);
             }
         });
-        jMenu_viaturas.add(jMenuItem_ex_via);
+        jMenu_transporte.add(jMenuItem_ex_via);
 
         jMenuItem_pes_via.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem_pes_via.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/pesquisar.png"))); // NOI18N
         jMenuItem_pes_via.setText("Pesquisar");
-        jMenu_viaturas.add(jMenuItem_pes_via);
+        jMenu_transporte.add(jMenuItem_pes_via);
 
-        jMenuBar_menu.add(jMenu_viaturas);
+        jMenuBar_menu.add(jMenu_transporte);
 
         setJMenuBar(jMenuBar_menu);
 
@@ -260,12 +265,15 @@ public class MainFrame extends javax.swing.JFrame {
         jDesktopPane.removeAll();
         JInternalFrame addCondutorFrame = new JInternalFrame("Adicionar Condutor", true, true, true, true);
         addCondutorFrame.setSize(1365, 710);
+        
         Add_condutor telaAddCond = new Add_condutor();
+        
         addCondutorFrame.add(telaAddCond);
         addCondutorFrame.setDefaultCloseOperation(JInternalFrame.DISPOSE_ON_CLOSE);
         addCondutorFrame.setLayout(new BorderLayout());
         addCondutorFrame.add(telaAddCond, BorderLayout.CENTER);
         addCondutorFrame.setVisible(true);
+        
         jDesktopPane.add(addCondutorFrame);
         jDesktopPane.revalidate();
         jDesktopPane.repaint();
@@ -293,6 +301,24 @@ public class MainFrame extends javax.swing.JFrame {
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenuItem_add_viaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_add_viaActionPerformed
+        jDesktopPane.removeAll();
+        JInternalFrame addTransporteFrame = new JInternalFrame("Adicionar Transporte", true, true, true, true);
+        addTransporteFrame.setSize(1365, 710);
+        
+        Add_transporte telaAddTrans = new Add_transporte();
+        
+        addTransporteFrame.add(telaAddTrans);
+        addTransporteFrame.setDefaultCloseOperation(JInternalFrame.DISPOSE_ON_CLOSE);
+        addTransporteFrame.setLayout(new BorderLayout());
+        addTransporteFrame.add(telaAddTrans, BorderLayout.CENTER);
+        addTransporteFrame.setVisible(true);
+        
+        jDesktopPane.add(addTransporteFrame);
+        jDesktopPane.revalidate();
+        jDesktopPane.repaint();
+    }//GEN-LAST:event_jMenuItem_add_viaActionPerformed
 
     public static void main(String args[]) {
         try {
@@ -348,6 +374,6 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu_condutor;
     private javax.swing.JMenu jMenu_estacionamento;
     private javax.swing.JMenu jMenu_suporte;
-    private javax.swing.JMenu jMenu_viaturas;
+    private javax.swing.JMenu jMenu_transporte;
     // End of variables declaration//GEN-END:variables
 }
