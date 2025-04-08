@@ -23,18 +23,18 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="jPanel_add_condutor" max="32767" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+              <Component id="jPanel_add_condutor" min="-2" pref="1124" max="-2" attributes="0"/>
+              <EmptySpace pref="26" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="jPanel_add_condutor" max="32767" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+              <Component id="jPanel_add_condutor" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="64" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -46,8 +46,8 @@
           <Color blue="f9" green="f9" red="f9" type="rgb"/>
         </Property>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-          <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
-            <EtchetBorder/>
+          <Border info="org.netbeans.modules.form.compat2.border.SoftBevelBorderInfo">
+            <BevelBorder/>
           </Border>
         </Property>
       </Properties>
@@ -55,39 +55,43 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="123" max="-2" attributes="0"/>
-                  <Component id="jButton_limpar" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="859" max="32767" attributes="0"/>
-                  <Component id="jButton_adicionar" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="110" max="-2" attributes="0"/>
-              </Group>
               <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace pref="75" max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                      <Component id="jPanel_categoria" max="32767" attributes="0"/>
-                      <Component id="jPanel_dadosTransporte" max="32767" attributes="0"/>
-                      <Component id="jPanel_dadosCondutor" alignment="1" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                              <Component id="jPanel_categoria" max="32767" attributes="0"/>
+                              <Component id="jPanel_dadosTransporte" max="32767" attributes="0"/>
+                              <Component id="jPanel_dadosCondutor" alignment="1" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
+                          <Component id="jButton_limpar" min="-2" pref="89" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Component id="jButton_adicionar" min="-2" pref="95" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
-                  <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Component id="jPanel_categoria" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="jPanel_dadosCondutor" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                   <Component id="jPanel_dadosTransporte" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jButton_limpar" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jButton_adicionar" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="50" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -366,29 +370,29 @@
                           <Component id="jComboBox_cor" min="-2" pref="148" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jLabel_comprimento" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jTextField_comprimento" min="-2" pref="135" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="jSpinner_comp" min="-2" pref="44" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jLabel_marca" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
+                              <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
                               <Component id="jComboBox_marca" min="-2" pref="149" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                      <Group type="103" groupAlignment="1" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
                               <Component id="jLabel_modelo" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="jComboBox_modelo" min="-2" pref="161" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="102" alignment="1" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
                               <Component id="jLabel_largura" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Component id="jTextField_largura" min="-2" pref="135" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="jSpinner_larg" min="-2" pref="47" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
@@ -397,9 +401,9 @@
                           <Component id="jLabel_altura" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="jTextField_altura" pref="114" max="32767" attributes="0"/>
-                          <Component id="jSpinner_anoveiculo" pref="0" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jSpinner_anoveiculo" min="-2" pref="114" max="-2" attributes="0"/>
+                          <Component id="jSpinner_alt" min="-2" pref="50" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                   </Group>
@@ -420,20 +424,20 @@
                           <Component id="jComboBox_modelo" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jRadioButton_ligeiro" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel_cor" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel_comprimento" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel_altura" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jTextField_altura" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jTextField_comprimento" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jComboBox_cor" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jRadioButton_motociclo" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jSpinner_comp" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jSpinner_alt" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                              <Component id="jTextField_largura" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel_largura" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jSpinner_larg" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace pref="23" max="32767" attributes="0"/>
@@ -483,12 +487,6 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="jTextField_matricula">
-            </Component>
-            <Component class="javax.swing.JTextField" name="jTextField_altura">
-            </Component>
-            <Component class="javax.swing.JTextField" name="jTextField_largura">
-            </Component>
-            <Component class="javax.swing.JTextField" name="jTextField_comprimento">
             </Component>
             <Component class="javax.swing.JSpinner" name="jSpinner_anoveiculo">
               <Properties>
@@ -631,6 +629,12 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Motociclo"/>
               </Properties>
+            </Component>
+            <Component class="javax.swing.JSpinner" name="jSpinner_comp">
+            </Component>
+            <Component class="javax.swing.JSpinner" name="jSpinner_larg">
+            </Component>
+            <Component class="javax.swing.JSpinner" name="jSpinner_alt">
             </Component>
           </SubComponents>
         </Container>

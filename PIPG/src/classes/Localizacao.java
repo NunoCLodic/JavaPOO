@@ -1,5 +1,5 @@
 
-package pipg;
+package classes;
 
 import java.awt.geom.Point2D;
 

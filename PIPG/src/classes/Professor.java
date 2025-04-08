@@ -1,10 +1,13 @@
-package pipg;
+package classes;
 
+import classes.Estacionamento;
+import classes.Condutor;
+import interfaces.InterfaceCondutor;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 
-public class Professor extends Condutor implements InterfaceCondutor {
+public class Professor extends Condutor implements InterfaceCondutor {//tem que implementar de I professor
 
     private int id;
     private String cadeira;
@@ -82,39 +85,7 @@ public class Professor extends Condutor implements InterfaceCondutor {
     }
 
     @Override
-    public void reservarEstacionamento(Viatura v, Estacionamento e) {
-        if ((e.getAtivo() == true) && (e.getLivre() == true)) {
-            System.out.println("10 Minutos até a Viatura " + v.getMatricula() + " estacionar");
-        } else {
-            System.out.println("impossivel reservar estacionamento");
-        }
-    }
-
-    @Override
-    public void estacionarViatura(Viatura v, Estacionamento e) {
-        if ((e.getAtivo() == true) && (e.getLivre() == true)) {
-        }
-    }
-
-    @Override
-    public void desocuparEstacionamento(Viatura v, Estacionamento e) {
-    }
-
-    @Override
-    public void enviarMensagemSuporte(Suporte s) {
-    }
-
-    @Override
-    public void editarViatura(Viatura v) {
-    }
-
-    @Override
-    public void eliminarViatura(Viatura v) {
-    }
-
-    @Override
     public void registrarPagamento(LocalDate mes) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
@@ -124,6 +95,9 @@ public class Professor extends Condutor implements InterfaceCondutor {
 
     @Override
     public void mostrarHistoricoPagamento() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void enviarMensagemSuporte(Suporte s) {
     }
 }

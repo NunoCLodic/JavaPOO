@@ -1,6 +1,10 @@
-package pipg;
+package classes;
 
 //import java.util.ArrayList;
+import classes.MensagemChat;
+import classes.Estacionamento;
+import classes.Condutor;
+import interfaces.InterfaceSuporte;
 import java.util.ArrayList;
 import java.util.UUID;
 

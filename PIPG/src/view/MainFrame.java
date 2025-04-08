@@ -3,10 +3,13 @@ package view;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
 
 public class MainFrame extends javax.swing.JFrame {
 
@@ -220,25 +223,32 @@ public class MainFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItem_add_estActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_add_estActionPerformed
-// Limpar todos os InternalFrames do DesktopPane
-        jDesktopPane.removeAll();
 
-// Criar Internal Frame Add Estacionamento
+        // Percorrer os frames existentes no JDesktopPane
+        for (JInternalFrame frame : jDesktopPane.getAllFrames()) {
+            if (frame.getTitle().equals(evt)) { // Verifica se o título do frame é o esperado
+                try {
+                    if (frame.isIcon()) {
+                        // Se estiver minimizado, restaurar
+                        frame.setIcon(false);
+                    }
+                    // Trazer para frente e focar
+                    frame.setSelected(true);
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+                return; // Já encontramos e restauramos o frame, então saímos do método
+
+            }
+        }
+// Criar Internal Frame Add Estacionamento e abrange toda area do ecra
         JInternalFrame addEstacionamentoFrame = new JInternalFrame("Adicionar Estacionamento", true, true, true, true);
-        addEstacionamentoFrame.setSize(1365, 710);
-
-// Adicionar o conteúdo ao InternalFrame
         Add_estacionamento telaAddEst = new Add_estacionamento();
         addEstacionamentoFrame.add(telaAddEst);
-        addEstacionamentoFrame.setDefaultCloseOperation(JInternalFrame.DISPOSE_ON_CLOSE);
-
-//para que o panel ocupe todo o espaço do frame
-        addEstacionamentoFrame.setLayout(new BorderLayout());
-        addEstacionamentoFrame.add(telaAddEst, BorderLayout.CENTER);
-
+        addEstacionamentoFrame.setDefaultCloseOperation(JInternalFrame.EXIT_ON_CLOSE);
 // Tornar o InternalFrame visível
         addEstacionamentoFrame.setVisible(true);
-
+        addEstacionamentoFrame.setSize(jDesktopPane.getWidth(), jDesktopPane.getHeight());
 // Adicionar o InternalFrame ao DesktopPane
         jDesktopPane.add(addEstacionamentoFrame);
         jDesktopPane.revalidate();
@@ -262,21 +272,36 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem_sairActionPerformed
 
     private void jMenuItem_add_motActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_add_motActionPerformed
-        jDesktopPane.removeAll();
+        for (JInternalFrame frame : jDesktopPane.getAllFrames()) {
+            if (frame.isIcon()) {
+                continue;
+            }
+            frame.dispose();
+        }
+// Criando o JInternalFrame
         JInternalFrame addCondutorFrame = new JInternalFrame("Adicionar Condutor", true, true, true, true);
-        addCondutorFrame.setSize(1365, 710);
-        
+        addCondutorFrame.setSize(jDesktopPane.getWidth(), jDesktopPane.getHeight());
+
+// Criando o painel do conteúdo
         Add_condutor telaAddCond = new Add_condutor();
-        
-        addCondutorFrame.add(telaAddCond);
-        addCondutorFrame.setDefaultCloseOperation(JInternalFrame.DISPOSE_ON_CLOSE);
         addCondutorFrame.setLayout(new BorderLayout());
         addCondutorFrame.add(telaAddCond, BorderLayout.CENTER);
+
+// Centralizar o JInternalFrame
+        addCondutorFrame.setLocation(
+                (jDesktopPane.getWidth() - addCondutorFrame.getWidth()) / 2,
+                (jDesktopPane.getHeight() - addCondutorFrame.getHeight()) / 2
+        );
+
+// Configurando comportamento
+        addCondutorFrame.setDefaultCloseOperation(JInternalFrame.DISPOSE_ON_CLOSE);
         addCondutorFrame.setVisible(true);
-        
+
+// Adicionando ao JDesktopPane
         jDesktopPane.add(addCondutorFrame);
         jDesktopPane.revalidate();
         jDesktopPane.repaint();
+
     }//GEN-LAST:event_jMenuItem_add_motActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
@@ -303,18 +328,32 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem_add_viaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_add_viaActionPerformed
-        jDesktopPane.removeAll();
+
+        for (JInternalFrame frame : jDesktopPane.getAllFrames()) {
+            if (frame.isIcon()) {
+                continue;
+            }
+            frame.dispose();
+        }
+
         JInternalFrame addTransporteFrame = new JInternalFrame("Adicionar Transporte", true, true, true, true);
-        addTransporteFrame.setSize(1365, 710);
-        
+        addTransporteFrame.setSize(jDesktopPane.getWidth(), jDesktopPane.getHeight());
+
+// Configurar o layout e adicionar o conteúdo
         Add_transporte telaAddTrans = new Add_transporte();
-        
-        addTransporteFrame.add(telaAddTrans);
-        addTransporteFrame.setDefaultCloseOperation(JInternalFrame.DISPOSE_ON_CLOSE);
         addTransporteFrame.setLayout(new BorderLayout());
         addTransporteFrame.add(telaAddTrans, BorderLayout.CENTER);
+
+// Centralizar o JInternalFrame
+        addTransporteFrame.setLocation(
+                (jDesktopPane.getWidth() - addTransporteFrame.getWidth()) / 2,
+                (jDesktopPane.getHeight() - addTransporteFrame.getHeight()) / 2
+        );
+
+        addTransporteFrame.setDefaultCloseOperation(JInternalFrame.DISPOSE_ON_CLOSE);
         addTransporteFrame.setVisible(true);
-        
+
+// Adicionar ao JDesktopPane e revalidar
         jDesktopPane.add(addTransporteFrame);
         jDesktopPane.revalidate();
         jDesktopPane.repaint();

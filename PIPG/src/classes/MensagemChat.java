@@ -1,5 +1,5 @@
 
-package pipg;
+package classes;
 
 
 public class MensagemChat {

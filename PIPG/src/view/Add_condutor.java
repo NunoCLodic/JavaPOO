@@ -2,25 +2,44 @@ package view;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.GridLayout;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
 import javax.swing.JComboBox;
+import javax.swing.JDesktopPane;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JSpinner;
 import javax.swing.JTextField;
 
 public class Add_condutor extends javax.swing.JPanel {
 
-    // Agrupar os botões em um ButtonGroup
+// Agrupar os botões em um ButtonGroup
     public Add_condutor() {
         initComponents();
 
+        JDesktopPane jDesktopPane = new JDesktopPane();
+
         JInternalFrame addCondutorFrame = new JInternalFrame("Adicionar Condutor", true, true, true, true);
+        addCondutorFrame.setSize(jDesktopPane.getWidth(), jDesktopPane.getHeight());
+
         addCondutorFrame.setSize(1365, 710);
         addCondutorFrame.setDefaultCloseOperation(JInternalFrame.DISPOSE_ON_CLOSE);
+
+        jDesktopPane.add(addCondutorFrame);
+
+// Centralizar o frame
+        addCondutorFrame.setLocation(
+                (jDesktopPane.getWidth() - addCondutorFrame.getWidth()) / 2,
+                (jDesktopPane.getHeight() - addCondutorFrame.getHeight()) / 2
+        );
 
         ButtonGroup sexoCondutor = new ButtonGroup();
         sexoCondutor.add(jRadioButton_feminino);
@@ -42,18 +61,18 @@ public class Add_condutor extends javax.swing.JPanel {
         Color rosaClaro = new Color(255, 150, 180);
         Color laranjaClaro = new Color(255, 200, 100);
         Color castanhoClaro = new Color(210, 180, 140);
-        
-        jRadioButton_professor.setSelected(true);
-        jPanel_categoria.setBackground(verdeClaro);
 
-        jPanel_detalheCategoria.add(new JLabel("ID do professor:"));
-        jPanel_detalheCategoria.add(new JTextField(30));
-        jPanel_detalheCategoria.add(new JLabel("Nome do Professor:"));
-        jPanel_detalheCategoria.add(new JTextField(30));
-        jPanel_detalheCategoria.add(new JLabel("Cadeira:"));
-        jPanel_detalheCategoria.add(new JComboBox());//adicionar as opcoes
+//        jRadioButton_professor.setSelected(true);
+//        jPanel_categoria.setBackground(verdeClaro);
+//        jPanel_detalheCategoria.add(new JLabel("ID do professor:"));
+//        jPanel_detalheCategoria.add(new JTextField(30));
+//        jPanel_detalheCategoria.add(new JLabel("Nome do Professor:"));
+//        jPanel_detalheCategoria.add(new JTextField(30));
+//        jPanel_detalheCategoria.add(new JLabel("Cadeira:"));
+//        jPanel_detalheCategoria.add(new JComboBox());//adicionar as opcoes
+        jPanel_detalheCategoria.setPreferredSize(new Dimension(500, 180));
 
-        // Adicionar ActionListeners para alternar formulários
+// Adicionar ActionListeners para alternar formulários
         jRadioButton_professor.addActionListener((ActionEvent e) -> {
             jPanel_categoria.setBackground(verdeClaro);
             atualizarFormulario(jPanel_detalheCategoria, "Professor");
@@ -82,48 +101,147 @@ public class Add_condutor extends javax.swing.JPanel {
                 jPanel_dadosTransporte.setBackground(castanhoClaro);
             }
         };
-        
+
         jRadioButton_ligeiro.addActionListener(listenerTransporte);
         jRadioButton_motociclo.addActionListener(listenerTransporte);
-        
+
         jRadioButton_masculino.addActionListener(listenerSexo);
         jRadioButton_feminino.addActionListener(listenerSexo);
 
-        // Adicionar os painéis ao JFrame e mostrar
-        addCondutorFrame.setLayout(new BorderLayout());
+// Configurar o layout para o painel detalheCategoria
         jPanel_detalheCategoria.setLayout(new BoxLayout(jPanel_detalheCategoria, BoxLayout.Y_AXIS));
-        addCondutorFrame.setVisible(true);
+
+// Adicionar o painel ao frame principal
+        addCondutorFrame.add(jPanel_detalheCategoria, BorderLayout.CENTER);
+
+// Após configurar os componentes
+        jPanel_detalheCategoria.revalidate();
+        jPanel_detalheCategoria.repaint();
+
     }
 
     private void atualizarFormulario(JPanel jPanel_detalheCategoria, String tipo) {
-
+// Remover todos os componentes existentes
         jPanel_detalheCategoria.removeAll();
 
+// Configurar o painel com GridBagLayout
+        jPanel_detalheCategoria.setLayout(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+
+// Configurações comuns para o layout
+        gbc.insets = new Insets(5, 5, 10, 10); // Margens entre os componentes
+        gbc.fill = GridBagConstraints.HORIZONTAL; // Expande os campos horizontalmente
+        gbc.weightx = 1.0; // Permitir que o componente ocupe mais espaço
+//        gbc.anchor = GridBagConstraints.EAST; // Alinhar à direita por padrão
+//        gbc.fill = GridBagConstraints.NONE;//evita expandir os jlabel
+
+// Verificar o tipo e adicionar os campos
         if ("Professor".equals(tipo)) {
-            jPanel_detalheCategoria.add(new JLabel("ID do professor:"));
-            jPanel_detalheCategoria.add(new JTextField(30));
-            jPanel_detalheCategoria.add(new JLabel("Nome do Professor:"));
-            jPanel_detalheCategoria.add(new JTextField(30));
-            jPanel_detalheCategoria.add(new JLabel("Cadeira:"));
-            jPanel_detalheCategoria.add(new JComboBox());//adicionar as opcoes
+            // Linha 1: ID do Professor
+            gbc.gridx = 0;
+            gbc.gridy = 0;
+            gbc.weightx = 0; // O JLabel não ocupa mais espaço
+            jPanel_detalheCategoria.add(new JLabel("ID do Professor:"), gbc);
+
+            gbc.gridx = 1;
+            gbc.weightx = 1; // O JTextField pode expandir
+            JTextField textFieldIdP = new JTextField(10);
+            textFieldIdP.setPreferredSize(new Dimension(100, 30));
+            jPanel_detalheCategoria.add(textFieldIdP, gbc);
+
+            // Linha 2: Nome do Professor
+            gbc.gridx = 0;
+            gbc.gridy = 1;
+            gbc.weightx = 0;
+            jPanel_detalheCategoria.add(new JLabel("Nome do professor:"), gbc);
+
+            gbc.gridx = 1;
+            gbc.weightx = 1; // O JTextField pode expandir
+            JTextField textFieldNp = new JTextField(20);
+            textFieldNp.setPreferredSize(new Dimension(200, 30));
+            jPanel_detalheCategoria.add(textFieldNp, gbc);
+
+            // Linha 3: Cadeira
+            gbc.gridx = 0;
+            gbc.gridy = 2;
+            gbc.weightx = 0;
+            jPanel_detalheCategoria.add(new JLabel("Cadeira:"), gbc);
+            
+            gbc.gridx = 1;
+            jPanel_detalheCategoria.add(new JComboBox<>(), gbc);
+
         } else if ("Estudante".equals(tipo)) {
-            jPanel_detalheCategoria.add(new JLabel("Nº de Aluno:"));
-            jPanel_detalheCategoria.add(new JTextField(30));
-            jPanel_detalheCategoria.add(new JLabel("Nome do Estudante:"));
-            jPanel_detalheCategoria.add(new JTextField(30));
-            jPanel_detalheCategoria.add(new JLabel("Categoria"));
-            jPanel_detalheCategoria.add(new JComboBox());//adicionar as opcoes
-        } else {
-            jPanel_detalheCategoria.add(new JLabel("ID do Funcionário:"));
-            jPanel_detalheCategoria.add(new JTextField(30));
-            jPanel_detalheCategoria.add(new JLabel("Nome do Funcionário:"));
-            jPanel_detalheCategoria.add(new JTextField(30));
-            jPanel_detalheCategoria.add(new JLabel("Seção:"));
-            jPanel_detalheCategoria.add(new JComboBox());//adicionar as opcoes
+            // Linha 1: Nº de Aluno
+            gbc.gridx = 0;
+            gbc.gridy = 0;
+            gbc.weightx = 0;
+            jPanel_detalheCategoria.add(new JLabel("Nº do estudante:"), gbc);
+
+            gbc.gridx = 1;
+            gbc.weightx = 1; // O JTextField pode expandir
+            JTextField textFieldIdA = new JTextField(20);
+            textFieldIdA.setPreferredSize(new Dimension(200, 30));
+            jPanel_detalheCategoria.add(textFieldIdA, gbc);
+
+            // Linha 2: Nome do Estudante
+            gbc.gridx = 0;
+            gbc.gridy = 1;
+            gbc.weightx = 0;
+            jPanel_detalheCategoria.add(new JLabel("Nome do estudante:"), gbc);
+
+            gbc.gridx = 1;
+            gbc.weightx = 1; // O JTextField pode expandir
+            JTextField textFieldIdNe = new JTextField(20);
+            textFieldIdNe.setPreferredSize(new Dimension(200, 30));
+            jPanel_detalheCategoria.add(textFieldIdNe, gbc);
+
+            // Linha 3: Categoria
+            gbc.gridx = 0;
+            gbc.gridy = 2;
+            gbc.weightx = 0;
+            jPanel_detalheCategoria.add(new JLabel("Categoria:"), gbc);
+
+            gbc.gridx = 1;
+            jPanel_detalheCategoria.add(new JComboBox<>(), gbc);
+
+        } else { // Funcionário
+            // Linha 1: Nº de Funcionário
+            gbc.gridx = 0;
+            gbc.gridy = 0;
+            gbc.weightx = 0;
+            jPanel_detalheCategoria.add(new JLabel("Nº de funcionario:"), gbc);
+            
+
+            gbc.gridx = 1;
+            gbc.weightx = 1; // O JTextField pode expandir
+            JTextField textFieldIdNe = new JTextField(20);
+            textFieldIdNe.setPreferredSize(new Dimension(200, 30));
+            jPanel_detalheCategoria.add(textFieldIdNe, gbc);
+
+            // Linha 2: Nome do Funcionário
+            gbc.gridx = 0;
+            gbc.gridy = 1;
+            gbc.weightx = 0;
+            jPanel_detalheCategoria.add(new JLabel("Nome do funcionario:"), gbc);
+            
+
+            gbc.gridx = 1;
+            gbc.weightx = 1; // O JTextField pode expandir
+            JTextField textFieldIdNf = new JTextField(20);
+            textFieldIdNf.setPreferredSize(new Dimension(200, 30));
+            jPanel_detalheCategoria.add(textFieldIdNf, gbc);
+
+            // Linha 3: Seção
+            gbc.gridx = 0;
+            gbc.gridy = 2;
+            gbc.weightx = 0;
+            jPanel_detalheCategoria.add(new JLabel("Secção:"), gbc);
+            
+            gbc.gridx = 1;
+            jPanel_detalheCategoria.add(new JComboBox<>(), gbc);
         }
 
-        // Atualizar o layout e repintar o painel
-        jPanel_detalheCategoria.setVisible(true);
+// Atualizar o painel
         jPanel_detalheCategoria.revalidate();
         jPanel_detalheCategoria.repaint();
 
@@ -167,20 +285,20 @@ public class Add_condutor extends javax.swing.JPanel {
         jLabel_comprimento = new javax.swing.JLabel();
         jLabel_altura = new javax.swing.JLabel();
         jTextField_matricula = new javax.swing.JTextField();
-        jTextField_altura = new javax.swing.JTextField();
-        jTextField_largura = new javax.swing.JTextField();
-        jTextField_comprimento = new javax.swing.JTextField();
         jSpinner_anoveiculo = new javax.swing.JSpinner();
         jComboBox_marca = new javax.swing.JComboBox<>();
         jComboBox_modelo = new javax.swing.JComboBox<>();
         jComboBox_cor = new javax.swing.JComboBox<>();
         jRadioButton_ligeiro = new javax.swing.JRadioButton();
         jRadioButton_motociclo = new javax.swing.JRadioButton();
+        jSpinner_comp = new javax.swing.JSpinner();
+        jSpinner_larg = new javax.swing.JSpinner();
+        jSpinner_alt = new javax.swing.JSpinner();
         jButton_adicionar = new javax.swing.JButton();
         jButton_limpar = new javax.swing.JButton();
 
         jPanel_add_condutor.setBackground(new java.awt.Color(249, 249, 249));
-        jPanel_add_condutor.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel_add_condutor.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jPanel_categoria.setBorder(javax.swing.BorderFactory.createTitledBorder("Categoria:"));
 
@@ -376,33 +494,33 @@ public class Add_condutor extends javax.swing.JPanel {
                     .addComponent(jTextField_matricula)
                     .addComponent(jComboBox_cor, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(57, 57, 57)
-                .addGroup(jPanel_dadosTransporteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel_dadosTransporteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel_dadosTransporteLayout.createSequentialGroup()
                         .addComponent(jLabel_comprimento)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField_comprimento, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jSpinner_comp, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel_dadosTransporteLayout.createSequentialGroup()
                         .addComponent(jLabel_marca)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(24, 24, 24)
                         .addComponent(jComboBox_marca, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(66, 66, 66)
-                .addGroup(jPanel_dadosTransporteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addGroup(jPanel_dadosTransporteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel_dadosTransporteLayout.createSequentialGroup()
                         .addComponent(jLabel_modelo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jComboBox_modelo, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel_dadosTransporteLayout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel_dadosTransporteLayout.createSequentialGroup()
                         .addComponent(jLabel_largura)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jTextField_largura, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jSpinner_larg, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(51, 51, 51)
                 .addGroup(jPanel_dadosTransporteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel_anoViatura)
                     .addComponent(jLabel_altura))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel_dadosTransporteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextField_altura, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE)
-                    .addComponent(jSpinner_anoveiculo, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE))
+                .addGroup(jPanel_dadosTransporteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jSpinner_anoveiculo, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jSpinner_alt, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(32, 32, 32))
         );
         jPanel_dadosTransporteLayout.setVerticalGroup(
@@ -419,19 +537,19 @@ public class Add_condutor extends javax.swing.JPanel {
                     .addComponent(jComboBox_marca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBox_modelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jRadioButton_ligeiro))
-                .addGap(16, 16, 16)
+                .addGap(13, 13, 13)
                 .addGroup(jPanel_dadosTransporteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel_dadosTransporteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel_cor)
                         .addComponent(jLabel_comprimento)
                         .addComponent(jLabel_altura)
-                        .addComponent(jTextField_altura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jTextField_comprimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jComboBox_cor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jRadioButton_motociclo))
+                        .addComponent(jRadioButton_motociclo)
+                        .addComponent(jSpinner_comp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jSpinner_alt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel_dadosTransporteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jTextField_largura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel_largura)))
+                        .addComponent(jLabel_largura)
+                        .addComponent(jSpinner_larg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(23, Short.MAX_VALUE))
         );
 
@@ -443,34 +561,36 @@ public class Add_condutor extends javax.swing.JPanel {
         jPanel_add_condutor.setLayout(jPanel_add_condutorLayout);
         jPanel_add_condutorLayout.setHorizontalGroup(
             jPanel_add_condutorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel_add_condutorLayout.createSequentialGroup()
-                .addGap(123, 123, 123)
-                .addComponent(jButton_limpar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 859, Short.MAX_VALUE)
-                .addComponent(jButton_adicionar)
-                .addGap(110, 110, 110))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_add_condutorLayout.createSequentialGroup()
-                .addContainerGap(75, Short.MAX_VALUE)
-                .addGroup(jPanel_add_condutorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jPanel_categoria, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel_dadosTransporte, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel_dadosCondutor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(58, 58, 58))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel_add_condutorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel_add_condutorLayout.createSequentialGroup()
+                        .addGroup(jPanel_add_condutorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jPanel_categoria, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel_dadosTransporte, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel_dadosCondutor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(56, 56, 56))
+                    .addGroup(jPanel_add_condutorLayout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(jButton_limpar, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton_adicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(66, 66, 66))))
         );
         jPanel_add_condutorLayout.setVerticalGroup(
             jPanel_add_condutorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel_add_condutorLayout.createSequentialGroup()
-                .addGap(19, 19, 19)
+                .addContainerGap()
                 .addComponent(jPanel_categoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel_dadosCondutor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel_dadosTransporte, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(13, 13, 13)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel_add_condutorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton_limpar)
                     .addComponent(jButton_adicionar))
-                .addContainerGap(50, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -478,16 +598,16 @@ public class Add_condutor extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel_add_condutor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(24, 24, 24)
+                .addComponent(jPanel_add_condutor, javax.swing.GroupLayout.PREFERRED_SIZE, 1124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(26, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel_add_condutor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(35, 35, 35)
+                .addComponent(jPanel_add_condutor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(64, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -531,14 +651,14 @@ public class Add_condutor extends javax.swing.JPanel {
     private javax.swing.JRadioButton jRadioButton_masculino;
     private javax.swing.JRadioButton jRadioButton_motociclo;
     private javax.swing.JRadioButton jRadioButton_professor;
+    private javax.swing.JSpinner jSpinner_alt;
     private javax.swing.JSpinner jSpinner_anoveiculo;
+    private javax.swing.JSpinner jSpinner_comp;
     private javax.swing.JSpinner jSpinner_dia;
-    private javax.swing.JTextField jTextField_altura;
-    private javax.swing.JTextField jTextField_comprimento;
+    private javax.swing.JSpinner jSpinner_larg;
     private javax.swing.JTextField jTextField_contato;
     private javax.swing.JTextField jTextField_contribuinte;
     private javax.swing.JTextField jTextField_email;
-    private javax.swing.JTextField jTextField_largura;
     private javax.swing.JTextField jTextField_matricula;
     private javax.swing.JTextField jTextField_nomeCondutor;
     private javax.swing.JTextField jTextField_numeroCarta;

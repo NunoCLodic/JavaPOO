@@ -1,7 +1,9 @@
 
-package pipg;
+package interfaces;
 
 import java.util.ArrayList;
+import classes.Condutor;
+import classes.Estacionamento;
 
 
 public interface InterfaceSuporte {

@@ -1,5 +1,6 @@
-package pipg;
+package classes;
 
+import interfaces.InterfaceEstacionamento;
 import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
@@ -214,6 +215,25 @@ public class Estacionamento implements InterfaceEstacionamento {
 
     @Override
     public void enviarNotificacaoMotorista() {
+        //em construcao
+    }
+
+    @Override
+    public void reservarEstacionamento(Transporte t, Estacionamento e) {
+        if ((e.getAtivo() == true) && (e.getLivre() == true)) {
+            System.out.println("10 Minutos até o transporte " + t.getMatricula() + " estacionar");
+        } else {
+            System.out.println("impossivel reservar estacionamento");
+        }
+    }
+
+    @Override
+    public void desocuparEstacionamento(Transporte t, Estacionamento e) {
+        //eem construcao
+    }
+
+    @Override
+    public void estacionar(Transporte t, Estacionamento e) {
         //em construcao
     }
 

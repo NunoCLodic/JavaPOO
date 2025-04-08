@@ -1,5 +1,11 @@
 package pipg;
 
+import classes.Viatura;
+import classes.Professor;
+import classes.Funcionario;
+import classes.Estudante;
+import classes.Estacionamento;
+import classes.Motociclo;
 import static java.lang.reflect.Array.set;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -17,11 +23,14 @@ public class PIPG {
         HashSet<Professor> professores = new HashSet<>();
         HashSet<Funcionario> funcionarios = new HashSet<>();
         HashSet<Viatura> viaturas = new HashSet<>();
+        HashSet<Motociclo> motociclos = new HashSet<>();
         HashSet<Estacionamento> estacionamentos = new HashSet<>();
 
         //Inicializando os objectos e os adicionando no arraylist
         Estudante estudante1 = new Estudante("Estudante", "Bruno", "1990-03-01", 'M', 284260888, "925860123", "bruno@hotmail.com", "12345671", null, 1111111);
         Estudante estudante2 = new Estudante("Estudante", "Francisca", "1980-06-02", 'F', 284560888, "925780123", "francisca@hotmail.com", "12345672", null, 2222222);
+        Estudante estudante3 = new Estudante("Estudante", "Miguel", "1990-03-01", 'M', 284260888, "925860123", "bruno@hotmail.com", "12345671", null, 1111111);
+        Estudante estudante4 = new Estudante("Estudante", "Tiago", "1980-06-02", 'F', 284560888, "925780123", "francisca@hotmail.com", "12345672", null, 2222222);
 
         Professor professor1 = new Professor("Professor", "Pedro", "1990-03-01", 'M', 284260888, "925860123", "bruno@hotmail.com", "12345673", null, 1111, "Java");
         Professor professor2 = new Professor("Professor", "Fernanda", "1980-06-02", 'F', 284560888, "925860163", "fernanda@hotmail.com", "12345674", null, 2222, "c#");
@@ -45,12 +54,18 @@ public class PIPG {
         Viatura viatura5 = new Viatura("EE-BB-16", "Nissan", "leaf", 2009, "Azul", 2.0, 1.0, 1.5, null);
         Viatura viatura6 = new Viatura("FF-BB-17", "Renaul", "Zoe", 2019, "Sizento", 2.5, 1.0, 1.75, null);
 
+        Motociclo motocliclo1 = new Motociclo("EE-BB-16", "Honda", "Cb1000 hornet Sp", 2009, "Azul", 2.0, 1.0, 1.5, null);
+        Motociclo motocliclo2 = new Motociclo("FF-BB-17", "Yamaha", "Tracer 9 Gt+", 2019, "Sizento", 2.5, 1.0, 1.75, null);
+
         viaturas.add(viatura1);
         viaturas.add(viatura2);
         viaturas.add(viatura3);
         viaturas.add(viatura4);
         viaturas.add(viatura5);
         viaturas.add(viatura6);
+
+        motociclos.add(motocliclo1);
+        motociclos.add(motocliclo2);
 
         //Atualizando as viaturas a seus respectivos condutores
         viatura1.setCondutor(estudante1);
@@ -60,19 +75,22 @@ public class PIPG {
         viatura5.setCondutor(funcionario1);
         viatura6.setCondutor(funcionario2);
 
-        estudante1.adicionarViatura(viatura6);
-        estudante2.adicionarViatura(viatura2);
-        professor1.adicionarViatura(viatura3);
-        professor2.adicionarViatura(viatura4);
-        funcionario1.adicionarViatura(viatura5);
-        funcionario2.adicionarViatura(viatura6);
+//        viaturas.add(viatura6)
+//        estudante2.adicionarViatura(viatura2);
+//        estudante3.adicionarMotociclo(viatura6);
+//        estudante4.adicionarViatura(viatura2);
+//        
+//        professor1.adicionarViatura(viatura3);
+//        professor2.adicionarViatura(viatura4);
+//        funcionario1.adicionarViatura(viatura5);
+//        funcionario2.adicionarViatura(viatura6);
 
-        Estacionamento estacionamento1 = new Estacionamento("Norte", "Estudante", 40.234567, -8.345689,true, 2.0, 1.5, 3.0);
-        Estacionamento estacionamento2 = new Estacionamento("Sul", "Professor", 40.234567, -8.345689,true, 2.0, 1.5, 3.0);//hashset ignorando
-        Estacionamento estacionamento3 = new Estacionamento("Este", "Funcionario", 41.234567, -8.345689,false, 2.0, 1.5, 3.0);
-        Estacionamento estacionamento4 = new Estacionamento("Centro", "Funcionario", 42.234567, -7.345689,false, 2.0, 1.5, 3.0);
-        Estacionamento estacionamento5 = new Estacionamento("Norte", "Estudante", 43.234567, -8.345689,true, 2.0, 1.5, 3.0);
-        Estacionamento estacionamento6 = new Estacionamento("Sul", "Professor", 44.234567, -8.345689,false, 2.0, 1.5, 3.0);
+        Estacionamento estacionamento1 = new Estacionamento("Norte", "Estudante", 40.234567, -8.345689, true, 2.0, 1.5, 3.0);
+        Estacionamento estacionamento2 = new Estacionamento("Sul", "Professor", 40.234567, -8.345689, true, 2.0, 1.5, 3.0);//hashset ignorando
+        Estacionamento estacionamento3 = new Estacionamento("Este", "Funcionario", 41.234567, -8.345689, false, 2.0, 1.5, 3.0);
+        Estacionamento estacionamento4 = new Estacionamento("Centro", "Funcionario", 42.234567, -7.345689, false, 2.0, 1.5, 3.0);
+        Estacionamento estacionamento5 = new Estacionamento("Norte", "Estudante", 43.234567, -8.345689, true, 2.0, 1.5, 3.0);
+        Estacionamento estacionamento6 = new Estacionamento("Sul", "Professor", 44.234567, -8.345689, false, 2.0, 1.5, 3.0);
 
         estacionamentos.add(estacionamento1);
         estacionamentos.add(estacionamento2);
@@ -112,20 +130,20 @@ public class PIPG {
         estudante2.registrarPagamento(LocalDate.of(2025, 2, 1));
         estudante2.registrarPagamento(LocalDate.of(2025, 4, 1));
         System.out.println("\n");
-        
+
         // Verificar se o motorista pagou a mensalidade de março
         boolean pagoMarco1 = estudante1.verificarPagamento(LocalDate.of(2025, 3, 1));
-        System.out.println("Mensalidade de março do motorista " + estudante1.nome + " foi paga? " + (pagoMarco1 ? "Sim" : "Não"));
+        System.out.println("Mensalidade de março do motorista " + estudante1.getNome() + " foi paga? " + (pagoMarco1 ? "Sim" : "Não"));
 
         boolean pagoMarco2 = estudante2.verificarPagamento(LocalDate.of(2025, 3, 1));
-        System.out.println("Mensalidade de março do motorista " + estudante2.nome + " foi paga? " + (pagoMarco2 ? "Sim" : "Não"));
-        
+        System.out.println("Mensalidade de março do motorista " + estudante2.getNome() + " foi paga? " + (pagoMarco2 ? "Sim" : "Não"));
+
         System.out.println("\n");
         // Exibir histórico de pagamentos
         estudante1.mostrarHistoricoPagamento();
         estudante2.mostrarHistoricoPagamento();
         System.out.println("\n");
-        
+
         //Exibindo os dados das listas
         //total de viaturas
         System.out.println("\n**********INFORMAÇÕES GERAIS**********\n ");
@@ -174,7 +192,7 @@ public class PIPG {
             System.out.println(funcionario.detalhesCondutor());
         });
         viaturas.forEach((viatura) -> {
-            System.out.println(viatura.detalhesViatura());
+            System.out.println(viatura.detalhesTransporte());
         });
         estacionamentos.forEach((estacionamento) -> {
             System.out.println(estacionamento.detalhesEstacionamento());

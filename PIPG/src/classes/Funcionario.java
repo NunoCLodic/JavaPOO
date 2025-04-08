@@ -1,5 +1,8 @@
-package pipg;
+package classes;
 
+import classes.Estacionamento;
+import classes.Condutor;
+import interfaces.InterfaceCondutor;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
@@ -82,41 +85,6 @@ public class Funcionario extends Condutor implements InterfaceCondutor {
         return Objects.hash(id);
     }
 
-    //metodos do condutor
-    @Override
-    public void adicionarViatura(Viatura v) {
-//        setViatura(viatura);
-    }
-
-    @Override
-    public void editarViatura(Viatura v) {
-//        getViatura();
-    }
-
-    @Override
-    public void eliminarViatura(Viatura v) {
-        //em construcao
-    }
-
-    @Override
-    public void reservarEstacionamento(Viatura v, Estacionamento e) {
-        if ((e.getAtivo() == true) && (e.getLivre() == true)) {
-            System.out.println("10 Minutos até a Viatura " + v.getMatricula() + " estacionar");
-        } else {
-            System.out.println("impossivel reservar estacionamento");
-        }
-    }
-
-    @Override
-    public void estacionarViatura(Viatura v, Estacionamento e) {
-        if ((e.getAtivo() == true) && (e.getLivre() == true)) {
-
-        }
-    }
-
-    @Override
-    public void desocuparEstacionamento(Viatura v, Estacionamento e) {
-    }
 
     @Override
     public void enviarMensagemSuporte(Suporte s) {
@@ -124,7 +92,6 @@ public class Funcionario extends Condutor implements InterfaceCondutor {
 
     @Override
     public void registrarPagamento(LocalDate mes) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
@@ -134,6 +101,5 @@ public class Funcionario extends Condutor implements InterfaceCondutor {
 
     @Override
     public void mostrarHistoricoPagamento() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

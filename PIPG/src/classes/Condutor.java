@@ -1,4 +1,4 @@
-package pipg;
+package classes;
 
 import java.util.List;
 import java.time.LocalDate;
@@ -154,32 +154,6 @@ public abstract class Condutor {
     public abstract boolean verificarPagamento(LocalDate mes);
 
     public abstract void mostrarHistoricoPagamento();
-
-    // Adicionar uma viatura à lista
-    public void adicionarViatura(Viatura viatura) {
-        if (viaturas.contains(viatura)) {
-            System.out.println("A viatura já está associada ao condutor.");
-        } else {
-            viaturas.add(viatura);
-            System.out.println("Viaturas adicionadas");
-        }
-    }
-
-    // Remover uma viatura da lista
-    public void removerViatura(Viatura viatura) {
-        if (viaturas.remove(viatura)) {
-            System.out.println("Viatura removida com sucesso.");
-        } else {
-            System.out.println("A viatura não está associada ao condutor.");
-        }
-    }
-
-    // Listar viaturas
-    public void listarViaturas() {
-        for (Viatura viatura : viaturas) {
-            System.out.println(viatura);
-        }
-    }
 
 //  Metodos de Validações
     private boolean NcartaValidator(String nCartaConducao) {

@@ -1,11 +1,12 @@
-package pipg;
 
+package classes;
+
+import classes.Estacionamento;
+import classes.Condutor;
 import java.util.Objects;
-import java.util.UUID;//Gera um ID unico
 
-public class Viatura implements InterfaceViatura {
 
-    //atributos da viatura
+public abstract class Transporte {
     private String matricula;
     private String marca;
     private String modelo;
@@ -21,10 +22,9 @@ public class Viatura implements InterfaceViatura {
     private Estacionamento estacionamento;
     private Condutor condutor;
 
-    //construtor
-    public Viatura(String matricula, String marca, String modelo, int ano, String cor, double comprimento,
+    //construtor----------------------------------------------------------------
+    public Transporte(String matricula, String marca, String modelo, int ano, String cor, double comprimento,
             double largura, double altura, Condutor condutor) {
-//        this.id = UUID.randomUUID().toString().replace("-", "").substring(0, 8);//Gera um ID unico com 8 carateres maximo
         this.matricula = matricula;
         this.marca = marca;
         this.modelo = modelo;
@@ -39,15 +39,7 @@ public class Viatura implements InterfaceViatura {
         this.estacionado = true;
         this.estado2 = "Estacionado";
     }
-
-    //get e set, 
-//    public String getIDviatura() {
-//        return id;
-//    }
-//
-//    public void setIDviatura(String id) {
-//        this.id = id;
-//    }
+    //g_s-----------------------------------------------------------------------
     public String getMatricula() {
         return matricula;
     }
@@ -160,8 +152,8 @@ public class Viatura implements InterfaceViatura {
         this.condutor = condutor;
     }
 
-    //Metodos estados da viatura
-    public String estadoViatura1() {
+    //Estado Transporte---------------------------------------------------------
+    public String estadoTransporte1() {
         if (ativo == false) {
             estado2 = "Não estacionado";
             return estado1 = "Não ativo";
@@ -170,16 +162,15 @@ public class Viatura implements InterfaceViatura {
         }
     }
 
-    public String estadoViatura2() {
+    public String estadoTransporte2() {
         if (estacionado == true) {
             return estado2 = "Estacionado";
         } else {
             return estado2 = "Não estacionado";
         }
     }
-
-    //metodo detalhes Viatura
-    public String detalhesViatura() {
+    //Detalhes Transporte-------------------------------------------------------
+    public String detalhesTransporte() {
 
         StringBuilder detalhes = new StringBuilder();
 
@@ -191,31 +182,14 @@ public class Viatura implements InterfaceViatura {
         detalhes.append("Comprimento: ").append(comprimento).append(" metros\n");
         detalhes.append("Largura: ").append(largura).append(" metros\n");
         detalhes.append("Altura: ").append(altura).append(" metros\n");
-        detalhes.append("Estado: ").append(estadoViatura1()).append(" e ").append(estadoViatura2()).append("\n");
+        detalhes.append("Estado: ").append(estadoTransporte1()).append(" e ").append(estadoTransporte2()).append("\n");
         detalhes.append("Id do estacionamento: ").append(String.format("%03d", estacionamento.getIDestacionamento())).append("\n");
         detalhes.append("Nome do condutor: ").append(condutor.getNome()).append("\n");
         detalhes.append("Id do condutor: ").append(condutor.getIDcondutor()).append("\n");
         detalhes.append("**********************************************");
         return detalhes.toString();
-
-//        return "***********DETALHES DA VIATURA COM ID: " + id + " **************"
-//                + "\n matricula: " + matricula
-//                + ";\n marca: " + marca
-//                + ";\n modelo: " + modelo
-//                + ";\n ano: " + ano
-//                + ";\n cor: " + cor
-//                + ";\n comprimento: " + comprimento + " metros"
-//                + ";\n largura: " + largura + " metros"
-//                + ";\n altura: " + altura + " metros"
-//                + ";\n estado: " + estadoViatura1() + " e " + estadoViatura2()
-//                + ";\n id do estacionamento: " + (estacionamento != null ? String.format("%03d", estacionamento.getIDestacionamento()) : "null")//formata para 3 casas decimais
-//                + ";\n nome do condutor: " + (condutor != null ? condutor.getNome() : "null")
-//                + ";\n id do condutor: " + (condutor != null ? condutor.getIDcondutor() : "null")
-//                + ";\n******************************************************\n";
     }
-
-    //Metodos da viatura
-    //compara dois objetos pela matricula
+    //Comparador de dois objetos pela matricula---------------------------------
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -224,39 +198,13 @@ public class Viatura implements InterfaceViatura {
         if (o == null || getClass() != o.getClass()) {
             return false;// Verifica se o objeto é nulo ou de classes diferentes
         }
-        Viatura viatura = (Viatura) o;
-        return Objects.equals(matricula, viatura.matricula);
+        Transporte transporte = (Transporte) o;
+        return Objects.equals(matricula, transporte.matricula);
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(matricula);
-    }
-//metodos da classe
-    @Override
-    public void ativarViatura(Viatura v) {
-        this.ativo = true;
-    }
-
-    @Override
-    public void desativarViatura(Viatura v) {
-        this.ativo = false;
-        this.estacionado = false;
-    }
-
-    @Override
-    public void estacionarViatura(Viatura v, Estacionamento e) {
-        this.estacionado = true;
-    }
-
-    @Override
-    public void desocuparEstacionamento(Viatura v) {
-        this.estacionado = false;
-    }
-
-    @Override
-    public void editarViatura(Viatura v) {
-        //em construcão
     }
 
 }
