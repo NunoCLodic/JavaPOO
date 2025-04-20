@@ -1,12 +1,18 @@
 package interfaces;
 
-import classes.Estacionamento;
 import classes.Suporte;
-import classes.Viatura;
+import java.time.LocalDate;
 
 public interface InterfaceCondutor {
+    public abstract String detalhesCondutor();
 
     public int calcularIdade();
-    public abstract String detalhesCondutor();
-    public void enviarMensagemSuporte(Suporte s);
+
+    public abstract void registrarPagamento(LocalDate mes);
+
+    public abstract boolean verificarPagamento(LocalDate mes);
+
+    public abstract void mostrarHistoricoPagamento();
+
+    public abstract void enviarMensagemSuporte(Suporte s);
 }

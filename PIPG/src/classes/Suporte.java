@@ -5,7 +5,6 @@ import classes.MensagemChat;
 import classes.Estacionamento;
 import classes.Condutor;
 import interfaces.InterfaceSuporte;
-import java.util.ArrayList;
 import java.util.UUID;
 
 public class Suporte implements InterfaceSuporte {
@@ -94,7 +93,7 @@ public class Suporte implements InterfaceSuporte {
 
     @Override
     public void desativarEstacionamento(Estacionamento e) {
-        e.Desativar();
+        e.desativar();
     }
 
 //    public static void exibirlistaEstudantes(ArrayList<Estudante> estudantes) {

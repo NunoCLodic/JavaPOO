@@ -1,12 +1,13 @@
-
 package classes;
 
 import classes.Estacionamento;
 import classes.Condutor;
+import java.time.LocalDate;
 import java.util.Objects;
 
-
 public abstract class Transporte {
+
+    private Categoria categoria;
     private String matricula;
     private String marca;
     private String modelo;
@@ -15,16 +16,23 @@ public abstract class Transporte {
     private double comprimento;
     private double largura;
     private double altura;
-    private Boolean estacionado;
-    private Boolean ativo;
-    private String estado1;
-    private String estado2;
+    private Estado estado;
     private Estacionamento estacionamento;
+    private LocalDate dataEstacionamento;
     private Condutor condutor;
 
+    public enum Categoria {
+        VIATURA, MOTOCICLO
+    }
+
+    public enum Estado {
+        ATIVO, BLOQUEADO, ESTACIONADO
+    }
+
     //construtor----------------------------------------------------------------
-    public Transporte(String matricula, String marca, String modelo, int ano, String cor, double comprimento,
+    public Transporte(Categoria categoria, String matricula, String marca, String modelo, int ano, String cor, double comprimento,
             double largura, double altura, Condutor condutor) {
+        this.categoria = categoria;
         this.matricula = matricula;
         this.marca = marca;
         this.modelo = modelo;
@@ -34,12 +42,18 @@ public abstract class Transporte {
         this.largura = largura;
         this.altura = altura;
         this.condutor = condutor;
-        this.ativo = true;
-        this.estado1 = "Ativo";
-        this.estacionado = true;
-        this.estado2 = "Estacionado";
+        this.estado = Estado.ATIVO;
     }
+
     //g_s-----------------------------------------------------------------------
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
+    }
+
     public String getMatricula() {
         return matricula;
     }
@@ -104,36 +118,12 @@ public abstract class Transporte {
         this.altura = altura;
     }
 
-    public Boolean getEstacionado() {
-        return estacionado;
+    public Estado getEstado() {
+        return estado;
     }
 
-    public void setEstacionado(Boolean estacionado) {
-        this.estacionado = estacionado;
-    }
-
-    public String getEstado() {
-        return estado1;
-    }
-
-    public void setEstado(String estado) {
-        this.estado1 = estado;
-    }
-
-    public String getEstado2() {
-        return estado2;
-    }
-
-    public void setEstado2(String estado2) {
-        this.estado2 = estado2;
-    }
-
-    public Boolean getAtivo() {
-        return ativo;
-    }
-
-    public void setAtivo(Boolean ativo) {
-        this.ativo = ativo;
+    public void setEstado(Estado estado) {
+        this.estado = estado;
     }
 
     public Estacionamento getEstacionamento() {
@@ -144,6 +134,10 @@ public abstract class Transporte {
         this.estacionamento = estacionamento;
     }
 
+    public LocalDate getDataEstacionamento() {
+        return dataEstacionamento;
+    }
+    
     public Condutor getCondutor() {
         return condutor;
     }
@@ -152,29 +146,26 @@ public abstract class Transporte {
         this.condutor = condutor;
     }
 
-    //Estado Transporte---------------------------------------------------------
-    public String estadoTransporte1() {
-        if (ativo == false) {
-            estado2 = "Não estacionado";
-            return estado1 = "Não ativo";
-        } else {
-            return estado1 = "Ativo";
-        }
+    // Métodos para alterar estado transporte---------------------------------------------------------
+    public void ativar() {
+        this.estado = Estado.ATIVO;
     }
 
-    public String estadoTransporte2() {
-        if (estacionado == true) {
-            return estado2 = "Estacionado";
-        } else {
-            return estado2 = "Não estacionado";
-        }
+    public void bloquaer() {
+        this.estado = Estado.BLOQUEADO;
     }
+
+    public void estacionado() {
+        this.estado = Estado.ESTACIONADO;
+    }
+
     //Detalhes Transporte-------------------------------------------------------
     public String detalhesTransporte() {
 
         StringBuilder detalhes = new StringBuilder();
 
-        detalhes.append("********DETALHES DA VIATURA COM MATRICULA: ").append(matricula).append("********\n");
+        detalhes.append("********DETALHES DO TRANSPORTE COM MATRICULA: ").append(matricula).append("********\n");
+        detalhes.append("Categoria: ").append(categoria).append("\n");
         detalhes.append("Marca: ").append(marca).append("\n");
         detalhes.append("Modelo: ").append(modelo).append("\n");
         detalhes.append("Ano: ").append(ano).append(" anos\n");
@@ -182,13 +173,17 @@ public abstract class Transporte {
         detalhes.append("Comprimento: ").append(comprimento).append(" metros\n");
         detalhes.append("Largura: ").append(largura).append(" metros\n");
         detalhes.append("Altura: ").append(altura).append(" metros\n");
-        detalhes.append("Estado: ").append(estadoTransporte1()).append(" e ").append(estadoTransporte2()).append("\n");
-        detalhes.append("Id do estacionamento: ").append(String.format("%03d", estacionamento.getIDestacionamento())).append("\n");
+        detalhes.append("Estado: ").append(estado).append("\n");
+        if (estado == Estado.ESTACIONADO) {
+            detalhes.append("Id do estacionamento: ").append(String.format("%03d", estacionamento.getIDestacionamento())).append("\n");
+            detalhes.append("Data estacionamento: ").append(getDataEstacionamento()).append("\n");
+        }
         detalhes.append("Nome do condutor: ").append(condutor.getNome()).append("\n");
         detalhes.append("Id do condutor: ").append(condutor.getIDcondutor()).append("\n");
         detalhes.append("**********************************************");
         return detalhes.toString();
     }
+
     //Comparador de dois objetos pela matricula---------------------------------
     @Override
     public boolean equals(Object o) {

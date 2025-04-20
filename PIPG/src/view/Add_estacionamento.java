@@ -162,8 +162,13 @@ public class Add_estacionamento extends javax.swing.JPanel {
         );
 
         jComboBox_zona.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "------------------------ Escolha a zona ------------------------", "SERVIÇOS CENTRAIS", "BIBLIOTECA", "ESECD", "ESS", "ESTG", "ESTH", " ", " " }));
+        jComboBox_zona.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox_zonaActionPerformed(evt);
+            }
+        });
 
-        jComboBox_categoria_estacionamento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "---------------------- Escolha a Categoria ----------------------", "Professor", "Estudante", "Funcionario", "Visitante", "Deficiente", "Motociclo" }));
+        jComboBox_categoria_estacionamento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "---------------------- Escolha a Categoria ----------------------", "PROFESSOR", "ESTUDANTE", "FUNCIONARIO", "VISITANTE", "DEFICIENTE", "MOTOCICLO" }));
 
         jButton_enviar_est.setText("Adicionar");
 
@@ -245,6 +250,10 @@ public class Add_estacionamento extends javax.swing.JPanel {
                 .addContainerGap(94, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jComboBox_zonaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox_zonaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox_zonaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

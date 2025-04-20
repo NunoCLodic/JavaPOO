@@ -2,6 +2,9 @@ package interfaces;
 
 import classes.Estacionamento;
 import classes.Transporte;
+import classes.Viatura;
+import java.time.LocalDate;
+import java.util.List;
 
 public interface InterfaceEstacionamento {
 
@@ -14,5 +17,10 @@ public interface InterfaceEstacionamento {
     public void enviarNotificacaoSuporte();
 
     public void enviarNotificacaoMotorista();
+    
+    public List<Viatura> listarViaturasPorDia(LocalDate data);
+    
+    public void mostrarViaturasPorDia(LocalDate data);
+    
 
 }

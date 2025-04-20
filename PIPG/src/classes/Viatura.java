@@ -7,8 +7,8 @@ public class Viatura extends Transporte implements InterfaceViatura {
 
     protected List<Viatura> viaturas;
 
-    public Viatura(String matricula, String marca, String modelo, int ano, String cor, double comprimento, double largura, double altura, Condutor condutor) {
-        super(matricula, marca, modelo, ano, cor, comprimento, largura, altura, condutor);
+    public Viatura(Categoria categoria,String matricula, String marca, String modelo, int ano, String cor, double comprimento, double largura, double altura, Condutor condutor) {
+        super(categoria,matricula, marca, modelo, ano, cor, comprimento, largura, altura, condutor);
     }
 
     @Override
@@ -51,7 +51,6 @@ public class Viatura extends Transporte implements InterfaceViatura {
 
     @Override
     public void atribuirViatura(Condutor c) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

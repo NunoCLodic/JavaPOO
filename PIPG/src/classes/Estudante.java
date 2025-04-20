@@ -1,14 +1,10 @@
 package classes;
 
-import classes.Estacionamento;
-import classes.Condutor;
-import interfaces.InterfaceCondutor;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 
-public class Estudante extends Condutor implements InterfaceCondutor {
+public class Estudante extends Condutor {
 
     private int nEstudante;
 
@@ -28,34 +24,7 @@ public class Estudante extends Condutor implements InterfaceCondutor {
         this.nEstudante = nEstudante;
     }
 
-    //Detalhes do Condutor Estudante
-    @Override
-    public String detalhesCondutor() {
-        StringBuilder detalhes = new StringBuilder();
-
-        detalhes.append("********DETALHES DO CONDUTOR COM ID: ").append(idCondutor).append("********\n");
-        detalhes.append("Catedoria: ").append(categoria).append("\n");
-        detalhes.append("Numero do Estudante: ").append(nEstudante).append("\n");
-        detalhes.append("Nome: ").append(nome).append("\n");
-
-        detalhes.append("Idade: ").append(calcularIdade()).append(" anos\n");
-        detalhes.append("Sexo: ").append(sexo).append("\n");
-        detalhes.append("Contribuinte: ").append(contribuinte).append("\n");
-        detalhes.append("Contato: ").append(contato).append("\n");
-        detalhes.append("Nº carta Condução: ").append(nCartaConducao).append("\n");
-        for (Viatura viatura : viaturas) {
-            detalhes.append("Matricula da viatura: ").append(viatura.getMatricula()).append("\n");
-        }
-        detalhes.append("Mensalidade: ").append(mensalidade).append("€\n");
-        detalhes.append("Email: ").append(email).append("\n");
-        detalhes.append("**********************************************");
-        return detalhes.toString();
-
-//        return super.detalhesCondutor() 
-//                + "\n numero estudante: " + nEstudante
-//                + "\n******************************************************\n";
-    }
-
+    // METODOS
     //compara dois objetos pela numero de estudante
     @Override
     public boolean equals(Object o) {
@@ -66,31 +35,55 @@ public class Estudante extends Condutor implements InterfaceCondutor {
             return false;
         }
         Estudante estudante = (Estudante) o;
+        
+        // Compara se um dos atributos (da classe base ou o específico) é igual
         return Objects.equals(nEstudante, estudante.nEstudante);
     }
 
     @Override
     public int hashCode() {
+        // Gera hash considerando os dois atributos para consistência
         return Objects.hash(nEstudante);
     }
 
-
+//METODOS HERDADOS DA CLASSE CONDUTOR
+    //Detalhes do Condutor Estudante
     @Override
-    public void enviarMensagemSuporte(Suporte s) {
+    public String detalhesCondutor() {
+        StringBuilder detalhes = new StringBuilder();
+
+        detalhes.append("********DETALHES DO CONDUTOR COM ID: ").append(idCondutor).append("********\n");
+        detalhes.append("Catedoria: ").append(categoria).append("\n");
+        detalhes.append("Numero do Estudante: ").append(nEstudante).append("\n");
+        detalhes.append("Nome: ").append(nome).append("\n");
+        detalhes.append("Idade: ").append(calcularIdade()).append(" anos\n");
+        detalhes.append("Sexo: ").append(sexo).append("\n");
+        detalhes.append("Contribuinte: ").append(contribuinte).append("\n");
+        detalhes.append("Contato: ").append(contato).append("\n");
+        detalhes.append("Nº carta Condução: ").append(nCartaConducao).append("\n");
+        for (Viatura viatura : viaturas) {
+            detalhes.append("Matricula da viatura: ").append(viatura.getMatricula()).append("\n");
+        }
+        detalhes.append("Mensalidade: ").append(vMensalidade).append(" €\n");
+        detalhes.append("Email: ").append(email).append("\n");
+        detalhes.append("**********************************************");
+        return detalhes.toString();
     }
 
+    //Registrar pagamento
     @Override
     public void registrarPagamento(LocalDate mes) {
         pagamentos.put(mes.withDayOfMonth(1), true);// Marca o mês como pago
         System.out.println("Pagamento de " + mes.getMonth() + " do motorista " + nome + " registrado com sucesso!");
     }
 
+    //Verificar pagamento
     @Override
     public boolean verificarPagamento(LocalDate mes) {
         return pagamentos.getOrDefault(mes.withDayOfMonth(1), false); // Retorna false se não houver registro
     }
 
-     // Exibir histórico completo de pagamentos (meses pagos e pendentes)
+    //Exibir histórico completo de pagamentos (meses pagos e pendentes)
     @Override
     public void mostrarHistoricoPagamento() {
         System.out.println("Histórico de pagamentos para " + nome + ":");
@@ -100,10 +93,15 @@ public class Estudante extends Condutor implements InterfaceCondutor {
             boolean pago = pagamentos.getOrDefault(mes, false); // Verificar se o mês foi pago
 
             // Exibir o status do mês
-            System.out.println("Mês: " + mes.getMonth() + " " + mes.getYear() +
-                               " - Estado: " + (pago ? "Pago" : "Pendente"));
+            System.out.println("Mês: " + mes.getMonth() + " " + mes.getYear()
+                    + " - Estado: " + (pago ? "Pago" : "Pendente"));
         }
         System.out.println("\n");
+    }
+
+    //Envia mensagem para o suporte  
+    @Override
+    public void enviarMensagemSuporte(Suporte s) {
     }
 
 }

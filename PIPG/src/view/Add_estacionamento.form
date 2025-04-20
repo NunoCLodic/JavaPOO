@@ -229,6 +229,9 @@
               </StringArray>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jComboBox_zonaActionPerformed"/>
+          </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
@@ -238,12 +241,12 @@
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="7">
                 <StringItem index="0" value="---------------------- Escolha a Categoria ----------------------"/>
-                <StringItem index="1" value="Professor"/>
-                <StringItem index="2" value="Estudante"/>
-                <StringItem index="3" value="Funcionario"/>
-                <StringItem index="4" value="Visitante"/>
-                <StringItem index="5" value="Deficiente"/>
-                <StringItem index="6" value="Motociclo"/>
+                <StringItem index="1" value="PROFESSOR"/>
+                <StringItem index="2" value="ESTUDANTE"/>
+                <StringItem index="3" value="FUNCIONARIO"/>
+                <StringItem index="4" value="VISITANTE"/>
+                <StringItem index="5" value="DEFICIENTE"/>
+                <StringItem index="6" value="MOTOCICLO"/>
               </StringArray>
             </Property>
           </Properties>

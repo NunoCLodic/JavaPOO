@@ -1,5 +1,6 @@
 package classes;
 
+import interfaces.InterfaceCondutor;
 import java.util.List;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -7,7 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-public abstract class Condutor {
+public abstract class Condutor implements InterfaceCondutor {
 
     //Atributs da classe condutor
     protected String idCondutor;
@@ -33,22 +34,21 @@ public abstract class Condutor {
         this.dataNascimento = LocalDate.parse(dataNascimento);//converte a string no localDate
         this.sexo = sexo;
         this.contribuinte = contribuinte;
-        if (!ContatoValidator(contato)) {
+        if (!Validacao.ContatoValidator(contato)) {
             throw new IllegalArgumentException("Contato inválido: " + contato);
         }
         this.contato = contato;
-        if (!EmailValidator(email)) {
+        if (!Validacao.EmailValidator(email)) {
             throw new IllegalArgumentException("Email inválido: " + email);
         }
         this.email = email;
-        if (!NcartaValidator(nCartaConducao)) {
+        if (!Validacao.NcartaValidator(nCartaConducao)) {
             throw new IllegalArgumentException("Carta de Condução inválido: " + nCartaConducao);
         }
         this.nCartaConducao = nCartaConducao;
-        this.viaturas = viatura;
         this.viaturas = new ArrayList<>();
+        this.vMensalidade = 20;
         this.pagamentos = new HashMap<>();//iniciar o registro de pagamento
-
     }
 
     //Getters e Setters
@@ -93,6 +93,9 @@ public abstract class Condutor {
     }
 
     public void setContato(String contato) {
+        if (!Validacao.ContatoValidator(contato)) {
+            throw new IllegalArgumentException("Contato inválido: " + contato);
+        }
         this.contato = contato;
     }
 
@@ -109,6 +112,9 @@ public abstract class Condutor {
     }
 
     public void setEmail(String email) {
+        if (!Validacao.EmailValidator(email)) {
+            throw new IllegalArgumentException("Email inválido: " + email);
+        }
         this.email = email;
     }
 
@@ -117,6 +123,9 @@ public abstract class Condutor {
     }
 
     public void setnCartaConducao(String nCartaConducao) {
+        if (!Validacao.NcartaValidator(nCartaConducao)) {
+            throw new IllegalArgumentException("Carta de Condução inválido: " + nCartaConducao);
+        }
         this.nCartaConducao = nCartaConducao;
     }
 
@@ -136,42 +145,28 @@ public abstract class Condutor {
         this.viaturas = viaturas;
     }
 
-    //Metodos
+    // METODOS ABSTRATOS
+    @Override
+    public abstract String detalhesCondutor();
+    @Override
+    public abstract void registrarPagamento(LocalDate mes);
+    @Override
+    public abstract boolean verificarPagamento(LocalDate mes);
+    @Override
+    public abstract void mostrarHistoricoPagamento();
+    @Override
+    public abstract void enviarMensagemSuporte(Suporte s);
+
+    // OUTROS METODOS
+ 
     //Calcular idade do Condutor
+    @Override
     public int calcularIdade() {
         LocalDate dataAtual = LocalDate.now();
         return dataAtual.getYear() - dataNascimento.getYear()
                 - ((dataAtual.getMonthValue() < dataNascimento.getMonthValue()
                 || (dataAtual.getMonthValue() == dataNascimento.getMonthValue()
                 && dataAtual.getDayOfMonth() < dataNascimento.getDayOfMonth())) ? 1 : 0);
-    }
-
-    //METODOS ABSTRATOS
-    public abstract String detalhesCondutor();
-
-    public abstract void registrarPagamento(LocalDate mes);
-
-    public abstract boolean verificarPagamento(LocalDate mes);
-
-    public abstract void mostrarHistoricoPagamento();
-
-//  Metodos de Validações
-    private boolean NcartaValidator(String nCartaConducao) {
-        // Expressão regular para verificar se é um número com exatamente 8 dígitos
-        String regex = "^[0-9]{8}$";
-        return nCartaConducao != null && nCartaConducao.matches(regex);
-    }
-
-    private boolean EmailValidator(String email) {
-        // Expressão regular para validar e-mails
-        String regex = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
-        return email != null && email.matches(regex);
-    }
-
-    private boolean ContatoValidator(String contato) {
-        // Valida prefixos móveis 
-        String regex = "^(9[123689])[0-9]{7}$";
-        return contato != null && contato.matches(regex);
     }
 
 }

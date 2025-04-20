@@ -7,9 +7,10 @@ public class Motociclo extends Transporte implements InterfaceMotociclo {
 
     protected List<Motociclo> motociclos;
 
-    public Motociclo(String matricula, String marca, String modelo, int ano, String cor, double comprimento, double largura, double altura, Condutor condutor) {
-        super(matricula, marca, modelo, ano, cor, comprimento, largura, altura, condutor);
+    public Motociclo(Categoria categoria, String matricula, String marca, String modelo, int ano, String cor, double comprimento, double largura, double altura, Condutor condutor) {
+        super(categoria, matricula, marca, modelo, ano, cor, comprimento, largura, altura, condutor);
     }
+
 
     @Override
     public void adicionarMotociclo(Motociclo m) {

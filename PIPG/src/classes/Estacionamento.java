@@ -1,45 +1,62 @@
 package classes;
 
 import interfaces.InterfaceEstacionamento;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
-import java.util.UUID;
+import java.util.stream.Collectors;
 
 public class Estacionamento implements InterfaceEstacionamento {
 
     //atributos da classe estacionamento
     private int id;
     private static int contadorId = 1;//se nao for estatico, cada instancia da classe terá sua propria copia do contador.
-    private String zona;
-    private String categoria;
+    private Zona zona;
+    private Categoria categoria;
     private Localizacao localizacao;
     private boolean coberto;
     private double comprimentoMaximo;
     private double larguraMaxima;
     private double alturaMaxima;
-    private Boolean ativo;
-    private Boolean livre;
+    private Estado1 estado1;
+    private Estado2 estado2;
     private Viatura viatura;
     private MensagemChat mensagem;
     protected List<Viatura> viaturas;
 
-    //Construtor
-    public Estacionamento(String zona, String categoria, double latitude, double longitude, boolean coberto,
-            double comprimentoMaximo, double larguraMaxima, double alturaMaxima) {
+    public enum Zona {
+        S_CENTRAIS, BIBLIOTECA, ESECD, ESS, ESTG, ESTH
+    }
 
+    public enum Categoria {
+        PROFESSOR, ESTUDANTE, FUNCIONARIO, VISITANTE, DEFICIENTE, MOTOCICLO
+    }
+
+    public enum Estado1 {
+        ATIVO, DESATIVO
+    }
+
+    public enum Estado2 {
+        LIVRE, OCUPADO, INDISPONIVEL
+    }
+
+    //Construtor
+    public Estacionamento(Zona zona, Categoria categoria, double latitude, double longitude, boolean coberto,
+            double comprimentoMaximo, double larguraMaxima, double alturaMaxima) {
+        this.id = contadorId;
+        contadorId++;
         this.zona = zona;
         this.categoria = categoria;
         this.localizacao = new Localizacao(latitude, longitude);
+        if (comprimentoMaximo < 0 || larguraMaxima < 0 || alturaMaxima < 0) {
+            throw new IllegalArgumentException("Dimensões não podem ser negativas");
+        }
         this.comprimentoMaximo = comprimentoMaximo;
         this.larguraMaxima = larguraMaxima;
         this.alturaMaxima = alturaMaxima;
-
-        this.ativo = true;
-        this.livre = true;
         this.coberto = coberto;
-
-        this.id = contadorId;
-        contadorId++;
+        this.estado1 = Estado1.ATIVO;
+        this.estado2 = Estado2.LIVRE;
     }
 
     //get e sett, nao tem set estacionamento
@@ -47,19 +64,19 @@ public class Estacionamento implements InterfaceEstacionamento {
         return id;
     }
 
-    public String getZona() {
+    public Zona getZona() {
         return zona;
     }
 
-    public void setZona(String zona) {
+    public void setZona(Zona zona) {
         this.zona = zona;
     }
 
-    public String getCategoria() {
+    public Categoria getCategoria() {
         return categoria;
     }
 
-    public void setCategoria(String categoria) {
+    public void setCategoria(Categoria categoria) {
         this.categoria = categoria;
     }
 
@@ -71,8 +88,8 @@ public class Estacionamento implements InterfaceEstacionamento {
         return coberto;
     }
 
-    public void setcoberto(boolean area) {
-        this.coberto = area;
+    public void setcoberto(boolean coberto) {
+        this.coberto = coberto;
     }
 
     public double getComprimentoMaximo() {
@@ -99,20 +116,20 @@ public class Estacionamento implements InterfaceEstacionamento {
         this.alturaMaxima = alturaMaxima;
     }
 
-    public Boolean getAtivo() {
-        return ativo;
+    public Estado1 getEstado1() {
+        return estado1;
     }
 
-    public void setAtivo(Boolean ativo) {
-        this.ativo = ativo;
+    public void setEstado1(Estado1 estado1) {
+        this.estado1 = estado1;
     }
 
-    public Boolean getLivre() {
-        return livre;
+    public Estado2 getEstado2() {
+        return estado2;
     }
 
-    public void setLivre(Boolean livre) {
-        this.livre = livre;
+    public void setEstado2(Estado2 estado) {
+        this.estado2 = estado2;
     }
 
     public Viatura getViatura() {
@@ -123,34 +140,28 @@ public class Estacionamento implements InterfaceEstacionamento {
         this.viatura = viatura;
     }
 
-    //Ativar e desativar estacionamento
-    public Boolean ativar() {
-        return ativo = true;
+    // Métodos para alterar estado estacionamento
+    public void ativar() {
+        this.estado1 = Estado1.ATIVO;
+        this.estado2 = Estado2.LIVRE;
     }
 
-    public Boolean Desativar() {
-        return ativo = false;
-
-    }
-
-    //Metodo que verifica o estado do estacionamento
-    public String estadoEstacionamento1() {
-        String estado1;
-        if (getAtivo() == true) {
-            return estado1 = "Ativo";
-        } else {
-            return estado1 = "Desativo";
+    public void desativar() {
+        if (estado2 == estado2.LIVRE) {
+            this.estado1 = Estado1.DESATIVO;
+            this.estado2 = Estado2.INDISPONIVEL;
         }
     }
 
-    public String estadoEstacionamento2() {
-        String estado2;
-        if ((getAtivo() == true) && ((getLivre() == true))) {
-            return estado2 = "Livre";
-        } else if ((getAtivo() == false) && ((getLivre() == true))) {
-            return estado2 = "Null";
-        } else {
-            return estado2 = "Ocupado";
+    public void liberar() {
+        if (estado1 == Estado1.ATIVO) {
+            this.estado2 = Estado2.LIVRE;
+        }
+    }
+
+    public void ocupar() {
+        if (estado1 == Estado1.ATIVO) {
+            this.estado2 = Estado2.OCUPADO;
         }
     }
 
@@ -160,36 +171,25 @@ public class Estacionamento implements InterfaceEstacionamento {
         StringBuilder detalhes = new StringBuilder();
 
         detalhes.append("********DETALHES DO ESTACIONAMENTO COM ID: ").append(String.format("%03d", id)).append("********\n");
-        detalhes.append("Zona: ").append(categoria).append("\n");
+        detalhes.append("Zona: ").append(zona).append("\n");
         detalhes.append("Categoria: ").append(categoria).append("\n");
         detalhes.append("Localizacao: ").append(localizacao.toString()).append("\n");
         detalhes.append("Coberto?: ").append(coberto ? "sim" : "não").append("\n");
-        detalhes.append("Comprimento Maximo: ").append(comprimentoMaximo).append(" metros\n");
-        detalhes.append("Largura Maxima: ").append(larguraMaxima).append(" metros\n");
-        if (coberto == true) {
-            detalhes.append("Altura Maxima: ").append(alturaMaxima).append(" metros\n");
+        detalhes.append("Dimensões Máximas... \n");
+        detalhes.append("Comprimento: ").append(comprimentoMaximo).append(" metros\n");
+        detalhes.append("Largura: ").append(larguraMaxima).append(" metros\n");
+        if (coberto) {
+            detalhes.append("Altura: ").append(alturaMaxima).append(" metros\n");
         }
-        detalhes.append("Estado: ").append(estadoEstacionamento1()).append(" e ").append(estadoEstacionamento2()).append("\n");
-        if (getLivre() == false) {
-            detalhes.append("Matricula da viatura: ").append(viatura.getMatricula()).append("\n");
+        detalhes.append("Estado: ").append(estado1).append(" e ").append(estado2).append("\n");
+        if (estado2 == Estado2.OCUPADO && viatura != null) {
+            detalhes.append("Viatura Estacionada: ").append(viatura.getMatricula()).append("\n");
+            detalhes.append("Data estacionamento: ").append(viatura.getDataEstacionamento()).append("\n");
         }
         detalhes.append("**********************************************");
         return detalhes.toString();
-
-//        return "*********** DETALHES DO ESTACIONAMENTO COM ID: " + String.format("%03d", id) + " **************"//adiciona 3 casas deciamais
-//                + "\n zona:" + zona
-//                + ";\n categoria:" + categoria
-//                + ";\n localizacao:" + localizacao.toString()
-//                + ";\n comprimento Maximo:" + comprimentoMaximo + " metros"
-//                + ";\n largura Maxima:" + larguraMaxima + " metros"
-//                + ";\n altura Maxima:" + alturaMaxima + " metros"
-//                + ";\n estado:" + estadoEstacionamento1() + " e " + estadoEstacionamento2()
-//                + ";\n id da viatura:" + ((getAtivo() != false) || (viatura != null) ? viatura.getIDviatura() : "null")//se estacionamento estiver desativo, nao pode mostrar dados da viatura
-//                + ";\n matricula:" + ((getAtivo() != false) || (viatura != null) ? viatura.getMatricula() : "null")//n funciona
-//                + ";\n******************************************************\n";
     }
 
-//compara objetos 
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -199,7 +199,8 @@ public class Estacionamento implements InterfaceEstacionamento {
             return false;
         }
         Estacionamento estacionamento = (Estacionamento) o;
-        return Objects.equals(localizacao.toString(), estacionamento.localizacao.toString());
+        return Objects.equals(localizacao.getLatitude(), estacionamento.localizacao.getLatitude())
+                && Objects.equals(localizacao.getLongitude(), estacionamento.localizacao.getLongitude());
     }
 
     @Override
@@ -207,34 +208,70 @@ public class Estacionamento implements InterfaceEstacionamento {
         return Objects.hash(localizacao.toString());
     }
 
-//metodos da classe
+    //metodos da classe
     @Override
     public void enviarNotificacaoSuporte() {
-        //em construcao
+////        throw new UnsupportedOperationException("Método não implementado");
+        System.out.println("Notificação enviada ao suporte.");
+
     }
 
     @Override
     public void enviarNotificacaoMotorista() {
-        //em construcao
+////        throw new UnsupportedOperationException("Método não implementado");
+        System.out.println("Notificação enviada ao motorista.");
     }
 
     @Override
     public void reservarEstacionamento(Transporte t, Estacionamento e) {
-        if ((e.getAtivo() == true) && (e.getLivre() == true)) {
-            System.out.println("10 Minutos até o transporte " + t.getMatricula() + " estacionar");
+        if (e.estado2 == Estado2.LIVRE) {
+            e.estado2 = Estado2.OCUPADO;
+            e.viatura = (Viatura) t; // Casting para vincular transporte à viatura
+            System.out.println("Estacionamento reservado para a viatura " + t.getMatricula());
         } else {
-            System.out.println("impossivel reservar estacionamento");
+            System.out.println("Não é possível reservar: estacionamento não está livre.");
         }
     }
 
     @Override
     public void desocuparEstacionamento(Transporte t, Estacionamento e) {
-        //eem construcao
+        if (e.estado2 == Estado2.OCUPADO && e.viatura != null && e.viatura.getMatricula().equals(t.getMatricula())) {
+            e.estado2 = Estado2.LIVRE;
+            e.viatura = null; // Remove a viatura associada
+            System.out.println("Estacionamento desocupado.");
+        } else {
+            System.out.println("Não é possível desocupar: estacionamento não ocupado por esta viatura.");
+        }
     }
 
     @Override
     public void estacionar(Transporte t, Estacionamento e) {
-        //em construcao
+//        throw new UnsupportedOperationException("Método não implementado");
+        System.out.println("Viatura " + t.getMatricula() + " estacionada no lugar" + e.id);
+    }
+
+    //metodo para listar viaturas estacionadas no dia
+    @Override
+    public List<Viatura> listarViaturasPorDia(LocalDate data) {
+        return viaturas.stream()
+                .filter(viatura -> viatura.getDataEstacionamento() != null
+                && viatura.getDataEstacionamento().isEqual(data))
+                .collect(Collectors.toList());
+    }
+
+    //metodo para mostrar viaturas estacionadas no dia
+    @Override
+    public void mostrarViaturasPorDia(LocalDate data) {
+        List<Viatura> viaturasNoDia = listarViaturasPorDia(data);
+
+        if (viaturasNoDia.isEmpty()) {
+            System.out.println("Nenhuma viatura estacionada na data " + data);
+        } else {
+            System.out.println("Viaturas estacionadas em " + data + ":");
+            for (Viatura viatura : viaturasNoDia) {
+                System.out.println("- " + viatura.getMatricula());
+            }
+        }
     }
 
 }
