@@ -8,10 +8,10 @@ public class Estudante extends Condutor {
 
     private int nEstudante;
 
-    public Estudante(String categoria, String nome, String dataNascimento,
-            char sexo, int contribuinte, String contato, String email, String nCartaConducao, List<Viatura> viatura, int nEstudante) {
+    public Estudante(Categoria categoria, String nome, String dataNascimento,
+            char sexo, int contribuinte, String contato, String email, String numeroCartaConducao, List<Transporte> transporte, int nEstudante) {
 
-        super(categoria, nome, dataNascimento, sexo, contribuinte, contato, email, nCartaConducao, viatura);
+        super(categoria, nome, dataNascimento, sexo, contribuinte, contato, email, numeroCartaConducao, transporte);
         this.nEstudante = nEstudante;
     }
 
@@ -35,7 +35,7 @@ public class Estudante extends Condutor {
             return false;
         }
         Estudante estudante = (Estudante) o;
-        
+
         // Compara se um dos atributos (da classe base ou o específico) é igual
         return Objects.equals(nEstudante, estudante.nEstudante);
     }
@@ -60,9 +60,9 @@ public class Estudante extends Condutor {
         detalhes.append("Sexo: ").append(sexo).append("\n");
         detalhes.append("Contribuinte: ").append(contribuinte).append("\n");
         detalhes.append("Contato: ").append(contato).append("\n");
-        detalhes.append("Nº carta Condução: ").append(nCartaConducao).append("\n");
-        for (Viatura viatura : viaturas) {
-            detalhes.append("Matricula da viatura: ").append(viatura.getMatricula()).append("\n");
+        detalhes.append("Nº carta Condução: ").append(numeroCartaConducao).append("\n");
+        for (Transporte transporte : transportes) {
+            detalhes.append("Matricula da viatura: ").append(transporte.getMatricula()).append("\n");
         }
         detalhes.append("Mensalidade: ").append(vMensalidade).append(" €\n");
         detalhes.append("Email: ").append(email).append("\n");
@@ -98,7 +98,6 @@ public class Estudante extends Condutor {
         }
         System.out.println("\n");
     }
-
     //Envia mensagem para o suporte  
     @Override
     public void enviarMensagemSuporte(Suporte s) {

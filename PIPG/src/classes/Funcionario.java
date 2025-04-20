@@ -7,12 +7,16 @@ import java.util.Objects;
 public class Funcionario extends Condutor {
 
     private int id;
-    private String seccao;
+    private Seccao seccao;
+    
+    public enum Seccao{
+        S_SECRETARIA, S_FINANCA,S_GINASIO,S_BIBLIOTECA,S_CANTINA,S_PISCINA,S_ESTACIONAMENTO,S_LIMPEZA,S_BAR,S_JARDINAGEM,S_ELETRICISTA,S_MOTORISTA
+    }
 
-    public Funcionario(String categoria, String nome, String dataNascimento,
-            char sexo, int contribuinte, String contato, String email, String nCartaConducao, List<Viatura> viatura, int id, String seccao) {
+    public Funcionario(Categoria categoria, String nome, String dataNascimento,
+            char sexo, int contribuinte, String contato, String email, String nCartaConducao, List<Transporte> transporte, int id, Seccao seccao) {
 
-        super(categoria, nome, dataNascimento, sexo, contribuinte, contato, email, nCartaConducao, viatura);
+        super(categoria, nome, dataNascimento, sexo, contribuinte, contato, email, nCartaConducao, transporte);
         this.id = id;
         this.seccao = seccao;
     }
@@ -26,11 +30,11 @@ public class Funcionario extends Condutor {
         this.id = id;
     }
 
-    public String getSeccao() {
+    public Seccao getSeccao() {
         return seccao;
     }
 
-    public void setSeccao(String seccao) {
+    public void setSeccao(Seccao seccao) {
         this.seccao = seccao;
     }
 
@@ -67,9 +71,9 @@ public class Funcionario extends Condutor {
         detalhes.append("sexo: ").append(sexo).append("\n");
         detalhes.append("contribuinte: ").append(contribuinte).append("\n");
         detalhes.append("contato: ").append(contato).append("\n");
-        detalhes.append("Nº carta Condução: ").append(nCartaConducao).append("\n");
-        for (Viatura viatura : viaturas) {
-            detalhes.append("Matricula da viatura: ").append(viatura.getMatricula()).append("\n");
+        detalhes.append("Nº carta Condução: ").append(numeroCartaConducao).append("\n");
+        for (Transporte transporte : transportes) {
+            detalhes.append("Matricula da viatura: ").append(transporte.getMatricula()).append("\n");
         }
         detalhes.append("Valor da mensalidade: ").append(vMensalidade).append("€\n");
         detalhes.append("Email: ").append(email).append("\n");

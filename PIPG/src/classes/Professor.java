@@ -7,12 +7,16 @@ import java.util.Objects;
 public class Professor extends Condutor {
 
     private int id;
-    private String cadeira;
+    private Cadeiras cadeira;
+    
+    public enum Cadeiras{
+    C_PROGRAMACAO, C_REDES, C_ENGSOFTWARE, C_ROBOTICA, C_BASEDADOS, C_CONTROLEINDUSTRIAL,C_SISTEMASDIGITAIS, C_SISTEMASDISTRIBUIDOS, C_INGLES, C_MATEMATICA, C_FISICA
+    }
 
-    public Professor(String categoria, String nome, String dataNascimento,
-            char sexo, int contribuinte, String contato, String email, String nCartaConducao, List<Viatura> viatura, int id, String cadeira) {
+    public Professor(Categoria categoria, String nome, String dataNascimento,
+            char sexo, int contribuinte, String contato, String email, String nCartaConducao, List<Transporte> transporte, int id, Cadeiras cadeira) {
 
-        super(categoria, nome, dataNascimento, sexo, contribuinte, contato, email, nCartaConducao, viatura);
+        super(categoria, nome, dataNascimento, sexo, contribuinte, contato, email, nCartaConducao, transporte);
         this.id = id;
         this.cadeira = cadeira;
     }
@@ -26,13 +30,14 @@ public class Professor extends Condutor {
         this.id = id;
     }
 
-    public String getDisciplina() {
+    public Cadeiras getCadeiras() {
         return cadeira;
     }
 
-    public void setDisciplina(String disciplina) {
-        this.cadeira = disciplina;
+    public void setDisciplinas(Cadeiras cadeira) {
+        this.cadeira = cadeira;
     }
+    
 //METODOS
 
     @Override
@@ -66,9 +71,9 @@ public class Professor extends Condutor {
         detalhes.append("Sexo: ").append(sexo).append("\n");
         detalhes.append("Contribuinte: ").append(contribuinte).append("\n");
         detalhes.append("Contato: ").append(contato).append("\n");
-        detalhes.append("Nº carta Condução: ").append(nCartaConducao).append("\n");
-        for (Viatura viatura : viaturas) {
-            detalhes.append("Matricula da viatura: ").append(viatura.getMatricula()).append("\n");
+        detalhes.append("Nº carta Condução: ").append(numeroCartaConducao).append("\n");
+        for (Transporte transporte : transportes) {
+            detalhes.append("Matricula da viatura: ").append(transporte.getMatricula()).append("\n");
         }
         detalhes.append("Valor da mensalidade: ").append(vMensalidade).append("€\n");
         detalhes.append("Email: ").append(email).append("\n");

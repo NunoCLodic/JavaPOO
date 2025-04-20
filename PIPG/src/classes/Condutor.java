@@ -1,52 +1,68 @@
 package classes;
 
-import interfaces.InterfaceCondutor;
 import java.util.List;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-public abstract class Condutor implements InterfaceCondutor {
+public abstract class Condutor{
 
     //Atributs da classe condutor
     protected String idCondutor;
-    protected String categoria;
+    protected Categoria categoria;
     protected String nome;
     protected LocalDate dataNascimento;
     protected char sexo;
     protected int contribuinte;
     protected String contato;
     protected String email;
-    protected String nCartaConducao;
-    protected List<Viatura> viaturas;
+    protected String numeroCartaConducao;
+    protected List<Transporte> transportes;
     protected double vMensalidade;//valor da mensalidade
     protected boolean mensalidade;
     protected Map<LocalDate, Boolean> pagamentos;//registar os pagamentos
 
+    public enum Categoria {
+        PROFESSOR, ESTUDANTE, FUNCIONARIO
+    }
+
     //construtor
-    public Condutor(String categoria, String nome, String dataNascimento, char sexo,
-            int contribuinte, String contato, String email, String nCartaConducao, List<Viatura> viatura) {
-        this.categoria = categoria;
-        this.idCondutor = UUID.randomUUID().toString().replace("-", "").substring(0, 8);
-        this.nome = nome;
-        this.dataNascimento = LocalDate.parse(dataNascimento);//converte a string no localDate
-        this.sexo = sexo;
-        this.contribuinte = contribuinte;
+    public Condutor(Categoria categoria, String nome, String dataNascimento, char sexo,
+            int contribuinte, String contato, String email, String numeroCartaConducao, List<Transporte> transportes) {
+        //validações
+        if (dataNascimento == null || dataNascimento.isEmpty()) {
+            throw new IllegalArgumentException("Data de nascimento não pode ser nula ou vazia.");
+        }
+//        if (this.dataNascimento.isAfter(LocalDate.now())) {
+//            throw new IllegalArgumentException("Data de nascimento não pode ser no futuro.");
+//        }
         if (!Validacao.ContatoValidator(contato)) {
             throw new IllegalArgumentException("Contato inválido: " + contato);
         }
-        this.contato = contato;
         if (!Validacao.EmailValidator(email)) {
             throw new IllegalArgumentException("Email inválido: " + email);
         }
-        this.email = email;
-        if (!Validacao.NcartaValidator(nCartaConducao)) {
-            throw new IllegalArgumentException("Carta de Condução inválido: " + nCartaConducao);
+        if (!Validacao.NcartaValidator(numeroCartaConducao)) {
+            throw new IllegalArgumentException("Carta de Condução inválido: " + numeroCartaConducao);
         }
-        this.nCartaConducao = nCartaConducao;
-        this.viaturas = new ArrayList<>();
+        if (transportes != null && transportes.stream().anyMatch(v -> v == null)) {
+            throw new IllegalArgumentException("A lista de transporte contém valores nulos.");
+        }
+
+        this.categoria = categoria;
+        this.idCondutor = UUID.randomUUID().toString().replace("-", "").substring(0, 8);
+        this.nome = nome;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        this.dataNascimento = LocalDate.parse(dataNascimento, formatter);//converte a string no localDate
+        this.sexo = sexo;
+        this.contribuinte = contribuinte;
+        this.contato = contato;
+        this.email = email;
+        this.numeroCartaConducao = numeroCartaConducao;
+        this.transportes = transportes != null ? transportes : new ArrayList<>();
         this.vMensalidade = 20;
         this.pagamentos = new HashMap<>();//iniciar o registro de pagamento
     }
@@ -56,11 +72,11 @@ public abstract class Condutor implements InterfaceCondutor {
         return idCondutor;
     }
 
-    public String getCategoria() {
+    public Categoria getCategoria() {
         return categoria;
     }
 
-    public void setCategoria(String categoria) {
+    public void setCategoria(Categoria categoria) {
         this.categoria = categoria;
     }
 
@@ -119,14 +135,14 @@ public abstract class Condutor implements InterfaceCondutor {
     }
 
     public String getnCartaConducao() {
-        return nCartaConducao;
+        return numeroCartaConducao;
     }
 
     public void setnCartaConducao(String nCartaConducao) {
         if (!Validacao.NcartaValidator(nCartaConducao)) {
             throw new IllegalArgumentException("Carta de Condução inválido: " + nCartaConducao);
         }
-        this.nCartaConducao = nCartaConducao;
+        this.numeroCartaConducao = nCartaConducao;
     }
 
     public double getMensalidade() {
@@ -137,36 +153,28 @@ public abstract class Condutor implements InterfaceCondutor {
         this.vMensalidade = Mensalidade;
     }
 
-    public List<Viatura> getViaturas() { //obter lista de viaturas
-        return viaturas;
+    public List<Transporte> getTransportes() { //obter lista de viaturas
+        return transportes;
     }
 
-    public void setViaturas(List<Viatura> viaturas) {
-        this.viaturas = viaturas;
+    public void setTransportes(List<Transporte> transportes) {
+        this.transportes = transportes;
     }
+//METODOS ABSTRATOS
+       public abstract String detalhesCondutor();
+       public abstract void registrarPagamento(LocalDate mes);
+       public abstract boolean verificarPagamento(LocalDate mes);
+       public abstract void mostrarHistoricoPagamento();
+       public abstract void enviarMensagemSuporte(Suporte s);
 
-    // METODOS ABSTRATOS
-    @Override
-    public abstract String detalhesCondutor();
-    @Override
-    public abstract void registrarPagamento(LocalDate mes);
-    @Override
-    public abstract boolean verificarPagamento(LocalDate mes);
-    @Override
-    public abstract void mostrarHistoricoPagamento();
-    @Override
-    public abstract void enviarMensagemSuporte(Suporte s);
-
-    // OUTROS METODOS
- 
-    //Calcular idade do Condutor
-    @Override
-    public int calcularIdade() {
+//METODOS FINAL DO CONDUTOR
+    public final int calcularIdade() {
         LocalDate dataAtual = LocalDate.now();
         return dataAtual.getYear() - dataNascimento.getYear()
                 - ((dataAtual.getMonthValue() < dataNascimento.getMonthValue()
                 || (dataAtual.getMonthValue() == dataNascimento.getMonthValue()
                 && dataAtual.getDayOfMonth() < dataNascimento.getDayOfMonth())) ? 1 : 0);
     }
+
 
 }

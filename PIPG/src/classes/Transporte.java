@@ -5,7 +5,7 @@ import classes.Condutor;
 import java.time.LocalDate;
 import java.util.Objects;
 
-public abstract class Transporte {
+public abstract class Transporte{
 
     private Categoria categoria;
     private String matricula;
