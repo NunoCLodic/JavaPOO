@@ -13,10 +13,12 @@ public class GerenciadorCondutor {
 
     public void adicionarCondutor(Condutor condutor) {
         if (condutores.contains(condutor)) {
-            System.out.println("O condutor " + condutor.nome + "com o ID: " + condutor.idCondutor + " já está na lista.");
+            System.out.println("");
+            System.out.println("O(A) condutor(a) " + condutor.nome + " com o ID: (" + condutor.idCondutor + ") já está na lista.");
+            System.out.println("");
         } else {
             condutores.add(condutor);
-            System.out.println("O condutor  " + condutor.nome + " adicionado");
+            System.out.println("O(A) condutor(a)  " + condutor.nome + " adicionado com sucesso!");
         }
 
     }
@@ -33,19 +35,21 @@ public class GerenciadorCondutor {
         if (condutores.isEmpty()) {
             System.out.println("Nenhum condutor registrado");
         } else {
-            System.out.println("Lista de condutores:");
             for (Condutor condutor : condutores) {
                 System.out.println(condutor.detalhesCondutor());
             }
         }
 
     }
+    public void totalCondutor(){
+        System.out.println("A lista  tem um total de " + condutores.size() + " condutores" );
+    }
 
     public void atribuirViaturaAoCondutor(Condutor condutor, Transporte transporte) {
         if (condutores.contains(condutor)) {
             if (!condutor.getTransportes().contains(transporte)) {
                 condutor.getTransportes().add(transporte);
-                System.out.println("O transporte com matrícula " + transporte.getMatricula() + " foi atribuída ao condutor " + condutor.getNome());
+                System.out.println("O transporte com matrícula " + transporte.getMatricula() + " foi atribuída ao condutor(a) (" + condutor.getNome() + ")");
             } else {
                 System.out.println("O transporte com matrícula " + transporte.getMatricula() + " já está associada ao condutor " + condutor.getNome());
             }

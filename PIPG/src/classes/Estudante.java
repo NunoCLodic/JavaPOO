@@ -52,7 +52,7 @@ public class Estudante extends Condutor {
     public String detalhesCondutor() {
         StringBuilder detalhes = new StringBuilder();
 
-        detalhes.append("********DETALHES DO CONDUTOR COM ID: ").append(idCondutor).append("********\n");
+        detalhes.append("********DETALHES DO CONDUTOR(A) COM ID: ").append(idCondutor).append("********\n");
         detalhes.append("Catedoria: ").append(categoria).append("\n");
         detalhes.append("Numero do Estudante: ").append(nEstudante).append("\n");
         detalhes.append("Nome: ").append(nome).append("\n");

@@ -19,31 +19,34 @@ public class GerenciadorTransporte {
     // Método para adicionar transporte
     public void adicionarTransporte(Transporte transporte) {
         if (transportes.contains(transporte)) {
-            System.out.println("O transporte com matrícula " + transporte.getMatricula() + " já está na lista.");
+            System.out.println("O transporte com a matrícula " + transporte.getMatricula() + " já está na lista.");
         } else {
+            System.out.println("O transporte com a matrícula " + transporte.getMatricula() + " adicionado com sucesso!");
             transportes.add(transporte);
-            System.out.println("Transporte adicionado: " + transporte.getMatricula());
         }
     }
 
     // Método para remover transporte
     public void removerTransporte(Transporte transporte) {
         if (transportes.remove(transporte)) {
-            System.out.println("Transporte removido: " + transporte.getMatricula());
+            System.out.println("O trasporte com a matrícula " + transporte.getMatricula() +" removido com sucesso!");
         } else {
-            System.out.println("O transporte com matrícula " + transporte.getMatricula() + " não foi encontrado.");
+            System.out.println("O transporte com a  matrícula " + transporte.getMatricula() + " não foi encontrado.");
         }
     }
 
     // Método para listar transportes
     public void listarTransportes() {
+        int totalAdd = 0;
         if (transportes.isEmpty()) {
             System.out.println("Nenhum transporte cadastrado.");
         } else {
             System.out.println("Lista de transportes:");
             for (Transporte transporte : transportes) {
-                System.out.println("- " + transporte.getMatricula() + " (" + transporte.getMarca() + ")");
+                System.out.println("- " + transporte.getMatricula() + " (" + transporte.getMarca() + ") - " + transporte.getCategoria());
+                totalAdd++;
             }
+            System.out.println("Total tranportes adicionados: (" + totalAdd + ")");
         }
     }
 
