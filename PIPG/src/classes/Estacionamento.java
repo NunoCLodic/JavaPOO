@@ -22,6 +22,7 @@ public class Estacionamento {
     private MensagemChat mensagem;
     protected HashSet<Transporte> transportes;
     private HashSet<Estacionamento> estacionamentos;
+    private String dataHoraEstacionamento;
 
     public enum Zona {
         S_CENTRAIS, BIBLIOTECA, ESECD, ESS, ESTG, ESTH
@@ -32,7 +33,7 @@ public class Estacionamento {
     }
 
     public enum Estado1 {
-        ATIVO, DESATIVO
+        ATIVO, INATIVO
     }
 
     public enum Estado2 {
@@ -42,7 +43,7 @@ public class Estacionamento {
     //Construtor
     public Estacionamento(Zona zona, Categoria categoria, double latitude, double longitude, boolean coberto,
             double comprimentoMaximo, double larguraMaxima, double alturaMaxima) {
-        
+
         if (comprimentoMaximo < 0 || larguraMaxima < 0 || alturaMaxima < 0) {
             throw new IllegalArgumentException("Dimensões não podem ser negativas");
         }
@@ -148,6 +149,23 @@ public class Estacionamento {
         this.viatura = viatura;
     }
 
+    public String getDataHoraEstacionamento() {
+        return dataHoraEstacionamento;
+    }
+
+    public void setDataHoraEstacionamento(String dataHoraEstacionamento) {
+        this.dataHoraEstacionamento = dataHoraEstacionamento;
+    }
+
+    public HashSet<Transporte> getTransportes() {
+        return transportes;
+    }
+
+    public void setTransportes(HashSet<Transporte> transportes) {
+        this.transportes = transportes;
+    }
+    
+
     // Métodos para alterar estado estacionamento
     private void alterarEstado(Estado1 novoEstado1, Estado2 novoEstado2) {
         this.estado1 = novoEstado1;
@@ -160,7 +178,7 @@ public class Estacionamento {
 
     public void desativar() {
         if (estado2 == Estado2.LIVRE) {
-            alterarEstado(Estado1.DESATIVO, Estado2.INDISPONIVEL);
+            alterarEstado(Estado1.INATIVO, Estado2.INDISPONIVEL);
         }
     }
 
@@ -188,9 +206,10 @@ public class Estacionamento {
                 .append("  Comprimento: ").append(comprimentoMaximo).append(" metros\n")
                 .append("  Largura: ").append(larguraMaxima).append(" metros\n")
                 .append(coberto ? "  Altura: " + alturaMaxima + " metros\n" : "")
-                .append("Estado: ").append(estado1).append(" e ").append(estado2).append("\n")
+                .append("Estado: ").append(estado1).append(" e ").append((estado1 == Estado1.INATIVO) ? estado2.INDISPONIVEL : estado2)
+                .append("\n")
                 .append((estado2 == Estado2.OCUPADO && viatura != null)
-                        ? "Viatura Estacionada: " + viatura.getMatricula() + "\nData estacionamento: " + viatura.getDataEstacionamento() + "\n"
+                        ? "Viatura Estacionada: " + viatura.getMatricula() + "\nData estacionamento: " + dataHoraEstacionamento + "\n"
                         : "")
                 .append("**********************************************")
                 .toString();

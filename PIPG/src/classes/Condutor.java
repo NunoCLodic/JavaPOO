@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-public abstract class Condutor{
+public abstract class Condutor {
 
     //Atributs da classe condutor
     protected String idCondutor;
@@ -161,13 +161,15 @@ public abstract class Condutor{
         this.transportes = transportes;
     }
 //METODOS ABSTRATOS
-       public abstract String detalhesCondutor();
-       public abstract void registrarPagamento(LocalDate mes);
-       public abstract boolean verificarPagamento(LocalDate mes);
-       public abstract void mostrarHistoricoPagamento();
-       public abstract void enviarMensagemSuporte(Suporte s);
 
-//METODOS FINAL DO CONDUTOR
+    public abstract String detalhesCondutor();
+
+    public abstract void registrarPagamento(LocalDate mes);
+
+   
+    public abstract void enviarMensagemSuporte(Suporte s);
+
+//METODOS FINAL CALCULAR IDADE DO CONDUTOR
     public final int calcularIdade() {
         LocalDate dataAtual = LocalDate.now();
         return dataAtual.getYear() - dataNascimento.getYear()
@@ -175,6 +177,25 @@ public abstract class Condutor{
                 || (dataAtual.getMonthValue() == dataNascimento.getMonthValue()
                 && dataAtual.getDayOfMonth() < dataNascimento.getDayOfMonth())) ? 1 : 0);
     }
+    
+//METODO PARA VERIFICAR PAGAMENTO
+    public boolean verificarPagamento(LocalDate mes) {
+        return pagamentos.getOrDefault(mes.withDayOfMonth(1), false); // Retorna false se não houver registro
+    }
 
+ //METODO PARA MOSTRAR HISTORICO DE PAGAMENTE
+    public void mostrarHistoricoPagamento() {
+        System.out.println("HISTÓRICO DE PAGAMENTO DO(A): (" + nome + ") - ID:(" + idCondutor + ")");
+        LocalDate hoje = LocalDate.now();
+        for (int i = 0; i < 12; i++) {
+            LocalDate mes = hoje.minusMonths(i).withDayOfMonth(1); // Obter o início de cada mês
+            boolean pago = pagamentos.getOrDefault(mes, false); // Verificar se o mês foi pago
+
+            // Exibir o status do mês
+            System.out.println("Mês: " + mes.getMonth() + " " + mes.getYear()
+                    + " - Estado: " + (pago ? "Pago" : "Pendente"));
+        }
+        System.out.println("\n");
+    }
 
 }

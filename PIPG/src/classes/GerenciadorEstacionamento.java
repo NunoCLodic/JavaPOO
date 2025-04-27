@@ -1,14 +1,24 @@
 package classes;
 
 import java.time.Duration;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class GerenciadorEstacionamento {
 
     private HashSet<Estacionamento> estacionamentos;
+    private HashSet<Transporte> transportes;
     private LocalDateTime horarioReserva = null;
     private Estacionamento estacionamento;
+    boolean temOcupado;
+    boolean temLivre;
+    boolean temInativo;
+    boolean temAtivo;
+    boolean temReservado;
 
     public GerenciadorEstacionamento() {
         this.estacionamentos = new HashSet<>();
@@ -17,10 +27,10 @@ public class GerenciadorEstacionamento {
     // Método para adicionar estacionamentos
     public void adicionarEstacionamento(Estacionamento estacionamento) {
         if (estacionamentos.contains(estacionamento)) {
-            System.out.println("O estacionamento com ID " + estacionamento.getIDestacionamento() + " já está na lista.");
+            System.out.println("O estacionamento com ID (" + String.format("%03d", estacionamento.getIDestacionamento()) + ") já está na lista.");
         } else {
             estacionamentos.add(estacionamento);
-            System.out.println("O estacionamento com ID " + estacionamento.getIDestacionamento() + " adicionado com sucesso.");
+            System.out.println("O estacionamento com ID (" + String.format("%03d", estacionamento.getIDestacionamento()) + ") adicionado com sucesso.");
         }
     }
 
@@ -35,39 +45,81 @@ public class GerenciadorEstacionamento {
         }
     }
 
+    //metodo para contar todos estacionamentos
     public void totalEstacionamento() {
         System.out.println("A lista tem um total de " + estacionamentos.size() + " estacionamento(s)");
     }
 
+    public void inativarEstacionamento(Estacionamento e) {
+        e.estado1 = e.estado1.INATIVO;
+    }
+
+    //metodo para estacionar um transporte
     public void estacionarTransporte(Transporte t, Estacionamento e) {
         //FALTA VALIDAR A MATRICULA
-
         if (e.estado1 == e.estado1.ATIVO && e.estado2 == e.estado2.LIVRE) {
             if (t.getComprimento() <= e.getComprimentoMaximo()
                     && t.getLargura() <= e.getLarguraMaxima()
                     && (!e.getcoberto() || t.getAltura() <= e.getAlturaMaxima())) {
 
+//                LocalDateTime dataE = LocalDateTime.now();
+//                e.setDataHoraEstacionamento(dataE);
+                LocalDateTime dataE = LocalDateTime.now();
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+                String dataHoraFormatada = dataE.format(formatter);
+                e.setDataHoraEstacionamento(dataHoraFormatada);
+
                 // Estaciona o transporte e atualiza o estado do estacionamento
                 e.setViatura((t instanceof Viatura) ? (Viatura) t : null); // Associar transporte
-
-                e.estado2 = e.estado2.OCUPADO; // Atualiza o estado para ocupado
-
-                System.out.println("O transporte com a matricula: " + t.getMatricula() + " estacionado no ID Estacionamento: " + String.format("%03d", e.getIDestacionamento()));
-
+                e.ocupar();// Atualiza o estado para ocupado
+                System.out.println("O transporte com a matricula: " + t.getMatricula() + " estacionado no Estacionamento: " + String.format("%03d", e.getIDestacionamento()));
             } else {
-                System.out.println("Dimensões do transporte excedem os limites do estacionamento.");
+                System.out.println("Falha! dimensões do transporte " + t.getMatricula() + " excedem os limites do estacionamento (" + String.format("%03d", e.getIDestacionamento()) + ")");
             }
         } else {
-            System.out.println("O estacionamento não está disponível para uso.");
+            System.out.println("O estacionamento (" + String.format("%03d", e.getIDestacionamento()) + ") não está disponível para uso, tente mais tarde!");
         }
     }
 
-    public void estacionamentoLivre() {
+    //metodo que mostra a lista de estacionamentos ativos
+    public void estacionamentosAtivo() {
+        int contaAtivo = 0;
+        temAtivo = false;
+        for (Estacionamento estacionamento : estacionamentos) {
+            if (estacionamento.getEstado1() == Estacionamento.Estado1.ATIVO) {
+                System.out.println(estacionamento.detalhesEstacionamento());
+                contaAtivo++;
+                temAtivo = true;
+            }
+        }
+        System.out.println("----------------------------------------------------------------------------");
+        System.out.println("     ----------Total de estacionamento ativo: (" + contaAtivo + ") ------------");
+        System.out.println("----------------------------------------------------------------------------");
+    }
+
+    //metodo que mostra mostra a lista de estacionamentos inativos
+    public void estacionamentosInativo() {
+        int contaInativo = 0;
+        temInativo = false;
+        for (Estacionamento estacionamento : estacionamentos) {
+            if (estacionamento.getEstado1() == Estacionamento.Estado1.INATIVO) {
+                System.out.println(estacionamento.detalhesEstacionamento());
+                contaInativo++;
+                temInativo = true;
+            }
+        }
+        System.out.println("----------------------------------------------------------------------------");
+        System.out.println("     ----------Total de estacionamento inativo: (" + contaInativo + ") ------------");
+        System.out.println("----------------------------------------------------------------------------");
+    }
+
+    //metodo que mostra os estacionamentos livres
+    public void estacionamentosLivre() {
         int contaLivre = 0;
-        boolean temLivre = false;
+        temLivre = false;
 
         for (Estacionamento estacionamento : estacionamentos) {
-            if (estacionamento.getEstado2() == Estacionamento.Estado2.LIVRE) {
+            if (estacionamento.getEstado1() == Estacionamento.Estado1.ATIVO && estacionamento.getEstado2() == Estacionamento.Estado2.LIVRE) {
                 System.out.println(estacionamento.detalhesEstacionamento());
                 contaLivre++;
                 temLivre = true;
@@ -76,14 +128,12 @@ public class GerenciadorEstacionamento {
         System.out.println("----------------------------------------------------------------------------");
         System.out.println("     ----------Total de estacionamento livres: (" + contaLivre + ") ------------");
         System.out.println("----------------------------------------------------------------------------");
-        if (!temLivre) {
-            System.out.println("Nenhum estacionamento livre no momento!");
-        }
     }
 
-    public void estacionamentoOcupado() {
+    ///metodos que mostra os estacionamentos ocupados
+    public void estacionamentosOcupado() {
         int contaOcupado = 0;
-        boolean temOcupado = false;
+        temOcupado = false;
 
         for (Estacionamento estacionamento : estacionamentos) {
             if (estacionamento.getEstado2() == Estacionamento.Estado2.OCUPADO) {
@@ -95,14 +145,35 @@ public class GerenciadorEstacionamento {
         System.out.println("----------------------------------------------------------------------------");
         System.out.println("     ----------Total de estacionamento ocupados: (" + contaOcupado + ") ------------");
         System.out.println("----------------------------------------------------------------------------");
-        if (!temOcupado) {
-            System.out.println("Nenhum estacionamento ocupado!");
-        }
-
     }
 
-    public void listarEstacionamentoTransporte() {
+    public void estacionamentosReservados() {
+        int contaReservado = 0;
+        temReservado = false;
 
+        for (Estacionamento estacionamento : estacionamentos) {
+            if (estacionamento.getEstado2() == Estacionamento.Estado2.RESERVADO) {
+                System.out.println(estacionamento.detalhesEstacionamento());
+                contaReservado++;
+                temReservado = true;
+            }
+        }
+        System.out.println("----------------------------------------------------------------------------");
+        System.out.println("     ----------Total de estacionamento reservados: (" + contaReservado + ") ------------");
+        System.out.println("----------------------------------------------------------------------------");
+    }
+
+    public void listarEstacionamentos_Transportes() {
+        int contaET = 0;
+        if (temOcupado == true) {
+            for (Estacionamento estacionamento : estacionamentos) {
+                System.out.println("-> (" + String.format("%03d", estacionamento.getIDestacionamento()) + ")"); // falta add viatura e motorista
+                contaET++;
+            }
+            System.out.println("Total estacionamento ocupado: (" + contaET + ")");
+        } else {
+            System.out.println("Nenhum estacionamento ocupado.");
+        }
     }
 
     public void enviarNotificacaoSuporte() {
@@ -124,7 +195,7 @@ public class GerenciadorEstacionamento {
                 e.setViatura((t instanceof Viatura) ? (Viatura) t : null); // Associar transporte
                 e.estado2 = Estacionamento.Estado2.RESERVADO;
                 horarioReserva = LocalDateTime.now(); // Registra o horário atual
-                System.out.println("Estacionamento reservado para o transporte " + t.getMatricula() + " por 20 min...");
+                System.out.println("Estacionamento " + String.format("%03d", e.getIDestacionamento()) + " esta reservado para o transporte " + t.getMatricula() + " por 20 min...");
             } else {
                 System.out.println("Transporte não atende os requisitos do estacionamento.");
             }
@@ -146,34 +217,37 @@ public class GerenciadorEstacionamento {
         }
     }
 
-//    public void desocuparEstacionamento(Transporte t, Estacionamento e) {
-//        if (estacionamento.estado2 == Estacionamento.Estado2.OCUPADO && t != null && transporte.getMatricula().equals(t.getMatricula())) {
-//            estacionamento.estado2 = Estacionamento.Estado2.LIVRE;
-//            e.setViatura() = null; // Remove a viatura associada
-//            System.out.println("Estacionamento desocupado.");
-//        } else {
-//            System.out.println("Não é possível desocupar: estacionamento não ocupado por esta viatura.");
+    public void desocuparEstacionamento(Estacionamento e) {
+        // Verifica se o estacionamento está ocupado
+        if (e.getEstado2() == Estacionamento.Estado2.OCUPADO && e.getViatura() != null) {
+            // Atualiza o estado do estacionamento para LIVRE
+            System.out.println("O transporte com a matrícula " + e.getViatura().getMatricula()
+                    + " foi removido do estacionamento com ID " + String.format("%03d", e.getIDestacionamento()) + ".");
+            e.liberar();
+            e.setViatura(null); // Remove a viatura associada
+        } else {
+            System.out.println("Não é possível desocupar: o estacionamento (" + String.format("%03d", e.getIDestacionamento()) + ") já está livre!");
+        }
+    }
+
+//    public void listarMatriculasPorDiaEstacionamento(LocalDate data, Estacionamento estacionamento) {
+//        if (data == null || estacionamento == null) {
+//            throw new IllegalArgumentException("A data e o estacionamento fornecidos não podem ser nulos.");
 //        }
-//    }
 //
-//    public List<Transporte> listarTransportesPorDia(LocalDate data) {
-//        return transportes.stream()
+//        // Filtrar transportes estacionados no estacionamento na data especificada
+//        List<String> matriculas = estacionamento.getTransportes().stream()
 //                .filter(transporte -> transporte.getDataEstacionamento() != null
-//                && transporte.isEqual(data))
+//                && estacionamento.getDataHoraEstacionamento().toLocalDate().isEqual(data))
+//                .map(Transporte::getMatricula) // Extrai apenas a matrícula
 //                .collect(Collectors.toList());
-//    }
-//    public void mostrarViaturasPorDia(LocalDate data) {
-//        List<Transporte> transportesNoDia = listarTransportesPorDia(data);
 //
-//        if (transportesNoDia.isEmpty()) {
-//            System.out.println("**********************MOSTRAR TRANSPORTE POR DIA*************************");
-//            System.out.println("Nenhuma viatura estacionada na data " + data);
+//        // Imprimir as matrículas filtradas
+//        if (matriculas.isEmpty()) {
+//            System.out.println("Nenhuma transporte foi estacionada na data especificada no estacionamento (" + estacionamento.getIDestacionamento() +")");
 //        } else {
-//            System.out.println("**********************MOSTRAR TRANSPORTE POR DIA*************************");
-//            System.out.println("Viaturas estacionadas em " + data + ":");
-//            for (Transporte transporte : transportesNoDia) {
-//                System.out.println("- " + transporte.getMatricula());
-//            }
+//            System.out.println("Matrículas estacionadas na data " + data + ":");
+//            matriculas.forEach(System.out::println);
 //        }
 //    }
 }

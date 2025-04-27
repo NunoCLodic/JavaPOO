@@ -1,4 +1,4 @@
-package classes;
+ package classes;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -74,30 +74,9 @@ public class Estudante extends Condutor {
     @Override
     public void registrarPagamento(LocalDate mes) {
         pagamentos.put(mes.withDayOfMonth(1), true);// Marca o mês como pago
-        System.out.println("Pagamento de " + mes.getMonth() + " do motorista " + nome + " registrado com sucesso!");
+        System.out.println("Pagamento de (" + mes.getMonth() + ") do motorista (" + nome + ") registrado com sucesso!");
     }
 
-    //Verificar pagamento
-    @Override
-    public boolean verificarPagamento(LocalDate mes) {
-        return pagamentos.getOrDefault(mes.withDayOfMonth(1), false); // Retorna false se não houver registro
-    }
-
-    //Exibir histórico completo de pagamentos (meses pagos e pendentes)
-    @Override
-    public void mostrarHistoricoPagamento() {
-        System.out.println("Histórico de pagamentos para " + nome + ":");
-        LocalDate hoje = LocalDate.now();
-        for (int i = 0; i < 12; i++) {
-            LocalDate mes = hoje.minusMonths(i).withDayOfMonth(1); // Obter o início de cada mês
-            boolean pago = pagamentos.getOrDefault(mes, false); // Verificar se o mês foi pago
-
-            // Exibir o status do mês
-            System.out.println("Mês: " + mes.getMonth() + " " + mes.getYear()
-                    + " - Estado: " + (pago ? "Pago" : "Pendente"));
-        }
-        System.out.println("\n");
-    }
     //Envia mensagem para o suporte  
     @Override
     public void enviarMensagemSuporte(Suporte s) {

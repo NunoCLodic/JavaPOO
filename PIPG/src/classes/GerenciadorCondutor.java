@@ -54,7 +54,7 @@ public class GerenciadorCondutor {
                 System.out.println("O transporte com matrícula " + transporte.getMatricula() + " já está associada ao condutor " + condutor.getNome());
             }
         } else {
-            System.out.println("O condutor " + condutor.getNome() + " não está registrado no sistema.");
+            System.out.println("O transporte com matrícula " + transporte.getMatricula() + " IMPOSSIVEL SER ATRIBUIDO, a(o) " + condutor.nome + " ja não esta no sistema!");
         }
     }
 

@@ -21,7 +21,7 @@ public class GerenciadorTransporte {
         if (transportes.contains(transporte)) {
             System.out.println("O transporte com a matrícula " + transporte.getMatricula() + " já está na lista.");
         } else {
-            System.out.println("O transporte com a matrícula " + transporte.getMatricula() + " adicionado com sucesso!");
+            System.out.println("O transporte com a matrícula (" + transporte.getMatricula() + ") adicionado com sucesso!");
             transportes.add(transporte);
         }
     }
@@ -29,7 +29,7 @@ public class GerenciadorTransporte {
     // Método para remover transporte
     public void removerTransporte(Transporte transporte) {
         if (transportes.remove(transporte)) {
-            System.out.println("O trasporte com a matrícula " + transporte.getMatricula() +" removido com sucesso!");
+            System.out.println("O trasporte com a matrícula " + transporte.getMatricula() + " removido com sucesso!");
         } else {
             System.out.println("O transporte com a  matrícula " + transporte.getMatricula() + " não foi encontrado.");
         }
@@ -50,24 +50,28 @@ public class GerenciadorTransporte {
         }
     }
 
+    public void totalTransporte() {
+        System.out.println("A lista  tem um total de " + transportes.size() + " condutores");
+    }
+
     public void estacionarTransporte(Transporte transporte) {
-//        // Verifica se o estacionamento está ativo e livre
-//        if (getEstado1 == getEstado1.ATIVO && getEstado2 == Estado2.LIVRE) {
-//            // Verifica se o transporte atende às dimensões do estacionamento
-//            if (transporte.getComprimento() <= this.comprimentoMaximo
-//                    && transporte.getLargura() <= this.larguraMaxima
-//                    && (!this.coberto || transporte.getAltura() <= this.alturaMaxima)) {
-//
-//                // Associa o transporte ao estacionamento
-//                this.getViatura = (transporte instanceof Viatura) ? (Viatura) transporte : null;
-//                this.estado2 = Estado2.OCUPADO;
-//                System.out.println("O transporte com matrícula " + transporte.getMatricula() + " foi estacionado no local de ID " + this.id);
-//            } else {
-//                System.out.println("As dimensões do transporte excedem os limites do estacionamento.");
-//            }
-//        } else {
-//            System.out.println("Não é possível estacionar. O estacionamento está ocupado ou desativado.");
-//        }
+////        // Verifica se o estacionamento está ativo e livre
+////        if (getEstado1 == getEstado1.ATIVO && getEstado2 == Estado2.LIVRE) {
+////            // Verifica se o transporte atende às dimensões do estacionamento
+////            if (transporte.getComprimento() <= this.comprimentoMaximo
+////                    && transporte.getLargura() <= this.larguraMaxima
+////                    && (!this.coberto || transporte.getAltura() <= this.alturaMaxima)) {
+////
+////                // Associa o transporte ao estacionamento
+////                this.getViatura = (transporte instanceof Viatura) ? (Viatura) transporte : null;
+////                this.estado2 = Estado2.OCUPADO;
+////                System.out.println("O transporte com matrícula " + transporte.getMatricula() + " foi estacionado no local de ID " + this.id);
+////            } else {
+////                System.out.println("As dimensões do transporte excedem os limites do estacionamento.");
+////            }
+////        } else {
+////            System.out.println("Não é possível estacionar. O estacionamento está ocupado ou desativado.");
+////        }
     }
 
     public void bloquearTransporte(Transporte t) {
