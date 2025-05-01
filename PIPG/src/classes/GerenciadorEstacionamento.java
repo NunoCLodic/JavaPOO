@@ -62,15 +62,13 @@ public class GerenciadorEstacionamento {
                     && t.getLargura() <= e.getLarguraMaxima()
                     && (!e.getcoberto() || t.getAltura() <= e.getAlturaMaxima())) {
 
-//                LocalDateTime dataE = LocalDateTime.now();
-//                e.setDataHoraEstacionamento(dataE);
                 LocalDateTime dataE = LocalDateTime.now();
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy (HH:mm:ss)");
                 String dataHoraFormatada = dataE.format(formatter);
                 e.setDataHoraEstacionamento(dataHoraFormatada);
 
                 // Estaciona o transporte e atualiza o estado do estacionamento
-                e.setViatura((t instanceof Viatura) ? (Viatura) t : null); // Associar transporte
+                e.setTransporte((t instanceof Viatura) ? (Viatura) t : null); // Associar transporte
                 e.ocupar();// Atualiza o estado para ocupado
                 System.out.println("O transporte com a matricula: " + t.getMatricula() + " estacionado no Estacionamento: " + String.format("%03d", e.getIDestacionamento()));
             } else {
@@ -186,13 +184,21 @@ public class GerenciadorEstacionamento {
     }
 
     public void reservarEstacionamento(Transporte t, Estacionamento e) {
-        verificarReservaExpirada(); // Verifica antes de tentar reservar
+        LocalDateTime dataHoraInicioReserva = LocalDateTime.now();
+        int tempoReserva = 20;
+        LocalDateTime dataHoraFimReserva = dataHoraInicioReserva.plusMinutes(tempoReserva);
+
         if (e.estado1 == Estacionamento.Estado1.ATIVO && e.estado2 == Estacionamento.Estado2.LIVRE) {
             if (t.getComprimento() <= e.getComprimentoMaximo()
                     && t.getLargura() <= e.getLarguraMaxima()
                     && (!e.getcoberto() || t.getAltura() <= e.getAlturaMaxima())) {
+                //captura a hora da reserva
 
-                e.setViatura((t instanceof Viatura) ? (Viatura) t : null); // Associar transporte
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy (HH:mm:ss)");
+                String dataHoraInicioReservaFormatada = dataHoraInicioReserva.format(formatter);
+                e.setDataHoraEstacionamento(dataHoraInicioReservaFormatada);
+
+                e.setTransporte((t instanceof Viatura) ? (Viatura) t : null); // Associar transporte
                 e.estado2 = Estacionamento.Estado2.RESERVADO;
                 horarioReserva = LocalDateTime.now(); // Registra o horário atual
                 System.out.println("Estacionamento " + String.format("%03d", e.getIDestacionamento()) + " esta reservado para o transporte " + t.getMatricula() + " por 20 min...");
@@ -204,29 +210,16 @@ public class GerenciadorEstacionamento {
         }
     }
 
-    public void verificarReservaExpirada() {
-        if (horarioReserva != null && estacionamento.estado2 == Estacionamento.Estado2.RESERVADO) {
-            LocalDateTime agora = LocalDateTime.now();
-            Duration duracao = Duration.between(horarioReserva, agora);
-
-            if (duracao.toMinutes() > 20) {
-                estacionamento.liberar(); // Método que muda o estado para LIVRE
-                horarioReserva = null; // Remove o horário da reserva
-                System.out.println("A reserva expirou. O estacionamento foi liberado.");
-            }
-        }
-    }
-
     public void desocuparEstacionamento(Estacionamento e) {
         // Verifica se o estacionamento está ocupado
-        if (e.getEstado2() == Estacionamento.Estado2.OCUPADO && e.getViatura() != null) {
+        if (e.getEstado2() == Estacionamento.Estado2.OCUPADO && e.getTransporte() != null) {
             // Atualiza o estado do estacionamento para LIVRE
-            System.out.println("O transporte com a matrícula " + e.getViatura().getMatricula()
+            System.out.println("- O transporte com a matrícula " + e.getTransporte().getMatricula()
                     + " foi removido do estacionamento com ID " + String.format("%03d", e.getIDestacionamento()) + ".");
             e.liberar();
-            e.setViatura(null); // Remove a viatura associada
+            e.setTransporte(null); // Remove a viatura associada
         } else {
-            System.out.println("Não é possível desocupar: o estacionamento (" + String.format("%03d", e.getIDestacionamento()) + ") já está livre!");
+            System.out.println("- Não é possível desocupar: o estacionamento (" + String.format("%03d", e.getIDestacionamento()) + ") já está livre!");
         }
     }
 

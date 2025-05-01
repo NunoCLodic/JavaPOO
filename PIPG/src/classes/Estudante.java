@@ -31,19 +31,16 @@ public class Estudante extends Condutor {
         if (this == o) {
             return true;
         }
-        if (o == null || getClass() != o.getClass()) {
+        if (o == null || !(o instanceof Estudante)) { // Permite comparações entre Estudante e Estudante_bolseiro
             return false;
         }
         Estudante estudante = (Estudante) o;
-
-        // Compara se um dos atributos (da classe base ou o específico) é igual
-        return Objects.equals(nEstudante, estudante.nEstudante);
+        return Objects.equals(getnEstudante(), estudante.getnEstudante()); // Compara pelo número de estudante
     }
 
     @Override
     public int hashCode() {
-        // Gera hash considerando os dois atributos para consistência
-        return Objects.hash(nEstudante);
+        return Objects.hash(getnEstudante()); // Mantém consistência no hash
     }
 
 //METODOS HERDADOS DA CLASSE CONDUTOR

@@ -1,5 +1,6 @@
 package classes;
 
+import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Objects;
@@ -18,11 +19,12 @@ public class Estacionamento {
     private double alturaMaxima;
     public Estado1 estado1;
     public Estado2 estado2;
-    private Viatura viatura;
+    private Transporte transporte;
     private MensagemChat mensagem;
     protected HashSet<Transporte> transportes;
     private HashSet<Estacionamento> estacionamentos;
     private String dataHoraEstacionamento;
+    private GerenciadorEstacionamento gerenciadorE;
 
     public enum Zona {
         S_CENTRAIS, BIBLIOTECA, ESECD, ESS, ESTG, ESTH
@@ -141,12 +143,12 @@ public class Estacionamento {
         this.estado2 = estado2;
     }
 
-    public Viatura getViatura() {
-        return viatura;
+    public Transporte getTransporte() {
+        return transporte;
     }
 
-    public void setViatura(Viatura viatura) {
-        this.viatura = viatura;
+    public void setTransporte(Transporte transporte) {
+        this.transporte = transporte;
     }
 
     public String getDataHoraEstacionamento() {
@@ -164,7 +166,6 @@ public class Estacionamento {
     public void setTransportes(HashSet<Transporte> transportes) {
         this.transportes = transportes;
     }
-    
 
     // Métodos para alterar estado estacionamento
     private void alterarEstado(Estado1 novoEstado1, Estado2 novoEstado2) {
@@ -194,6 +195,24 @@ public class Estacionamento {
         }
     }
 
+    public String calcularTempoRestante(LocalDateTime horarioFinal) {
+        if (dataHoraEstacionamento == null) {
+            return "Reserva sem data definida.";
+        }
+
+        LocalDateTime agora = LocalDateTime.now();
+        Duration restante = Duration.between(agora, horarioFinal);
+
+        if (restante.isNegative() || restante.isZero()) {
+            liberar(); // Método que muda o estado para LIVRE
+            return "Tempo expirado!";
+        } else {
+            long minutos = restante.toMinutes();
+            long segundos = restante.minusMinutes(minutos).getSeconds();
+            return minutos + " minutos e " + segundos + " segundos restantes.";
+        }
+    }
+
     // Detalhes do estacionamento
     public String detalhesEstacionamento() {
         return new StringBuilder()
@@ -208,8 +227,12 @@ public class Estacionamento {
                 .append(coberto ? "  Altura: " + alturaMaxima + " metros\n" : "")
                 .append("Estado: ").append(estado1).append(" e ").append((estado1 == Estado1.INATIVO) ? estado2.INDISPONIVEL : estado2)
                 .append("\n")
-                .append((estado2 == Estado2.OCUPADO && viatura != null)
-                        ? "Viatura Estacionada: " + viatura.getMatricula() + "\nData estacionamento: " + dataHoraEstacionamento + "\n"
+                .append((estado2 == Estado2.OCUPADO && transporte != null && dataHoraEstacionamento != null)
+                        ? "Transporte Estacionado: " + transporte.getMatricula() + "\n Data estacionamento: " + dataHoraEstacionamento + "\n"
+                        : "")
+                .append((estado2 == Estado2.RESERVADO && transporte != null)
+                        ? "Transporte da reserva: " + transporte.getMatricula() + "\n Reserva criada em: " + dataHoraEstacionamento
+                        + "\n Tempo restante: " + "\n"
                         : "")
                 .append("**********************************************")
                 .toString();
@@ -235,7 +258,7 @@ public class Estacionamento {
 
     public boolean isMatriculaEstacionada(String matricula) {
         // Verifica se há um transporte estacionado e se a matrícula é a mesma
-        return this.viatura != null && this.viatura.getMatricula().equals(matricula);
+        return this.transporte != null && this.transporte.getMatricula().equals(matricula);
     }
 
 }

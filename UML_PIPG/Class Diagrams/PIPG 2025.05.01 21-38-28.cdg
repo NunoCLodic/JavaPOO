@@ -1,0 +1,707 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="PIPG">
+  <ClassDiagramComponents>
+    <Class name="Condutor" package="classes" visibility="public" isAbstract="true" xPosition="964.0" yPosition="1469.0">
+      <Fields>
+        <Field name="idCondutor" type="String" visibility="protected"/>
+        <Field name="categoria" type="Categoria" visibility="protected"/>
+        <Field name="nome" type="String" visibility="protected"/>
+        <Field name="dataNascimento" type="LocalDate" visibility="protected"/>
+        <Field name="sexo" type="char" visibility="protected"/>
+        <Field name="contribuinte" type="int" visibility="protected"/>
+        <Field name="contato" type="String" visibility="protected"/>
+        <Field name="email" type="String" visibility="protected"/>
+        <Field name="numeroCartaConducao" type="String" visibility="protected"/>
+        <Field name="transportes" type="List&lt;Transporte&gt;" visibility="protected"/>
+        <Field name="vMensalidade" type="double" visibility="protected"/>
+        <Field name="mensalidade" type="boolean" visibility="protected"/>
+        <Field name="pagamentos" type="Map&lt;LocalDate, Boolean&gt;" visibility="protected"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Categoria" name="categoria"/>
+          <Argument type="String" name="nome"/>
+          <Argument type="String" name="dataNascimento"/>
+          <Argument type="char" name="sexo"/>
+          <Argument type="int" name="contribuinte"/>
+          <Argument type="String" name="contato"/>
+          <Argument type="String" name="email"/>
+          <Argument type="String" name="numeroCartaConducao"/>
+          <Argument type="List&lt;Transporte&gt;" name="transportes"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getIDcondutor" returnType="String" visibility="public"/>
+        <Method name="getCategoria" returnType="Categoria" visibility="public"/>
+        <Method name="setCategoria" returnType="void" visibility="public">
+          <Argument type="Categoria" name="categoria"/>
+        </Method>
+        <Method name="getNome" returnType="String" visibility="public"/>
+        <Method name="setNome" returnType="void" visibility="public">
+          <Argument type="String" name="nome"/>
+        </Method>
+        <Method name="getSexo" returnType="char" visibility="public"/>
+        <Method name="setSexo" returnType="void" visibility="public">
+          <Argument type="char" name="sexo"/>
+        </Method>
+        <Method name="getContribuinte" returnType="int" visibility="public"/>
+        <Method name="setContribuinte" returnType="void" visibility="public">
+          <Argument type="int" name="contribuinte"/>
+        </Method>
+        <Method name="getContato" returnType="String" visibility="public"/>
+        <Method name="setContato" returnType="void" visibility="public">
+          <Argument type="String" name="contato"/>
+        </Method>
+        <Method name="getDataNascimento" returnType="LocalDate" visibility="public"/>
+        <Method name="setDataNascimento" returnType="void" visibility="public">
+          <Argument type="LocalDate" name="dataNascimento"/>
+        </Method>
+        <Method name="getEmail" returnType="String" visibility="public"/>
+        <Method name="setEmail" returnType="void" visibility="public">
+          <Argument type="String" name="email"/>
+        </Method>
+        <Method name="getnCartaConducao" returnType="String" visibility="public"/>
+        <Method name="setnCartaConducao" returnType="void" visibility="public">
+          <Argument type="String" name="nCartaConducao"/>
+        </Method>
+        <Method name="getMensalidade" returnType="double" visibility="public"/>
+        <Method name="setMensalidade" returnType="void" visibility="public">
+          <Argument type="double" name="Mensalidade"/>
+        </Method>
+        <Method name="getTransportes" returnType="List&lt;Transporte&gt;" visibility="public"/>
+        <Method name="setTransportes" returnType="void" visibility="public">
+          <Argument type="List&lt;Transporte&gt;" name="transportes"/>
+        </Method>
+        <Method name="detalhesCondutor" returnType="String" visibility="public" isAbstract="true"/>
+        <Method name="registrarPagamento" returnType="void" visibility="public" isAbstract="true">
+          <Argument type="LocalDate" name="mes"/>
+        </Method>
+        <Method name="enviarMensagemSuporte" returnType="void" visibility="public" isAbstract="true">
+          <Argument type="Suporte" name="s"/>
+        </Method>
+        <Method name="calcularIdade" returnType="int" visibility="public" isFinal="true"/>
+        <Method name="verificarPagamento" returnType="boolean" visibility="public">
+          <Argument type="LocalDate" name="mes"/>
+        </Method>
+        <Method name="mostrarHistoricoPagamento" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Estacionamento" package="classes" visibility="public" xPosition="964.0" yPosition="84.0">
+      <Fields>
+        <Field name="id" type="int" visibility="private"/>
+        <Field name="contadorId" type="int" visibility="private" isStatic="true"/>
+        <Field name="zona" type="Zona" visibility="private"/>
+        <Field name="categoria" type="Categoria" visibility="private"/>
+        <Field name="localizacao" type="Localizacao" visibility="private"/>
+        <Field name="coberto" type="boolean" visibility="private"/>
+        <Field name="comprimentoMaximo" type="double" visibility="private"/>
+        <Field name="larguraMaxima" type="double" visibility="private"/>
+        <Field name="alturaMaxima" type="double" visibility="private"/>
+        <Field name="estado1" type="Estado1" visibility="public"/>
+        <Field name="estado2" type="Estado2" visibility="public"/>
+        <Field name="transporte" type="Transporte" visibility="private"/>
+        <Field name="mensagem" type="MensagemChat" visibility="private"/>
+        <Field name="transportes" type="HashSet&lt;Transporte&gt;" visibility="protected"/>
+        <Field name="estacionamentos" type="HashSet&lt;Estacionamento&gt;" visibility="private"/>
+        <Field name="dataHoraEstacionamento" type="String" visibility="private"/>
+        <Field name="gerenciadorE" type="GerenciadorEstacionamento" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Zona" name="zona"/>
+          <Argument type="Categoria" name="categoria"/>
+          <Argument type="double" name="latitude"/>
+          <Argument type="double" name="longitude"/>
+          <Argument type="boolean" name="coberto"/>
+          <Argument type="double" name="comprimentoMaximo"/>
+          <Argument type="double" name="larguraMaxima"/>
+          <Argument type="double" name="alturaMaxima"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getIDestacionamento" returnType="int" visibility="public"/>
+        <Method name="getZona" returnType="Zona" visibility="public"/>
+        <Method name="setZona" returnType="void" visibility="public">
+          <Argument type="Zona" name="zona"/>
+        </Method>
+        <Method name="getCategoria" returnType="Categoria" visibility="public"/>
+        <Method name="setCategoria" returnType="void" visibility="public">
+          <Argument type="Categoria" name="categoria"/>
+        </Method>
+        <Method name="getLocalizacao" returnType="Localizacao" visibility="public"/>
+        <Method name="getcoberto" returnType="boolean" visibility="public"/>
+        <Method name="setcoberto" returnType="void" visibility="public">
+          <Argument type="boolean" name="coberto"/>
+        </Method>
+        <Method name="getComprimentoMaximo" returnType="double" visibility="public"/>
+        <Method name="setComprimentoMaximo" returnType="void" visibility="public">
+          <Argument type="double" name="comprimentoMaximo"/>
+        </Method>
+        <Method name="getLarguraMaxima" returnType="double" visibility="public"/>
+        <Method name="setLarguraMaxima" returnType="void" visibility="public">
+          <Argument type="double" name="larguraMaxima"/>
+        </Method>
+        <Method name="getAlturaMaxima" returnType="double" visibility="public"/>
+        <Method name="setAlturaMaxima" returnType="void" visibility="public">
+          <Argument type="double" name="alturaMaxima"/>
+        </Method>
+        <Method name="getEstado1" returnType="Estado1" visibility="public"/>
+        <Method name="setEstado1" returnType="void" visibility="public">
+          <Argument type="Estado1" name="estado1"/>
+        </Method>
+        <Method name="getEstado2" returnType="Estado2" visibility="public"/>
+        <Method name="setEstado2" returnType="void" visibility="public">
+          <Argument type="Estado2" name="estado"/>
+        </Method>
+        <Method name="getTransporte" returnType="Transporte" visibility="public"/>
+        <Method name="setTransporte" returnType="void" visibility="public">
+          <Argument type="Transporte" name="transporte"/>
+        </Method>
+        <Method name="getDataHoraEstacionamento" returnType="String" visibility="public"/>
+        <Method name="setDataHoraEstacionamento" returnType="void" visibility="public">
+          <Argument type="String" name="dataHoraEstacionamento"/>
+        </Method>
+        <Method name="getTransportes" returnType="HashSet&lt;Transporte&gt;" visibility="public"/>
+        <Method name="setTransportes" returnType="void" visibility="public">
+          <Argument type="HashSet&lt;Transporte&gt;" name="transportes"/>
+        </Method>
+        <Method name="alterarEstado" returnType="void" visibility="private">
+          <Argument type="Estado1" name="novoEstado1"/>
+          <Argument type="Estado2" name="novoEstado2"/>
+        </Method>
+        <Method name="ativar" returnType="void" visibility="public"/>
+        <Method name="desativar" returnType="void" visibility="public"/>
+        <Method name="liberar" returnType="void" visibility="public"/>
+        <Method name="ocupar" returnType="void" visibility="public"/>
+        <Method name="calcularTempoRestante" returnType="String" visibility="public">
+          <Argument type="LocalDateTime" name="horarioFinal"/>
+        </Method>
+        <Method name="detalhesEstacionamento" returnType="String" visibility="public"/>
+        <Method name="equals" returnType="boolean" visibility="public">
+          <Argument type="Object" name="o"/>
+        </Method>
+        <Method name="hashCode" returnType="int" visibility="public"/>
+        <Method name="isMatriculaEstacionada" returnType="boolean" visibility="public">
+          <Argument type="String" name="matricula"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Estacionamento_motociclos" package="classes" visibility="public" xPosition="917.0" yPosition="1272.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Zona" name="zona"/>
+          <Argument type="Categoria" name="categoria"/>
+          <Argument type="double" name="latitude"/>
+          <Argument type="double" name="longitude"/>
+          <Argument type="boolean" name="coberto"/>
+          <Argument type="double" name="comprimentoMaximo"/>
+          <Argument type="double" name="larguraMaxima"/>
+          <Argument type="double" name="alturaMaxima"/>
+        </Constructor>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="Estacionamento_viaturas" package="classes" visibility="public" xPosition="1173.0" yPosition="1272.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Zona" name="zona"/>
+          <Argument type="Categoria" name="categoria"/>
+          <Argument type="double" name="latitude"/>
+          <Argument type="double" name="longitude"/>
+          <Argument type="boolean" name="coberto"/>
+          <Argument type="double" name="comprimentoMaximo"/>
+          <Argument type="double" name="larguraMaxima"/>
+          <Argument type="double" name="alturaMaxima"/>
+        </Constructor>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="Estudante" package="classes" visibility="public" xPosition="1355.0" yPosition="2603.0">
+      <Fields>
+        <Field name="nEstudante" type="int" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Categoria" name="categoria"/>
+          <Argument type="String" name="nome"/>
+          <Argument type="String" name="dataNascimento"/>
+          <Argument type="char" name="sexo"/>
+          <Argument type="int" name="contribuinte"/>
+          <Argument type="String" name="contato"/>
+          <Argument type="String" name="email"/>
+          <Argument type="String" name="numeroCartaConducao"/>
+          <Argument type="List&lt;Transporte&gt;" name="transporte"/>
+          <Argument type="int" name="nEstudante"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getnEstudante" returnType="int" visibility="public"/>
+        <Method name="setnEstudante" returnType="void" visibility="public">
+          <Argument type="int" name="nEstudante"/>
+        </Method>
+        <Method name="equals" returnType="boolean" visibility="public">
+          <Argument type="Object" name="o"/>
+        </Method>
+        <Method name="hashCode" returnType="int" visibility="public"/>
+        <Method name="detalhesCondutor" returnType="String" visibility="public"/>
+        <Method name="registrarPagamento" returnType="void" visibility="public">
+          <Argument type="LocalDate" name="mes"/>
+        </Method>
+        <Method name="enviarMensagemSuporte" returnType="void" visibility="public">
+          <Argument type="Suporte" name="s"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Estudante_bolseiro" package="classes" visibility="public" xPosition="1959.0" yPosition="2661.0">
+      <Fields>
+        <Field name="bolsa" type="double" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Categoria" name="categoria"/>
+          <Argument type="String" name="nome"/>
+          <Argument type="String" name="dataNascimento"/>
+          <Argument type="char" name="sexo"/>
+          <Argument type="int" name="contribuinte"/>
+          <Argument type="String" name="contato"/>
+          <Argument type="String" name="email"/>
+          <Argument type="String" name="numeroCartaConducao"/>
+          <Argument type="List&lt;Transporte&gt;" name="transporte"/>
+          <Argument type="int" name="nEstudante"/>
+          <Argument type="double" name="bolsa"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getBolsa" returnType="double" visibility="public"/>
+        <Method name="setBolsa" returnType="void" visibility="public">
+          <Argument type="double" name="bolsa"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Funcionario" package="classes" visibility="public" xPosition="1010.0" yPosition="2603.0">
+      <Fields>
+        <Field name="id" type="int" visibility="private"/>
+        <Field name="seccao" type="Seccao" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Categoria" name="categoria"/>
+          <Argument type="String" name="nome"/>
+          <Argument type="String" name="dataNascimento"/>
+          <Argument type="char" name="sexo"/>
+          <Argument type="int" name="contribuinte"/>
+          <Argument type="String" name="contato"/>
+          <Argument type="String" name="email"/>
+          <Argument type="String" name="nCartaConducao"/>
+          <Argument type="List&lt;Transporte&gt;" name="transporte"/>
+          <Argument type="int" name="id"/>
+          <Argument type="Seccao" name="seccao"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getId" returnType="int" visibility="public"/>
+        <Method name="setId" returnType="void" visibility="public">
+          <Argument type="int" name="id"/>
+        </Method>
+        <Method name="getSeccao" returnType="Seccao" visibility="public"/>
+        <Method name="setSeccao" returnType="void" visibility="public">
+          <Argument type="Seccao" name="seccao"/>
+        </Method>
+        <Method name="equals" returnType="boolean" visibility="public">
+          <Argument type="Object" name="o"/>
+        </Method>
+        <Method name="hashCode" returnType="int" visibility="public"/>
+        <Method name="detalhesCondutor" returnType="String" visibility="public"/>
+        <Method name="registrarPagamento" returnType="void" visibility="public">
+          <Argument type="LocalDate" name="mes"/>
+        </Method>
+        <Method name="enviarMensagemSuporte" returnType="void" visibility="public">
+          <Argument type="Suporte" name="s"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="GerenciadorCondutor" package="classes" visibility="public" xPosition="1854.0" yPosition="1288.0">
+      <Fields>
+        <Field name="condutores" type="HashSet&lt;Condutor&gt;" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="adicionarCondutor" returnType="void" visibility="public">
+          <Argument type="Condutor" name="condutor"/>
+        </Method>
+        <Method name="removerCondutor" returnType="void" visibility="public">
+          <Argument type="Condutor" name="condutor"/>
+        </Method>
+        <Method name="listarCondutor" returnType="void" visibility="public"/>
+        <Method name="totalCondutor" returnType="void" visibility="public"/>
+        <Method name="atribuirViaturaAoCondutor" returnType="void" visibility="public">
+          <Argument type="Condutor" name="condutor"/>
+          <Argument type="Transporte" name="transporte"/>
+        </Method>
+        <Method name="registrarPagamento" returnType="void" visibility="public">
+          <Argument type="LocalDate" name="mes"/>
+        </Method>
+        <Method name="verificarPagamento" returnType="boolean" visibility="public">
+          <Argument type="LocalDate" name="mes"/>
+        </Method>
+        <Method name="mostrarHistoricoPagamento" returnType="void" visibility="public"/>
+        <Method name="enviarMensagemSuporte" returnType="void" visibility="public">
+          <Argument type="Suporte" name="s"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="GerenciadorEstacionamento" package="classes" visibility="public" xPosition="2837.0" yPosition="71.0">
+      <Fields>
+        <Field name="estacionamentos" type="HashSet&lt;Estacionamento&gt;" visibility="private"/>
+        <Field name="transportes" type="HashSet&lt;Transporte&gt;" visibility="private"/>
+        <Field name="horarioReserva" type="LocalDateTime" visibility="private"/>
+        <Field name="estacionamento" type="Estacionamento" visibility="private"/>
+        <Field name="temOcupado" type="boolean" visibility="package"/>
+        <Field name="temLivre" type="boolean" visibility="package"/>
+        <Field name="temInativo" type="boolean" visibility="package"/>
+        <Field name="temAtivo" type="boolean" visibility="package"/>
+        <Field name="temReservado" type="boolean" visibility="package"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="adicionarEstacionamento" returnType="void" visibility="public">
+          <Argument type="Estacionamento" name="estacionamento"/>
+        </Method>
+        <Method name="listarEstacionamentos" returnType="void" visibility="public"/>
+        <Method name="totalEstacionamento" returnType="void" visibility="public"/>
+        <Method name="inativarEstacionamento" returnType="void" visibility="public">
+          <Argument type="Estacionamento" name="e"/>
+        </Method>
+        <Method name="estacionarTransporte" returnType="void" visibility="public">
+          <Argument type="Transporte" name="t"/>
+          <Argument type="Estacionamento" name="e"/>
+        </Method>
+        <Method name="estacionamentosAtivo" returnType="void" visibility="public"/>
+        <Method name="estacionamentosInativo" returnType="void" visibility="public"/>
+        <Method name="estacionamentosLivre" returnType="void" visibility="public"/>
+        <Method name="estacionamentosOcupado" returnType="void" visibility="public"/>
+        <Method name="estacionamentosReservados" returnType="void" visibility="public"/>
+        <Method name="listarEstacionamentos_Transportes" returnType="void" visibility="public"/>
+        <Method name="enviarNotificacaoSuporte" returnType="void" visibility="public"/>
+        <Method name="enviarNotificacaoMotorista" returnType="void" visibility="public"/>
+        <Method name="reservarEstacionamento" returnType="void" visibility="public">
+          <Argument type="Transporte" name="t"/>
+          <Argument type="Estacionamento" name="e"/>
+        </Method>
+        <Method name="desocuparEstacionamento" returnType="void" visibility="public">
+          <Argument type="Estacionamento" name="e"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="GerenciadorTransporte" package="classes" visibility="public" xPosition="1854.0" yPosition="2102.0">
+      <Fields>
+        <Field name="transportes" type="HashSet&lt;Transporte&gt;" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="adicionarTransporte" returnType="void" visibility="public">
+          <Argument type="Transporte" name="transporte"/>
+        </Method>
+        <Method name="removerTransporte" returnType="void" visibility="public">
+          <Argument type="Transporte" name="transporte"/>
+        </Method>
+        <Method name="listarTransportes" returnType="void" visibility="public"/>
+        <Method name="totalTransporte" returnType="void" visibility="public"/>
+        <Method name="estacionarTransporte" returnType="void" visibility="public">
+          <Argument type="Transporte" name="transporte"/>
+        </Method>
+        <Method name="bloquearTransporte" returnType="void" visibility="public">
+          <Argument type="Transporte" name="t"/>
+        </Method>
+        <Method name="ativarTransporte" returnType="void" visibility="public">
+          <Argument type="Transporte" name="t"/>
+        </Method>
+        <Method name="editarTransporte" returnType="void" visibility="public">
+          <Argument type="Transporte" name="t"/>
+        </Method>
+        <Method name="atribuirTransporte" returnType="void" visibility="public">
+          <Argument type="Condutor" name="c"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Localizacao" package="classes" visibility="public" xPosition="126.0" yPosition="297.0">
+      <Fields>
+        <Field name="coordenadas" type="Point2D" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="double" name="latitude"/>
+          <Argument type="double" name="longitude"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getLatitude" returnType="double" visibility="public"/>
+        <Method name="getLongitude" returnType="double" visibility="public"/>
+        <Method name="toString" returnType="String" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="MensagemChat" package="classes" visibility="public" xPosition="135.0" yPosition="486.0">
+      <Fields>
+        <Field name="remetente" type="String" visibility="private"/>
+        <Field name="destinatario" type="String" visibility="private"/>
+        <Field name="mensagem" type="String" visibility="private"/>
+        <Field name="timestamp" type="long" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="remetente"/>
+          <Argument type="String" name="destinatario"/>
+          <Argument type="String" name="mensagem"/>
+          <Argument type="long" name="timestamp"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getRemetente" returnType="String" visibility="public"/>
+        <Method name="setRemetente" returnType="void" visibility="public">
+          <Argument type="String" name="remetente"/>
+        </Method>
+        <Method name="getDestinatario" returnType="String" visibility="public"/>
+        <Method name="setDestinatario" returnType="void" visibility="public">
+          <Argument type="String" name="destinatario"/>
+        </Method>
+        <Method name="getMensagem" returnType="String" visibility="public"/>
+        <Method name="setMensagem" returnType="void" visibility="public">
+          <Argument type="String" name="mensagem"/>
+        </Method>
+        <Method name="getTimestamp" returnType="long" visibility="public"/>
+        <Method name="setTimestamp" returnType="void" visibility="public">
+          <Argument type="long" name="timestamp"/>
+        </Method>
+        <Method name="toString" returnType="String" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Motociclo" package="classes" visibility="public" xPosition="2640.0" yPosition="2070.0">
+      <Fields>
+        <Field name="motociclos" type="List&lt;Motociclo&gt;" visibility="protected"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Categoria" name="categoria"/>
+          <Argument type="String" name="matricula"/>
+          <Argument type="String" name="marca"/>
+          <Argument type="String" name="modelo"/>
+          <Argument type="int" name="ano"/>
+          <Argument type="String" name="cor"/>
+          <Argument type="double" name="comprimento"/>
+          <Argument type="double" name="largura"/>
+          <Argument type="double" name="altura"/>
+          <Argument type="Condutor" name="condutor"/>
+        </Constructor>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="Professor" package="classes" visibility="public" xPosition="665.0" yPosition="2603.0">
+      <Fields>
+        <Field name="id" type="int" visibility="private"/>
+        <Field name="cadeira" type="Cadeiras" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Categoria" name="categoria"/>
+          <Argument type="String" name="nome"/>
+          <Argument type="String" name="dataNascimento"/>
+          <Argument type="char" name="sexo"/>
+          <Argument type="int" name="contribuinte"/>
+          <Argument type="String" name="contato"/>
+          <Argument type="String" name="email"/>
+          <Argument type="String" name="nCartaConducao"/>
+          <Argument type="List&lt;Transporte&gt;" name="transporte"/>
+          <Argument type="int" name="id"/>
+          <Argument type="Cadeiras" name="cadeira"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getId" returnType="int" visibility="public"/>
+        <Method name="setId" returnType="void" visibility="public">
+          <Argument type="int" name="id"/>
+        </Method>
+        <Method name="getCadeiras" returnType="Cadeiras" visibility="public"/>
+        <Method name="setDisciplinas" returnType="void" visibility="public">
+          <Argument type="Cadeiras" name="cadeira"/>
+        </Method>
+        <Method name="equals" returnType="boolean" visibility="public">
+          <Argument type="Object" name="o"/>
+        </Method>
+        <Method name="hashCode" returnType="int" visibility="public"/>
+        <Method name="detalhesCondutor" returnType="String" visibility="public"/>
+        <Method name="registrarPagamento" returnType="void" visibility="public">
+          <Argument type="LocalDate" name="mes"/>
+        </Method>
+        <Method name="enviarMensagemSuporte" returnType="void" visibility="public">
+          <Argument type="Suporte" name="s"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Transporte" package="classes" visibility="public" isAbstract="true" xPosition="2812.0" yPosition="914.0">
+      <Fields>
+        <Field name="categoria" type="Categoria" visibility="private"/>
+        <Field name="matricula" type="String" visibility="private"/>
+        <Field name="marca" type="String" visibility="private"/>
+        <Field name="modelo" type="String" visibility="private"/>
+        <Field name="ano" type="int" visibility="private"/>
+        <Field name="cor" type="String" visibility="private"/>
+        <Field name="comprimento" type="double" visibility="private"/>
+        <Field name="largura" type="double" visibility="private"/>
+        <Field name="altura" type="double" visibility="private"/>
+        <Field name="estado" type="Estado" visibility="private"/>
+        <Field name="estacionamento" type="Estacionamento" visibility="private"/>
+        <Field name="dataEstacionamento" type="LocalDate" visibility="private"/>
+        <Field name="condutor" type="Condutor" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Categoria" name="categoria"/>
+          <Argument type="String" name="matricula"/>
+          <Argument type="String" name="marca"/>
+          <Argument type="String" name="modelo"/>
+          <Argument type="int" name="ano"/>
+          <Argument type="String" name="cor"/>
+          <Argument type="double" name="comprimento"/>
+          <Argument type="double" name="largura"/>
+          <Argument type="double" name="altura"/>
+          <Argument type="Condutor" name="condutor"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getCategoria" returnType="Categoria" visibility="public"/>
+        <Method name="setCategoria" returnType="void" visibility="public">
+          <Argument type="Categoria" name="categoria"/>
+        </Method>
+        <Method name="getMatricula" returnType="String" visibility="public"/>
+        <Method name="setMatricula" returnType="void" visibility="public">
+          <Argument type="String" name="matricula"/>
+        </Method>
+        <Method name="getMarca" returnType="String" visibility="public"/>
+        <Method name="setMarca" returnType="void" visibility="public">
+          <Argument type="String" name="marca"/>
+        </Method>
+        <Method name="getModelo" returnType="String" visibility="public"/>
+        <Method name="setModelo" returnType="void" visibility="public">
+          <Argument type="String" name="modelo"/>
+        </Method>
+        <Method name="getAno" returnType="int" visibility="public"/>
+        <Method name="setAno" returnType="void" visibility="public">
+          <Argument type="int" name="ano"/>
+        </Method>
+        <Method name="getCor" returnType="String" visibility="public"/>
+        <Method name="setCor" returnType="void" visibility="public">
+          <Argument type="String" name="cor"/>
+        </Method>
+        <Method name="getComprimento" returnType="double" visibility="public"/>
+        <Method name="setComprimento" returnType="void" visibility="public">
+          <Argument type="int" name="comprimento"/>
+        </Method>
+        <Method name="getLargura" returnType="double" visibility="public"/>
+        <Method name="setLargura" returnType="void" visibility="public">
+          <Argument type="double" name="largura"/>
+        </Method>
+        <Method name="getAltura" returnType="double" visibility="public"/>
+        <Method name="setAltura" returnType="void" visibility="public">
+          <Argument type="int" name="altura"/>
+        </Method>
+        <Method name="getEstado" returnType="Estado" visibility="public"/>
+        <Method name="setEstado" returnType="void" visibility="public">
+          <Argument type="Estado" name="estado"/>
+        </Method>
+        <Method name="getEstacionamento" returnType="Estacionamento" visibility="public"/>
+        <Method name="setEstacionamento" returnType="void" visibility="public">
+          <Argument type="Estacionamento" name="estacionamento"/>
+        </Method>
+        <Method name="getDataEstacionamento" returnType="LocalDate" visibility="public"/>
+        <Method name="getCondutor" returnType="Condutor" visibility="public"/>
+        <Method name="setCondutor" returnType="void" visibility="public">
+          <Argument type="Condutor" name="condutor"/>
+        </Method>
+        <Method name="ativar" returnType="void" visibility="public"/>
+        <Method name="bloquaer" returnType="void" visibility="public"/>
+        <Method name="estacionado" returnType="void" visibility="public"/>
+        <Method name="detalhesTransporte" returnType="String" visibility="public"/>
+        <Method name="equals" returnType="boolean" visibility="public">
+          <Argument type="Object" name="o"/>
+        </Method>
+        <Method name="hashCode" returnType="int" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Validacao" package="classes" visibility="public" xPosition="228.0" yPosition="1532.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="NcartaValidator" returnType="boolean" visibility="public" isStatic="true">
+          <Argument type="String" name="nCartaConducao"/>
+        </Method>
+        <Method name="EmailValidator" returnType="boolean" visibility="public" isStatic="true">
+          <Argument type="String" name="email"/>
+        </Method>
+        <Method name="ContatoValidator" returnType="boolean" visibility="public" isStatic="true">
+          <Argument type="String" name="contato"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Viatura" package="classes" visibility="public" xPosition="3097.0" yPosition="2070.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Categoria" name="categoria"/>
+          <Argument type="String" name="matricula"/>
+          <Argument type="String" name="marca"/>
+          <Argument type="String" name="modelo"/>
+          <Argument type="int" name="ano"/>
+          <Argument type="String" name="cor"/>
+          <Argument type="double" name="comprimento"/>
+          <Argument type="double" name="largura"/>
+          <Argument type="double" name="altura"/>
+          <Argument type="Condutor" name="condutor"/>
+        </Constructor>
+      </Constructors>
+      <Methods/>
+    </Class>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations>
+    <IsRelation name="is" source="classes.Estacionamento_viaturas" target="classes.Estacionamento"/>
+    <HasRelation name="gerenciadorE" source="classes.Estacionamento" target="classes.GerenciadorEstacionamento" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="classes.Professor" target="classes.Condutor"/>
+    <UseRelation source="classes.GerenciadorCondutor" target="classes.Transporte" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="classes.Estacionamento" target="classes.Transporte" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="classes.Transporte" target="classes.Condutor" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="classes.Funcionario" target="classes.Condutor"/>
+    <UseRelation source="classes.GerenciadorEstacionamento" target="classes.Transporte" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="classes.GerenciadorEstacionamento" target="classes.Estacionamento" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="classes.Transporte" target="classes.Estacionamento" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="estacionamento" source="classes.Transporte" target="classes.Estacionamento" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="classes.Estudante" target="classes.Condutor"/>
+    <IsRelation name="is" source="classes.Viatura" target="classes.Transporte"/>
+    <HasRelation name="transportes" source="classes.GerenciadorTransporte" target="classes.Transporte" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="HashSet&lt;Transporte&gt;"/>
+    <UseRelation source="classes.GerenciadorTransporte" target="classes.Transporte" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="condutores" source="classes.GerenciadorCondutor" target="classes.Condutor" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="HashSet&lt;Condutor&gt;"/>
+    <UseRelation source="classes.GerenciadorCondutor" target="classes.Condutor" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="classes.GerenciadorTransporte" target="classes.Condutor" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="classes.Estacionamento_motociclos" target="classes.Estacionamento"/>
+    <HasRelation name="transportes" source="classes.GerenciadorEstacionamento" target="classes.Transporte" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="HashSet&lt;Transporte&gt;"/>
+    <HasRelation name="transportes" source="classes.Condutor" target="classes.Transporte" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="List&lt;Transporte&gt;"/>
+    <HasRelation name="estacionamentos" source="classes.GerenciadorEstacionamento" target="classes.Estacionamento" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="HashSet&lt;Estacionamento&gt;"/>
+    <IsRelation name="is" source="classes.Motociclo" target="classes.Transporte"/>
+    <UseRelation source="classes.Estacionamento" target="classes.Localizacao" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="classes.Estudante_bolseiro" target="classes.Estudante"/>
+    <HasRelation name="mensagem" source="classes.Estacionamento" target="classes.MensagemChat" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="estacionamento" source="classes.GerenciadorEstacionamento" target="classes.Estacionamento" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="classes.Condutor" target="classes.Transporte" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="condutor" source="classes.Transporte" target="classes.Condutor" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="transporte" source="classes.Estacionamento" target="classes.Transporte" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="localizacao" source="classes.Estacionamento" target="classes.Localizacao" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="transportes" source="classes.Estacionamento" target="classes.Transporte" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="HashSet&lt;Transporte&gt;"/>
+  </ClassDiagramRelations>
+</ClassDiagram>

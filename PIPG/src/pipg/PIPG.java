@@ -24,8 +24,10 @@ import static classes.Estacionamento.Zona.S_CENTRAIS;
 import static classes.Funcionario.Seccao.S_FINANCA;
 import static classes.Funcionario.Seccao.S_SECRETARIA;
 import static classes.Condutor.Categoria.ESTUDANTE;
+import static classes.Condutor.Categoria.ESTUDANTE_BOLSEIRO;
 import static classes.Condutor.Categoria.FUNCIONARIO;
 import static classes.Condutor.Categoria.PROFESSOR;
+import classes.Estudante_bolseiro;
 import static classes.Professor.Cadeiras.C_ENGSOFTWARE;
 import static classes.Professor.Cadeiras.C_PROGRAMACAO;
 import static classes.Transporte.Categoria.MOTOCICLO;
@@ -46,6 +48,7 @@ public class PIPG {
             Condutor estudante2 = new Estudante(ESTUDANTE, "Francisca", "02-03-1990", 'F', 284260886, "925780123", "francisca@hotmail.com", "12345672", null, 2222222);
             Condutor estudante3 = new Estudante(ESTUDANTE, "Miguel", "03-03-1990", 'M', 284260887, "925860123", "miguel@hotmail.com", "12345671", null, 3333333);
             Condutor estudante4 = new Estudante(ESTUDANTE, "Tiago", "04-03-1990", 'F', 284260887, "925780123", "tiago@hotmail.com", "12345672", null, 4444444);
+            Condutor estudante5 = new Estudante_bolseiro(ESTUDANTE_BOLSEIRO, "Maria", "05-03-1990", 'F', 284260888, "925780127", "maria@hotmail.com", "12345683", null, 5555555,20.0);
             Condutor professor1 = new Professor(PROFESSOR, "Pedro", "05-03-1990", 'M', 284260888, "925860123", "pedro@hotmail.com", "12345673", null, 1111, C_PROGRAMACAO);
             Condutor professor2 = new Professor(PROFESSOR, "Fernanda", "06-03-1990", 'F', 284560888, "925860163", "fernanda@hotmail.com", "12345674", null, 2222, C_ENGSOFTWARE);
             Condutor professor3 = new Professor(PROFESSOR, "Ana", "06-03-1991", 'F', 284560889, "925860165", "ana@hotmail.com", "12345675", null, 3333, C_ENGSOFTWARE);
@@ -61,6 +64,7 @@ public class PIPG {
             gerenciadorC.adicionarCondutor(estudante2);
             gerenciadorC.adicionarCondutor(estudante3);
             gerenciadorC.adicionarCondutor(estudante4);
+            gerenciadorC.adicionarCondutor(estudante5);
             gerenciadorC.adicionarCondutor(professor1);
             gerenciadorC.adicionarCondutor(professor2);
             gerenciadorC.adicionarCondutor(professor3);
@@ -276,7 +280,7 @@ public class PIPG {
             gerenciadorE.estacionamentosLivre();
 
             System.out.println("----------------------------------------------------------------------------");
-            System.out.println("-------------------------ESTACIONAMENTOS RESERVADO--------------------------");
+            System.out.println("-------------------------ESTACIONAMENTOS RESERVADOS--------------------------");
             System.out.println("----------------------------------------------------------------------------");
             gerenciadorE.estacionamentosReservados();
 

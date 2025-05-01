@@ -26,7 +26,7 @@ public abstract class Condutor {
     protected Map<LocalDate, Boolean> pagamentos;//registar os pagamentos
 
     public enum Categoria {
-        PROFESSOR, ESTUDANTE, FUNCIONARIO
+        PROFESSOR, ESTUDANTE,ESTUDANTE_BOLSEIRO, FUNCIONARIO
     }
 
     //construtor
@@ -63,7 +63,7 @@ public abstract class Condutor {
         this.email = email;
         this.numeroCartaConducao = numeroCartaConducao;
         this.transportes = transportes != null ? transportes : new ArrayList<>();
-        this.vMensalidade = 20;
+        this.vMensalidade = 0.0;
         this.pagamentos = new HashMap<>();//iniciar o registro de pagamento
     }
 
