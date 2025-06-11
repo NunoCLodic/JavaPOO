@@ -22,6 +22,7 @@ public class MainFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         jDesktopPane = new javax.swing.JDesktopPane();
+        jTextField1 = new javax.swing.JTextField();
         jMenuBar_menu = new javax.swing.JMenuBar();
         jMenu_suporte = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -49,15 +50,25 @@ public class MainFrame extends javax.swing.JFrame {
 
         jDesktopPane.setPreferredSize(new java.awt.Dimension(1500, 950));
 
+        jTextField1.setText("texte:");
+
+        jDesktopPane.setLayer(jTextField1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
         javax.swing.GroupLayout jDesktopPaneLayout = new javax.swing.GroupLayout(jDesktopPane);
         jDesktopPane.setLayout(jDesktopPaneLayout);
         jDesktopPaneLayout.setHorizontalGroup(
             jDesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1336, Short.MAX_VALUE)
+            .addGroup(jDesktopPaneLayout.createSequentialGroup()
+                .addGap(560, 560, 560)
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(740, Short.MAX_VALUE))
         );
         jDesktopPaneLayout.setVerticalGroup(
             jDesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 763, Short.MAX_VALUE)
+            .addGroup(jDesktopPaneLayout.createSequentialGroup()
+                .addGap(360, 360, 360)
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(383, Short.MAX_VALUE))
         );
 
         jMenu_suporte.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/suporte.png"))); // NOI18N
@@ -414,5 +425,6 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu_estacionamento;
     private javax.swing.JMenu jMenu_suporte;
     private javax.swing.JMenu jMenu_transporte;
+    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }

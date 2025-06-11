@@ -187,7 +187,7 @@
         </Method>
       </Methods>
     </Class>
-    <Class name="Estacionamento_motociclos" package="classes" visibility="public" xPosition="917.0" yPosition="1272.0">
+    <Class name="Estacionamento_motociclos" package="classes" visibility="public" xPosition="455.0" yPosition="1209.0">
       <Fields/>
       <Constructors>
         <Constructor visibility="public">
@@ -203,7 +203,7 @@
       </Constructors>
       <Methods/>
     </Class>
-    <Class name="Estacionamento_viaturas" package="classes" visibility="public" xPosition="1173.0" yPosition="1272.0">
+    <Class name="Estacionamento_viaturas" package="classes" visibility="public" xPosition="1016.0" yPosition="1335.0">
       <Fields/>
       <Constructors>
         <Constructor visibility="public">
@@ -219,7 +219,7 @@
       </Constructors>
       <Methods/>
     </Class>
-    <Class name="Estudante" package="classes" visibility="public" xPosition="1355.0" yPosition="2603.0">
+    <Class name="Estudante" package="classes" visibility="public" xPosition="1539.0" yPosition="2477.0">
       <Fields>
         <Field name="nEstudante" type="int" visibility="private"/>
       </Fields>
@@ -255,7 +255,7 @@
         </Method>
       </Methods>
     </Class>
-    <Class name="Estudante_bolseiro" package="classes" visibility="public" xPosition="1959.0" yPosition="2661.0">
+    <Class name="Estudante_bolseiro" package="classes" visibility="public" xPosition="2757.0" yPosition="2525.0">
       <Fields>
         <Field name="bolsa" type="double" visibility="private"/>
       </Fields>
@@ -281,7 +281,7 @@
         </Method>
       </Methods>
     </Class>
-    <Class name="Funcionario" package="classes" visibility="public" xPosition="1010.0" yPosition="2603.0">
+    <Class name="Funcionario" package="classes" visibility="public" xPosition="941.0" yPosition="2907.0">
       <Fields>
         <Field name="id" type="int" visibility="private"/>
         <Field name="seccao" type="Seccao" visibility="private"/>
@@ -323,7 +323,7 @@
         </Method>
       </Methods>
     </Class>
-    <Class name="GerenciadorCondutor" package="classes" visibility="public" xPosition="1854.0" yPosition="1288.0">
+    <Class name="GerenciadorCondutor" package="classes" visibility="public" xPosition="2162.0" yPosition="1240.0">
       <Fields>
         <Field name="condutores" type="HashSet&lt;Condutor&gt;" visibility="private"/>
       </Fields>
@@ -400,7 +400,7 @@
         </Method>
       </Methods>
     </Class>
-    <Class name="GerenciadorTransporte" package="classes" visibility="public" xPosition="1854.0" yPosition="2102.0">
+    <Class name="GerenciadorTransporte" package="classes" visibility="public" xPosition="2162.0" yPosition="2070.0">
       <Fields>
         <Field name="transportes" type="HashSet&lt;Transporte&gt;" visibility="private"/>
       </Fields>
@@ -433,7 +433,7 @@
         </Method>
       </Methods>
     </Class>
-    <Class name="Localizacao" package="classes" visibility="public" xPosition="126.0" yPosition="297.0">
+    <Class name="Localizacao" package="classes" visibility="public" xPosition="135.0" yPosition="261.0">
       <Fields>
         <Field name="coordenadas" type="Point2D" visibility="private"/>
       </Fields>
@@ -504,7 +504,7 @@
       </Constructors>
       <Methods/>
     </Class>
-    <Class name="Professor" package="classes" visibility="public" xPosition="665.0" yPosition="2603.0">
+    <Class name="Professor" package="classes" visibility="public" xPosition="212.0" yPosition="2579.0">
       <Fields>
         <Field name="id" type="int" visibility="private"/>
         <Field name="cadeira" type="Cadeiras" visibility="private"/>
@@ -651,7 +651,7 @@
         </Method>
       </Methods>
     </Class>
-    <Class name="Viatura" package="classes" visibility="public" xPosition="3097.0" yPosition="2070.0">
+    <Class name="Viatura" package="classes" visibility="public" xPosition="3456.0" yPosition="2246.0">
       <Fields/>
       <Constructors>
         <Constructor visibility="public">
@@ -671,37 +671,37 @@
     </Class>
   </ClassDiagramComponents>
   <ClassDiagramRelations>
-    <IsRelation name="is" source="classes.Estacionamento_viaturas" target="classes.Estacionamento"/>
-    <HasRelation name="gerenciadorE" source="classes.Estacionamento" target="classes.GerenciadorEstacionamento" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <IsRelation name="is" source="classes.Professor" target="classes.Condutor"/>
-    <UseRelation source="classes.GerenciadorCondutor" target="classes.Transporte" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <UseRelation source="classes.Estacionamento" target="classes.Transporte" sourceCardinality="1..1" targetCardinality="1..1"/>
     <UseRelation source="classes.Transporte" target="classes.Condutor" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <IsRelation name="is" source="classes.Funcionario" target="classes.Condutor"/>
-    <UseRelation source="classes.GerenciadorEstacionamento" target="classes.Transporte" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <UseRelation source="classes.GerenciadorEstacionamento" target="classes.Estacionamento" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <UseRelation source="classes.Transporte" target="classes.Estacionamento" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <HasRelation name="estacionamento" source="classes.Transporte" target="classes.Estacionamento" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <IsRelation name="is" source="classes.Estudante" target="classes.Condutor"/>
     <IsRelation name="is" source="classes.Viatura" target="classes.Transporte"/>
-    <HasRelation name="transportes" source="classes.GerenciadorTransporte" target="classes.Transporte" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="HashSet&lt;Transporte&gt;"/>
-    <UseRelation source="classes.GerenciadorTransporte" target="classes.Transporte" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <HasRelation name="condutores" source="classes.GerenciadorCondutor" target="classes.Condutor" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="HashSet&lt;Condutor&gt;"/>
-    <UseRelation source="classes.GerenciadorCondutor" target="classes.Condutor" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <UseRelation source="classes.GerenciadorTransporte" target="classes.Condutor" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <IsRelation name="is" source="classes.Estacionamento_motociclos" target="classes.Estacionamento"/>
-    <HasRelation name="transportes" source="classes.GerenciadorEstacionamento" target="classes.Transporte" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="HashSet&lt;Transporte&gt;"/>
-    <HasRelation name="transportes" source="classes.Condutor" target="classes.Transporte" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="List&lt;Transporte&gt;"/>
-    <HasRelation name="estacionamentos" source="classes.GerenciadorEstacionamento" target="classes.Estacionamento" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="HashSet&lt;Estacionamento&gt;"/>
-    <IsRelation name="is" source="classes.Motociclo" target="classes.Transporte"/>
-    <UseRelation source="classes.Estacionamento" target="classes.Localizacao" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <IsRelation name="is" source="classes.Estudante_bolseiro" target="classes.Estudante"/>
-    <HasRelation name="mensagem" source="classes.Estacionamento" target="classes.MensagemChat" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <HasRelation name="estacionamento" source="classes.GerenciadorEstacionamento" target="classes.Estacionamento" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="classes.Funcionario" target="classes.Condutor"/>
     <UseRelation source="classes.Condutor" target="classes.Transporte" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <HasRelation name="condutor" source="classes.Transporte" target="classes.Condutor" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <HasRelation name="transporte" source="classes.Estacionamento" target="classes.Transporte" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="classes.Motociclo" target="classes.Transporte"/>
+    <HasRelation name="transportes" source="classes.GerenciadorTransporte" target="classes.Transporte" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="HashSet&lt;Transporte&gt;"/>
+    <IsRelation name="is" source="classes.Estudante" target="classes.Condutor"/>
+    <HasRelation name="estacionamentos" source="classes.GerenciadorEstacionamento" target="classes.Estacionamento" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="HashSet&lt;Estacionamento&gt;"/>
+    <IsRelation name="is" source="classes.Estacionamento_viaturas" target="classes.Estacionamento"/>
     <HasRelation name="localizacao" source="classes.Estacionamento" target="classes.Localizacao" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="gerenciadorE" source="classes.Estacionamento" target="classes.GerenciadorEstacionamento" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="classes.GerenciadorCondutor" target="classes.Transporte" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="transportes" source="classes.GerenciadorEstacionamento" target="classes.Transporte" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="HashSet&lt;Transporte&gt;"/>
+    <UseRelation source="classes.Estacionamento" target="classes.Localizacao" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="estacionamento" source="classes.GerenciadorEstacionamento" target="classes.Estacionamento" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="classes.GerenciadorTransporte" target="classes.Transporte" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="classes.Professor" target="classes.Condutor"/>
+    <HasRelation name="transporte" source="classes.Estacionamento" target="classes.Transporte" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="estacionamento" source="classes.Transporte" target="classes.Estacionamento" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="transportes" source="classes.Condutor" target="classes.Transporte" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="List&lt;Transporte&gt;"/>
+    <HasRelation name="mensagem" source="classes.Estacionamento" target="classes.MensagemChat" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="classes.Estudante_bolseiro" target="classes.Estudante"/>
     <HasRelation name="transportes" source="classes.Estacionamento" target="classes.Transporte" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="HashSet&lt;Transporte&gt;"/>
+    <IsRelation name="is" source="classes.Estacionamento_motociclos" target="classes.Estacionamento"/>
+    <UseRelation source="classes.GerenciadorCondutor" target="classes.Condutor" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="classes.Transporte" target="classes.Estacionamento" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="condutor" source="classes.Transporte" target="classes.Condutor" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="classes.Estacionamento" target="classes.Transporte" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="condutores" source="classes.GerenciadorCondutor" target="classes.Condutor" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="HashSet&lt;Condutor&gt;"/>
+    <UseRelation source="classes.GerenciadorEstacionamento" target="classes.Estacionamento" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="classes.GerenciadorEstacionamento" target="classes.Transporte" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="classes.GerenciadorTransporte" target="classes.Condutor" sourceCardinality="1..1" targetCardinality="1..1"/>
   </ClassDiagramRelations>
 </ClassDiagram>
